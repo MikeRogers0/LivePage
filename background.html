@@ -1,0 +1,71 @@
+<script type="text/javascript">
+// Set up the local variables & functions.
+var liveSites = new Object();
+var hostname;
+
+// Get the hostname from the URL with a bit of regular expression.
+function get_hostname_from_url(url){
+    var results = url.match(/:\/\/(.[^/]+)/);
+    return results[1];
+}
+
+// If there is no sites to make live, add one.
+if(localStorage["liveSites"] == undefined){
+	localStorage["liveSites"] = JSON.stringify(liveSites);
+}
+
+liveSites = JSON.parse(localStorage["liveSites"]);
+console.log('Can load up liveJS on: ');
+console.log(liveSites);
+
+
+// Add the listners
+// Check if the URL were on has requested liveJS
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+	// Only load it in when the page is loaded.
+	if(changeInfo.status == "complete"){
+		// Get the domain from the tab URL.
+		hostname = get_hostname_from_url(tab.url);
+		
+		console.log('Checking: '+tab.url+' : Hostname: '+hostname);
+		
+		if(liveSites[hostname] === true){
+			chrome.tabs.executeScript(null, {file: "live.js"});
+			
+			chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
+			chrome.browserAction.setTitle({title: 'Disable LivePage on '+hostname, tabId: tab.id});
+			console.log('Loaded live JS on: '+tab.url+' : Hostname: '+hostname);
+		}else{
+			chrome.browserAction.setBadgeText({text: "", tabId: tab.id});
+			chrome.browserAction.setTitle({title: 'Enable LivePage on '+hostname, tabId: tab.id});
+			console.log('Skipped: '+tab.url+' : Hostname: '+hostname);
+		}
+	}
+});
+
+// If the user clicks the icon - make the site liveJS enanabled/disabled
+chrome.browserAction.onClicked.addListener(function(tab) {
+	hostname = get_hostname_from_url(tab.url);
+	
+	if(liveSites[hostname]){
+		//alert('Made page unlive: '+hostname);
+		delete liveSites[hostname];
+		chrome.browserAction.setBadgeText({text: '', tabId: tab.id});
+		chrome.browserAction.setTitle({title: 'Enable LivePage on '+hostname, tabId: tab.id});
+		
+		console.log('Deleting LiveJS: '+tab.url+' : Hostname: '+hostname);
+	} else{
+		//alert('Made page live: '+hostname);
+		liveSites[hostname] = true;
+		
+		// Load the liveJS when they click the butotn.
+		chrome.tabs.executeScript(null, {file: "live.js"});
+		chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
+		chrome.browserAction.setTitle({title: 'Disable LivePage on '+hostname, tabId: tab.id});
+		
+		console.log('Adding LiveJS: '+tab.url+' : Hostname: '+hostname);
+	}
+	
+	localStorage["liveSites"] = JSON.stringify(liveSites);
+});
+</script>

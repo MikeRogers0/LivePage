@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head><title>LivePage - Options</title>
+<style type="text/css">
+body{
+font: menu;
+width: 50%;
+margin: 5px auto;
+text-align: center;
+}
+form{
+text-align: left;
+}
+form fieldset {
+margin-bottom: 10px;
+}
+form legend {
+padding: 0 2px;
+font-weight: bold;
+}
+form label {
+display: inline-block;
+line-height: 1.8;
+vertical-align: top;
+}
+form fieldset ol {
+margin: 0;
+padding: 0;
+}
+form fieldset li {
+list-style: none;
+padding: 5px;
+margin: 0;
+}
+form input[type="checkbox"]{
+	margin-right: 25px;
+	margin-top:5px;
+}
+form label {
+width: 120px; /* Width of labels */
+}
+form fieldset fieldset{
+border: 1px solid #ddd;
+}
+#logo{
+float:left;
+margin-left: -150px;
+}
+</style>
+</head>
+<body>
+<a href="https://github.com/Rogem002/LivePage" title="Project GitHub"><img src="/icon.png" id="logo" width="128" height="129" alt="Logo" /></a>
+<h1>LivePage - Options</h1>
+<p>
+	<a href="https://github.com/Rogem002/LivePage" target="_blank">LivePage on GitHub</a> | 
+	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5T8CCJ27QN3YQ" target="_blank">Support This Extension (Donate)</a> | 
+	<a href="http://livejs.com/" target="_blank">Live.js</a> | 
+	<a href="http://fullondesign.co.uk/" target="_blank">Full On Design</a>
+</p>
+<form id="options">
+	<fieldset>
+		<legend>LivePage is running on <span id="host_count">0</span> hosts:</legend>
+		<ol id="host_list">
+			
+		</ol>
+	</fieldset>
+</form>
+<p>To add/remove host, visit the page and click the LivePage icon next to the URL bar.</p>
+<script type="text/javascript">
+function showHosts(){
+	if(localStorage["liveSites"] !== 'undefined'){
+		var liveSites = JSON.parse(localStorage["liveSites"]);
+		var host_list = document.getElementById("host_list");
+		var host_count = 0;
+		for (var i in liveSites){
+			host_count++;
+			host_list.innerHTML = host_list.innerHTML+'<li><a href="http://'+i+'/">'+i+'</a></li>';
+		}
+		
+		if(host_count === 0){
+			host_list.innerHTML = host_list.innerHTML+'<li>No hosts added :/</li>';
+		}else {
+			document.getElementById("host_count").innerHTML = host_count;
+		}
+	}
+}
+showHosts();
+</script>
+</body>
+</html>

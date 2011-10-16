@@ -1,0 +1,20 @@
+{
+  "name": "LivePage",
+  "version": "1.0",
+  "description": "LivePage reloads resources (CSS/HTML/JavaScript) as they change on the server. By @Rogem002 and  @mrtnkl",
+  "background_page": "background.html",
+  "options_page": "options.html",
+  "permissions": [
+	"tabs", "http://*/*", "https://*/*"
+  ],
+  "browser_action": {
+    "default_title": "Enable LivePage on this site",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+  	"16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "minimum_chrome_version": "10.0" 
+}

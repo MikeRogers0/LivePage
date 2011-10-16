@@ -37,7 +37,7 @@ form input[type="checkbox"]{
 	margin-top:5px;
 }
 form label {
-width: 120px; /* Width of labels */
+width: 80px; /* Width of labels */
 }
 form fieldset fieldset{
 border: 1px solid #ddd;
@@ -57,34 +57,74 @@ margin-left: -150px;
 	<a href="http://livejs.com/" target="_blank">Live.js</a> | 
 	<a href="http://fullondesign.co.uk/" target="_blank">Full On Design</a>
 </p>
-<form id="options">
+<p id="status">&nbsp;</p>
+<form id="options" name="options" action="#">
 	<fieldset>
-		<legend>LivePage is running on <span id="host_count">0</span> hosts:</legend>
+		<legend>LivePage is running on <span id="url_count">0</span> URLs:</legend>
 		<ol id="host_list">
 			
 		</ol>
 	</fieldset>
+	<fieldset>
+		<legend>LivePage default actions:</legend>
+		<ol id="LiveActions">
+			<li><label for="liveactions_css">CSS:</label><input id="liveactions_css" name="liveactions" type="checkbox" value="css"></li>
+			<li><label for="liveactions_js">JS:</label><input id="liveactions_js" name="liveactions" type="checkbox" value="js"></li>
+			<li><label for="liveactions_html">HTML:</label><input id="liveactions_html" name="liveactions" type="checkbox" value="html"></li>
+			<li><label for="liveactions_notify">Notify:</label><input id="liveactions_notify" name="liveactions" type="checkbox" value="notify"></li>
+		</ol>
+	</fieldset>
 </form>
-<p>To add/remove host, visit the page and click the LivePage icon next to the URL bar.</p>
+<p>To add/remove a URL, visit the page and click the LivePage icon next to the omnibar.</p>
 <script type="text/javascript">
 function showHosts(){
 	if(localStorage["liveSites"] !== 'undefined'){
 		var liveSites = JSON.parse(localStorage["liveSites"]);
 		var host_list = document.getElementById("host_list");
-		var host_count = 0;
+		var url_count = 0;
 		for (var i in liveSites){
-			host_count++;
-			host_list.innerHTML = host_list.innerHTML+'<li><a href="http://'+i+'/">'+i+'</a></li>';
+			url_count++;
+			host_list.innerHTML += '<li><a href="'+i+'">'+i+'</a></li>';
 		}
 		
-		if(host_count === 0){
-			host_list.innerHTML = host_list.innerHTML+'<li>No hosts added :/</li>';
+		if(url_count === 0){
+			host_list.innerHTML = host_list.innerHTML+'<li>No URLs added :/</li>';
 		}else {
-			document.getElementById("host_count").innerHTML = host_count;
+			document.getElementById("url_count").innerHTML = url_count;
+		}
+	}
+	if(localStorage["LiveActions"] !== 'undefined'){
+		var liveAction = new Array();
+		liveAction = localStorage["LiveActions"].replace('#','').split(',');
+		for(var i in liveAction){
+			document.getElementById('liveactions_'+liveAction[i]).checked = true;
 		}
 	}
 }
+function updateValues(){
+	var liveAction = new Array();
+	var liveAction_count = 0;
+	var liveAction_value = '';
+	
+	for(var i in document.options.liveactions){
+		if(document.options.liveactions[i].checked === true){
+			liveAction[liveAction_count++] = document.options.liveactions[i].value;
+		}
+	}
+	if(liveAction.join(',') != ''){
+		liveAction_value = '#'+liveAction.join(',');
+	}
+	
+	localStorage["LiveActions"] = liveAction_value;
+	console.log('Updated LiveActions to: '+localStorage["LiveActions"]);
+	updateNotice('Updated LiveActions to: '+localStorage["LiveActions"]);
+}
+function updateNotice(notice){
+	document.getElementById("status").innerHTML = notice;
+	setTimeout(function(){document.getElementById("status").innerHTML = '&nbsp;';}, 2000);
+}
 showHosts();
+document.getElementById("LiveActions").addEventListener('change',updateValues,false);
 </script>
 </body>
 </html>

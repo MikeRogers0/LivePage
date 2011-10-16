@@ -1,6 +1,6 @@
 {
   "name": "LivePage",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "LivePage reloads resources (CSS/HTML/JavaScript) as they change on the server. By @Rogem002 and  @mrtnkl",
   "background_page": "background.html",
   "options_page": "options.html",

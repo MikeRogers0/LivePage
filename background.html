@@ -1,17 +1,13 @@
 <script type="text/javascript">
 // Set up the local variables & functions.
 var liveSites = new Object();
-var hostname;
-
-// Get the hostname from the URL with a bit of regular expression.
-function get_hostname_from_url(url){
-    var results = url.match(/:\/\/(.[^/]+)/);
-    return results[1];
-}
 
 // If there is no sites to make live, add one.
 if(localStorage["liveSites"] == undefined){
 	localStorage["liveSites"] = JSON.stringify(liveSites);
+}
+if(localStorage["LiveActions"] == undefined){
+	localStorage["LiveActions"] = '#css,js';
 }
 
 liveSites = JSON.parse(localStorage["liveSites"]);
@@ -19,51 +15,55 @@ console.log('Can load up liveJS on: ');
 console.log(liveSites);
 
 
+// Adds the LiveJS to the page.
+function Load_Live_JS(tab){
+	//chrome.tabs.executeScript(tab.id, {code: 'if(document.getElementById("LivePage_LiveJS") === null){document.getElementsByTagName("body")[0].innerHTML += (\'<script type="text/javascript" id="LivePage_LiveJS" src="'+chrome.extension.getURL('live.js')+localStorage["LiveActions"]+'" ><\/script>\');}'});
+	
+	chrome.tabs.executeScript(tab.id, {code: "(function(){if(document.getElementById('LivePage_LiveJS') === null){var livejs = document.createElement('script');livejs.id = 'LivePage_LiveJS';livejs.src = '"+chrome.extension.getURL('live.js')+localStorage["LiveActions"]+"';livejs.type = 'text/javascript';document.body.appendChild(livejs);}})();"});
+			
+	chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
+	chrome.browserAction.setTitle({title: 'Disable LivePage on '+tab.url, tabId: tab.id});
+	chrome.tabs.executeScript(tab.id, {file: 'real-live.js'});
+	console.log('Loaded live JS on: '+tab.url);
+}
+
+// Removes the JS from the page.
+function Skip_Live_JS(tab){
+	chrome.browserAction.setBadgeText({text: "", tabId: tab.id});
+	chrome.browserAction.setTitle({title: 'Enable LivePage on '+tab.url, tabId: tab.id});
+	console.log('Skipped: '+tab.url);
+}
+
 // Add the listners
 // Check if the URL were on has requested liveJS
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	// Only load it in when the page is loaded.
-	if(changeInfo.status == "complete"){
-		// Get the domain from the tab URL.
-		hostname = get_hostname_from_url(tab.url);
+	if(changeInfo.status == "loading"){
+		console.log('Checking: '+tab.url);
 		
-		console.log('Checking: '+tab.url+' : Hostname: '+hostname);
-		
-		if(liveSites[hostname] === true){
-			chrome.tabs.executeScript(null, {file: "live.js"});
-			
-			chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
-			chrome.browserAction.setTitle({title: 'Disable LivePage on '+hostname, tabId: tab.id});
-			console.log('Loaded live JS on: '+tab.url+' : Hostname: '+hostname);
-		}else{
-			chrome.browserAction.setBadgeText({text: "", tabId: tab.id});
-			chrome.browserAction.setTitle({title: 'Enable LivePage on '+hostname, tabId: tab.id});
-			console.log('Skipped: '+tab.url+' : Hostname: '+hostname);
+		if(liveSites[tab.url] === true){
+			Load_Live_JS(tab);
+		}else {
+			Skip_Live_JS(tab);
 		}
 	}
 });
 
+
 // If the user clicks the icon - make the site liveJS enanabled/disabled
 chrome.browserAction.onClicked.addListener(function(tab) {
-	hostname = get_hostname_from_url(tab.url);
-	
-	if(liveSites[hostname]){
-		//alert('Made page unlive: '+hostname);
-		delete liveSites[hostname];
-		chrome.browserAction.setBadgeText({text: '', tabId: tab.id});
-		chrome.browserAction.setTitle({title: 'Enable LivePage on '+hostname, tabId: tab.id});
+	if(liveSites[tab.url]){
+		delete liveSites[tab.url];
+		Skip_Live_JS(tab);
 		
-		console.log('Deleting LiveJS: '+tab.url+' : Hostname: '+hostname);
+		console.log('Deleting LiveJS: '+tab.url);
 	} else{
-		//alert('Made page live: '+hostname);
-		liveSites[hostname] = true;
+		liveSites[tab.url] = true;
 		
 		// Load the liveJS when they click the butotn.
-		chrome.tabs.executeScript(null, {file: "live.js"});
-		chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
-		chrome.browserAction.setTitle({title: 'Disable LivePage on '+hostname, tabId: tab.id});
+		Load_Live_JS(tab);
 		
-		console.log('Adding LiveJS: '+tab.url+' : Hostname: '+hostname);
+		console.log('Adding LiveJS: '+tab.url);
 	}
 	
 	localStorage["liveSites"] = JSON.stringify(liveSites);

@@ -1,130 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head><title>LivePage - Options</title>
-<style type="text/css">
-body{
-font: menu;
-width: 50%;
-margin: 5px auto;
-text-align: center;
-}
-form{
-text-align: left;
-}
-form fieldset {
-margin-bottom: 10px;
-}
-form legend {
-padding: 0 2px;
-font-weight: bold;
-}
-form label {
-display: inline-block;
-line-height: 1.8;
-vertical-align: top;
-}
-form fieldset ol {
-margin: 0;
-padding: 0;
-}
-form fieldset li {
-list-style: none;
-padding: 5px;
-margin: 0;
-}
-form input[type="checkbox"]{
-	margin-right: 25px;
-	margin-top:5px;
-}
-form label {
-width: 80px; /* Width of labels */
-}
-form fieldset fieldset{
-border: 1px solid #ddd;
-}
-#logo{
-float:left;
-margin-left: -150px;
-}
-</style>
+<link rel="stylesheet" href="/css/options.css">
 </head>
 <body>
-<a href="https://github.com/Rogem002/LivePage" title="Project GitHub"><img src="/icon.png" id="logo" width="128" height="129" alt="Logo" /></a>
-<h1>LivePage - Options</h1>
-<p>
-	<a href="https://github.com/Rogem002/LivePage" target="_blank">LivePage on GitHub</a> | 
-	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5T8CCJ27QN3YQ" target="_blank">Support This Extension (Donate)</a> | 
-	<a href="http://livejs.com/" target="_blank">Live.js</a> | 
-	<a href="http://fullondesign.co.uk/" target="_blank">Full On Design</a>
-</p>
-<p id="status">&nbsp;</p>
-<form id="options" name="options" action="#">
-	<fieldset>
-		<legend>LivePage is running on <span id="url_count">0</span> URLs:</legend>
+<div class="container">
+	<header>
+		<h1>LivePage <em>Options</em></h1>
+		<a href="https://github.com/MikeRogers0/LivePage" title="Project GitHub" id="logo"><img src="/icon.png" width="62" height="62" alt="Logo" /></a>
+	</header>
+	<section>
+		<h2>LivePage will run on:</h2>
 		<ol id="host_list">
 			
 		</ol>
-	</fieldset>
-	<fieldset>
-		<legend>LivePage default actions:</legend>
-		<ol id="LiveActions">
-			<li><label for="liveactions_css">CSS:</label><input id="liveactions_css" name="liveactions" type="checkbox" value="css"></li>
-			<li><label for="liveactions_js">JS:</label><input id="liveactions_js" name="liveactions" type="checkbox" value="js"></li>
-			<li><label for="liveactions_html">HTML:</label><input id="liveactions_html" name="liveactions" type="checkbox" value="html"></li>
-			<li><label for="liveactions_notify">Notify:</label><input id="liveactions_notify" name="liveactions" type="checkbox" value="notify"></li>
-		</ol>
-	</fieldset>
-</form>
-<p>To add/remove a URL, visit the page and click the LivePage icon next to the omnibar.</p>
-<script type="text/javascript">
-function showHosts(){
-	if(localStorage["liveSites"] !== 'undefined'){
-		var liveSites = JSON.parse(localStorage["liveSites"]);
-		var host_list = document.getElementById("host_list");
-		var url_count = 0;
-		for (var i in liveSites){
-			url_count++;
-			host_list.innerHTML += '<li><a href="'+i+'">'+i+'</a></li>';
-		}
-		
-		if(url_count === 0){
-			host_list.innerHTML = host_list.innerHTML+'<li>No URLs added :/</li>';
-		}else {
-			document.getElementById("url_count").innerHTML = url_count;
-		}
-	}
-	if(localStorage["LiveActions"] !== 'undefined'){
-		var liveAction = new Array();
-		liveAction = localStorage["LiveActions"].replace('#','').split(',');
-		for(var i in liveAction){
-			document.getElementById('liveactions_'+liveAction[i]).checked = true;
-		}
-	}
-}
-function updateValues(){
-	var liveAction = new Array();
-	var liveAction_count = 0;
-	var liveAction_value = '';
-	
-	for(var i in document.options.liveactions){
-		if(document.options.liveactions[i].checked === true){
-			liveAction[liveAction_count++] = document.options.liveactions[i].value;
-		}
-	}
-	if(liveAction.join(',') != ''){
-		liveAction_value = '#'+liveAction.join(',');
-	}
-	
-	localStorage["LiveActions"] = liveAction_value;
-	console.log('Updated LiveActions to: '+localStorage["LiveActions"]);
-	updateNotice('Updated LiveActions to: '+localStorage["LiveActions"]);
-}
-function updateNotice(notice){
-	document.getElementById("status").innerHTML = notice;
-	setTimeout(function(){document.getElementById("status").innerHTML = '&nbsp;';}, 2000);
-}
-showHosts();
-document.getElementById("LiveActions").addEventListener('change',updateValues,false);
-</script>
+		<input type="button" value="Clear all" />
+	</section>
+	<form id="options" name="options" action="#">
+		<section>
+			<h2>LivePage should monitor for changes in:</h2>
+			<ul>
+				<li><label><input id="monitor_css" name="liveactions" type="checkbox" value="true" />CSS</label></li>
+				<li><label><input id="monitor_js" name="liveactions" type="checkbox" value="true" />JavaScript</label></li>
+				<li><label><input id="monitor_html" name="liveactions" type="checkbox" value="true" />HTML</label></li>
+			</ul>
+		</section>
+		<section>
+			<h2>Advanced Settings:</h2>
+			<ul>
+				<li><label><input id="hosts_session" name="livesettings" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>
+				<li><label><input id="skip_external" name="livesettings" type="checkbox" value="true" />Skip external resources (such as googleapis.com)</label></li>
+				<li><label><input id="entire_hosts" name="livesettings" type="checkbox" value="true" />LivePages runs on entire domains</label></li>
+				<li><label>Check for newer resources every: 
+				<select id="refresh_rate" name="livesettings">
+					<option value="500">500ms</option>
+					<option value="1000">1s</option>
+					<option value="2500">2.5s</option>
+					<option value="5000">5s</option>
+					<option value="10000">10s</option>
+				</select>
+				</label></li>
+			</ul>
+		</section>
+	</form>
+</div>
+<footer class="container">
+	<ul>
+		<li><a href="https://github.com/MikeRogers0/LivePage" target="_blank">Contribute on GitHub</a></li>
+		<li><a href="http://livejs.com/" target="_blank">Live.js</a></li>
+		<li><a href="http://fullondesign.co.uk/" target="_blank">Full On Design</a></li>
+	</ul>
+</footer>
+<script async src="/js/options.js"></script>
 </body>
 </html>

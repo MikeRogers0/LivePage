@@ -1,0 +1,115 @@
+/* Set up the generic styles */
+
+body{
+	font-family: 'Myriad Pro', serif;
+	font-size: 16px;
+	background: #D5E6ED;
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #AACDDB), color-stop(50%, #D5E6ED));
+	background-attachment: fixed;
+	margin: 0;
+	padding: 20px 0;
+}
+
+a{
+	color: #0198CB;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+
+.container{
+	margin: 0 auto;
+	width: 60%;
+	min-width: 720px;
+	padding: 20px;
+	overflow: hidden;
+}
+	div.container{
+		background: rgba(255,255,255, 0.6);
+		border: 1px solid white;
+		border-radius: 7px;
+	}
+
+header{
+	overflow: hidden;
+}
+	h1{
+		float: left;
+		margin: 5px 0 0 0;
+		font-weight: 500;
+		font-size: 38px;
+	}
+	h1 em{
+		font-style: normal;
+		font-weight: 400;
+		color: #27AAE0;
+	}
+	#logo{
+		float:right;
+		margin: 0 0 15px 0;
+	}
+	#logo img{
+		-webkit-transition: -webkit-transform 2s ease-in-out;
+	}
+	
+	#logo.updated img{
+		-webkit-transform: rotateY(360deg);
+	}
+	#logo:hover img{
+		opacity: 0.8;
+	}
+
+section{
+	float: left;
+	width: 96%;
+	margin: 0 2% 20px 0;
+	padding: 15px 2%;
+	background: white;
+	border: none;
+	border-radius: 7px;
+	display: block;
+}
+
+	h2{
+		font-size: 18px;
+		margin: 0 0 10px 0;
+		font-weight: 600;
+	}
+
+form{
+	
+}
+	form ol, form ul{
+		list-style: none;
+		padding: 0;
+		margin: 0 0 5px 0;
+	}
+	form ol li, form ul li{
+		list-style: none;
+		padding: 0 0 5px 0;
+		margin: 0;
+	}
+	form label {
+		display: block;
+		padding: 0;
+	}
+	form input[type="checkbox"]{
+		margin-right: 15px;
+	}
+	
+	
+footer ul{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+	footer ul li{
+		float: left;
+		list-style: none;
+		padding: 3px 10px 3px 0;
+		margin: 0 25px 0 0;
+	}
+	footer a{
+		color: #42464F;
+	}

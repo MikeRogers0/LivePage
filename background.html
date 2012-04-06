@@ -16,9 +16,7 @@ console.log(liveSites);
 
 
 // Adds the LiveJS to the page.
-function Load_Live_JS(tab){
-	//chrome.tabs.executeScript(tab.id, {code: 'if(document.getElementById("LivePage_LiveJS") === null){document.getElementsByTagName("body")[0].innerHTML += (\'<script type="text/javascript" id="LivePage_LiveJS" src="'+chrome.extension.getURL('live.js')+localStorage["LiveActions"]+'" ><\/script>\');}'});
-	
+function Load_Live_JS(tab){	
 	chrome.tabs.executeScript(tab.id, {code: "(function(){if(document.getElementById('LivePage_LiveJS') === null){var livejs = document.createElement('script');livejs.id = 'LivePage_LiveJS';livejs.src = '"+chrome.extension.getURL('live.js')+localStorage["LiveActions"]+"';livejs.type = 'text/javascript';document.body.appendChild(livejs);}})();"});
 			
 	chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});

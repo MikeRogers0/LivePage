@@ -10,7 +10,12 @@ function settings(){
 		refresh_rate: 1000
 	};
 	
-	this.livePages = {}
+	// Now load the options from the localStorage
+	for (var key in this.options){
+		this.options[key] = localeStorager.get(key);
+	}
+	
+	this.livePages = localeStorager.get('livePages');
 }
 
 

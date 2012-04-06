@@ -2,8 +2,7 @@
 <html>
 <head><title>LivePage - Options</title>
 <link rel="stylesheet" href="/css/options.css">
-<script src="/js/localeStorager.pack.js"></script>
-<script src="/js/options.js"></script>
+<script src="/js/objects.js"></script>
 </head>
 <body>
 <div class="container">
@@ -13,28 +12,29 @@
 	</header>
 	<section>
 		<h2>LivePage will run on:</h2>
-		<ol id="host_list">
+		<ul id="host_list">
 			
-		</ol>
-		<input type="button" value="Clear all" />
+		</ul>
+		<input type="button" id="clear_all" value="Clear all" />
 	</section>
 	<form id="options" name="options" action="#">
 		<section>
 			<h2>LivePage should monitor for changes in:</h2>
 			<ul>
-				<li><label><input id="monitor_css" name="liveactions" type="checkbox" value="true" />CSS</label></li>
-				<li><label><input id="monitor_js" name="liveactions" type="checkbox" value="true" />JavaScript</label></li>
-				<li><label><input id="monitor_html" name="liveactions" type="checkbox" value="true" />HTML</label></li>
+				<li><label><input id="monitor_css" name="monitor_css" type="checkbox" value="true" />CSS</label></li>
+				<li><label><input id="monitor_js" name="monitor_js" type="checkbox" value="true" />JavaScript</label></li>
+				<li><label><input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label></li>
 			</ul>
 		</section>
 		<section>
 			<h2>Advanced Settings:</h2>
 			<ul>
-				<li><label><input id="hosts_session" name="livesettings" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>
-				<li><label><input id="skip_external" name="livesettings" type="checkbox" value="true" />Skip external resources (such as googleapis.com)</label></li>
-				<li><label><input id="entire_hosts" name="livesettings" type="checkbox" value="true" />LivePages runs on entire domains</label></li>
+				<li><label><input id="hosts_session" name="hosts_session" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>
+				<li><label><input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com)</label></li>
+				<li><label><input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />LivePages runs on entire domains</label></li>
 				<li><label>Check for newer resources every: 
-				<select id="refresh_rate" name="livesettings">
+				<select id="refresh_rate" name="refresh_rate">
+					<option value="auto">Auto (Recommended)</option>
 					<option value="500">500ms</option>
 					<option value="1000">1s</option>
 					<option value="2500">2.5s</option>
@@ -53,5 +53,6 @@
 		<li><a href="http://fullondesign.co.uk/" target="_blank">Full On Design</a></li>
 	</ul>
 </footer>
+<script src="/js/options.js"></script>
 </body>
 </html>

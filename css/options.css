@@ -50,11 +50,12 @@ header{
 		margin: 0 0 15px 0;
 	}
 	#logo img{
-		-webkit-transition: -webkit-transform 2s ease-in-out;
+		-webkit-transition: -webkit-transform 1s ease-in-out;
+		-webkit-transform: rotateY(0deg);
 	}
 	
 	#logo.updated img{
-		-webkit-transform: rotateY(360deg);
+		-webkit-transform: rotateY(180deg);
 	}
 	#logo:hover img{
 		opacity: 0.8;
@@ -77,19 +78,19 @@ section{
 		font-weight: 600;
 	}
 
-form{
-	
+
+ul{
+	list-style: none;
+	padding: 0;
+	margin: 0 0 5px 0;
 }
-	form ol, form ul{
-		list-style: none;
-		padding: 0;
-		margin: 0 0 5px 0;
-	}
-	form ol li, form ul li{
+	ul li{
 		list-style: none;
 		padding: 0 0 5px 0;
 		margin: 0;
+		line-height: 20px;
 	}
+
 	form label {
 		display: block;
 		padding: 0;

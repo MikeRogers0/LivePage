@@ -1,1 +1,0 @@
-var localeStorager={store:function(a,b){localStorage.setItem(a,JSON.stringify(b))},get:function(a){return JSON.parse(localStorage.getItem(a))},remove:function(a){localStorage.removeItem(a);return true}}

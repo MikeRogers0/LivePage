@@ -48,7 +48,7 @@ livePage.prototype.scanPage = function(){
 	// if the users wants to track it, add it to the resources object.
 	if(this.options.monitor_css == true){
 		// Cycle through all the elements & put them into a big object.
-		var elements = livePage_element.querySelectorAll('link[href$="css"]');
+		var elements = livePage_element.querySelectorAll('link[href*="css"]');
 		for(var key=0; key<elements.length; key++){
 			if(this.isCheckable(elements[key].getAttribute('href'))){
 				this.resources.urls[elem_count++] = {
@@ -61,7 +61,7 @@ livePage.prototype.scanPage = function(){
 		}
 	}
 	if(this.options.monitor_js == true){
-		var elements = livePage_element.querySelectorAll('script[src$="js"]');
+		var elements = livePage_element.querySelectorAll('script[src*="js"]');
 		for(var key=0; key<elements.length; key++){
 			if(this.isCheckable(elements[key].getAttribute('src'))){
 				 this.resources.urls[elem_count++] = {
@@ -87,7 +87,7 @@ livePage.prototype.scanPage = function(){
 
 livePage.prototype.isCheckable = function(url){
 	// from: http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
-	if(this.options.skip_external != true){
+	if(this.options.skip_external == false){
 		return true;
 	}
 	
@@ -115,9 +115,9 @@ livePage.prototype.checkResources = function(){
 	xhr.count = this.resources.count;
 	
 	if(xhr.type == 'html'){
-		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true);
+		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true);
 	} else {
-		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true); // if it's html, we need to compare side by side.
+		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true); // if it's html, we need to compare side by side.
 	}
 	
 	xhr.onreadystatechange = function() {
@@ -134,8 +134,10 @@ livePage.prototype.checkResources = function(){
 			}
 			
 			// Do a check on the html.
-			if(xhr.type == 'html' && headersChanged != true)){
-				
+			if(xhr.type == 'html' && headersChanged != true){
+				if(xhr.responseText != $livePage.resources.html){
+					headersChanged = true;
+				}
 			}
 			
 			if(headersChanged == true){

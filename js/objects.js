@@ -7,12 +7,12 @@ function Settings(){
 		monitor_js: true,
 		monitor_html: true,
 		hosts_session: false,
-		skip_external: false,
+		skip_external: true,
 		entire_hosts: false,
-		refresh_rate: 'auto'
+		refresh_rate: 1000
 	};
 	
-	
+	this.refresh();
 };
 
 // LocalStorage functions based on https://github.com/Gaya/Locale-Storager
@@ -33,16 +33,28 @@ Settings.prototype.remove = function(key){
  	return true;
 };
 
+Settings.prototype.refresh = function(){
+ 	for(var key in this.options){
+ 		this.options[key] = this.get(key);
+ 	}
+ 	return true;
+};
+
+
 var settings = new Settings();
 
 // The livePages object.
 
 function livePages(){
-	this.livePages = settings.get('livePages');
+	this.livePages = {};
+	this.loadAll();
 };
 
 livePages.prototype.loadAll = function(){
 	this.livePages = settings.get('livePages');
+	if(settings.get('livePages') == null){
+		this.livePages = {};
+	}
 };
 
 
@@ -64,7 +76,7 @@ livePages.prototype.add = function(url){
 
 livePages.prototype.isLive = function(url){
 	this.loadAll();
-	if(this.livePages[url] === true){
+	if(this.livePages[url] != undefined){
 		return true;
 	}
 	return false;

@@ -35,7 +35,6 @@ if(livepages.livePages == undefined || livepages.livePages == null){
 	host_list.innerHTML = host_list.innerHTML+'<li>No URLs are live :/<br />Clicking the icon in the omnibar will make a page live :)</li>';
 } else {
 	for (var i in livepages.livePages){
-		url_count++;
 		host_list.innerHTML += '<li><a href="'+i+'">'+i+'</a></li>';
 	}
 }
@@ -44,7 +43,7 @@ if(livepages.livePages == undefined || livepages.livePages == null){
 clear_all.addEventListener('click',clearLivePages,false);
 
 // now update the checkboxes and select field with values from the database.
-for(key=0; key<settingFields.length; key++){
+for(var key=0; key<settingFields.length; key++){
 	if(settingFields[key].getAttribute('type') == 'checkbox'){
 		// If the checkbox value is the same as the one in the database check it
 		settingFields[key].checked = false; // uncheck it by default

@@ -23,7 +23,7 @@ function disableLivePage(tab){
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	
 	// Quickly check were ok to work on this URL:
-	if(tab.url.indexOf('chrome://') != -1 || tab.url.indexOf('chrome-devtools://') != -1  || tab.url.indexOf('chrome-extension://') != -1){
+	if(tab.url.indexOf('chrome://') != -1 || tab.url.indexOf('chrome-devtools://') != -1  || tab.url.indexOf('chrome-extension://') != -1  || tab.url.indexOf('view-source:') != -1){
 		return false;
 	}
 	

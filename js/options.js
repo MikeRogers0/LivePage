@@ -31,9 +31,12 @@ function clearLivePages(){
 }
 
 // Add the list of URLs/Hosts were tracking
-if(livepages.livePages == undefined || livepages.livePages == null){
-	host_list.innerHTML = host_list.innerHTML+'<li>No URLs are live :/<br />Clicking the icon in the omnibar will make a page live :)</li>';
-} else {
+host_list.innerHTML = '<li>No URLs are live :/<br />Clicking the icon in the omnibar will make a page live :)</li>';
+if(livepages.livePages != undefined){
+	for (var i in livepages.livePages){
+		host_list.innerHTML = '';
+		break;
+	}
 	for (var i in livepages.livePages){
 		host_list.innerHTML += '<li><a href="'+i+'">'+i+'</a></li>';
 	}
@@ -58,4 +61,4 @@ for(var key=0; key<settingFields.length; key++){
 	// now add the listner
 	settingFields[key].addEventListener('change',updateValue,false);
 }
-console.log('Updated default options on fields.');
+//console.log('Updated default options on fields.');

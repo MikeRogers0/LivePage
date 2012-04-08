@@ -9,6 +9,7 @@ function Settings(){
 		hosts_session: false,
 		skip_external: true,
 		entire_hosts: false,
+		skip_comments: false,
 		refresh_rate: 1000
 	};
 	

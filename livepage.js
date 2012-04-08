@@ -108,7 +108,7 @@ livePage.prototype.checkResources = function(){
  		this.resources.count = 0;
  	}
  	
-	console.log('Checking at '+new Date() * 1+': '+this.resources.urls[this.resources.count].url);
+	//console.log('Checking at '+new Date() * 1+': '+this.resources.urls[this.resources.count].url);
 	var xhr = new XMLHttpRequest();
 	xhr.url = this.resources.urls[this.resources.count].url;
 	xhr.type = this.resources.urls[this.resources.count].type;
@@ -141,7 +141,7 @@ livePage.prototype.checkResources = function(){
 			}
 			
 			if(headersChanged == true){
-				console.log(xhr.url + ' - updated');
+				//console.log(xhr.url + ' - updated');
 				if(xhr.type == 'css'){
 					$livePage.refreshCSS(xhr.count);
 				}else{
@@ -153,7 +153,7 @@ livePage.prototype.checkResources = function(){
 	}
 	xhr.send();
 	this.resources.count++;
- 	setTimeout(function(){$livePage.checkResources();}, 1000);
+ 	setTimeout(function(){$livePage.checkResources();}, this.options.refresh_rate);
 };
 
 livePage.prototype.refreshCSS = function(element){

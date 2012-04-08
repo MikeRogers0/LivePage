@@ -21,6 +21,13 @@ function disableLivePage(tab){
 
 // Check if the URL were on has requested liveJS
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+	
+	// Quickly check were ok to work on this URL:
+	if(tab.url.indexOf('chrome://') != -1 || tab.url.indexOf('chrome-devtools://') != -1  || tab.url.indexOf('chrome-extension://') != -1){
+		return false;
+	}
+	
+	// When the tab is loading, check if we can fire away at it.
 	if(changeInfo.status == "loading"){
 		if(livepages.isLive(tab.url)){
 			enableLivePage(tab);

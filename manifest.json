@@ -1,11 +1,13 @@
 {
   "name": "LivePage",
   "version": "1.2.0",
-  "description": LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page.",
+  "description": "LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page.",
   "background_page": "background.html",
   "options_page": "options.html",
   "permissions": [
-	"tabs", "http://*/*", "https://*/*"
+	"tabs", 
+	"http://*/*", 
+	"https://*/*"
   ],
   "browser_action": {
     "default_title": "Enable LivePage on this page",
@@ -16,5 +18,5 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-  "minimum_chrome_version": "16.0" 
+  "minimum_chrome_version": "14.0" 
 }

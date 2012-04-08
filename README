@@ -1,7 +1,7 @@
-LivePage reloads resources (CSS/HTML/JavaScript) as they change on the server.
-By @MikeRogers0
+LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. 
+It's recommended you use this extension in a development environment.
 
-Find this on GitHub: https://github.com/MikeRogers0/LivePage
+Contribute on GitHub: https://github.com/MikeRogers0/LivePage
 
 Extension by: Mike Rogers (@MikeRogers0)
 Original LiveJS: @mrtnkl / http://livejs.com/

@@ -1,6 +1,6 @@
 {
   "name": "LivePage",
-  "version": "1.2.1",
+  "version": "1.2.1.2",
   "manifest_version": 1,
   
   "description": "LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server.",

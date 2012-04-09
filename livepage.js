@@ -13,11 +13,14 @@ function livePage($livePageConfig){
 	this.body = document.querySelector('body');
 	
 	// Add the nice CSS morph
-	style = document.createElement("style"),
-	css = '.livepage-loading * {-webkit-transition: all .5s ease-in;}';
-	style.setAttribute("type", "text/css");
-	this.head.appendChild(style);
-	style.appendChild(document.createTextNode(css))
+	if(this.options.use_css_transitions == true){
+		style = document.createElement("style"),
+		css = '.livepage-loading * {-webkit-transition: all .2s ease-in;}';
+		style.setAttribute("type", "text/css");
+		this.head.appendChild(style);
+		style.appendChild(document.createTextNode(css));
+		document.querySelector('html').className += ' livepage-loading';
+	}
 	
 	// Ok snappy! Lets load the current page we have, save it & scan it for all the stuff we need.
 	this.loadPage();
@@ -163,8 +166,6 @@ livePage.prototype.refreshCSS = function(element){
 	cssElement.setAttribute("type", "text/css");
 	cssElement.setAttribute("rel", "stylesheet");
 	cssElement.setAttribute("href", this.resources.urls[element].url + "?now=" + new Date() * 1);
-	
-	this.body.className += 'livepage-loading';
 	
 	this.head.appendChild(cssElement);
 	

@@ -10,6 +10,7 @@ function Settings(){
 		skip_external: true,
 		entire_hosts: false,
 		skip_comments: false,
+		use_css_transitions: true,
 		refresh_rate: 1000
 	};
 	

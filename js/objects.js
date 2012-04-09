@@ -13,6 +13,9 @@ function Settings(){
 		refresh_rate: 1000
 	};
 	
+	// Check for old settings and do the upgrade
+	
+	
 	this.refresh();
 };
 

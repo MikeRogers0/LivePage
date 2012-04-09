@@ -1,9 +1,12 @@
 {
   "name": "LivePage",
   "version": "1.2.1",
+  "manifest_version": 1,
+  
   "description": "LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server.",
   "background_page": "background.html",
   "options_page": "options.html",
+  "homepage_url": "https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh",
   "permissions": [
 	"tabs", 
 	"http://*/*", 
@@ -18,5 +21,6 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-  "minimum_chrome_version": "14.0" 
+  "minimum_chrome_version": "14.0",
+  "offline_enabled": true
 }

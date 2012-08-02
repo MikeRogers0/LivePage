@@ -1,6 +1,6 @@
 {
   "@name": {
-    "message": "Live Page",
+    "message": "LivePage",
     "description": "Extension name"
   },
   "@description": {
@@ -9,7 +9,7 @@
   },
   "@browser_action": {
     "message": "Enable LivePage on this page",
-    "description": "Extension description"
+    "description": "The default tooltip on the icon"
   },
   "@protocol_not_supported": {
     "message": "Sorry, the protocol used on this page is not supported.",

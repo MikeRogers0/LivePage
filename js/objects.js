@@ -71,20 +71,46 @@ livePages.prototype.removeAll = function(){
 
 livePages.prototype.remove = function(tab){
 	this.loadAll();
-	delete this.livePages[tab.url];
+	
+	if(settings.options.entire_hosts == true){
+		delete this.livePages[this.getHost(tab.url)];
+	} else {
+		delete this.livePages[tab.url];
+	}
+	
 	settings.set('livePages', this.livePages);
 	this.stop(tab);
 };
 
 livePages.prototype.add = function(tab){
 	this.loadAll();
-	this.livePages[tab.url] = true;
+	settings.refresh();
+	
+	// If the user wants entire hosts, just put the host name in.
+	if(settings.options.entire_hosts == true){
+		this.livePages[this.getHost(tab.url)] = true;
+	} else {
+		this.livePages[tab.url] = true;
+	}
+	
 	settings.set('livePages', this.livePages);
 	this.start(tab);
 };
 
+// Gets the hostname from a URL
+livePages.prototype.getHost = function(url){
+	var a = document.createElement('a');
+	a.href = url;
+	return a.hostname;
+};
+
 livePages.prototype.isLive = function(url){
 	this.loadAll();
+	
+	if(settings.options.entire_hosts == true){
+		url = this.getHost(url);
+	}
+	
 	if(this.livePages[url] != undefined){
 		return true;
 	}

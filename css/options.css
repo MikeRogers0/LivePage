@@ -112,6 +112,9 @@ footer ul{
 		float:right;
 		text-align: right;
 	}
+	footer ul:last-child li{
+		margin-right: 0;
+	}
 	footer ul li{
 		list-style: none;
 		padding: 3px 10px 3px 0;

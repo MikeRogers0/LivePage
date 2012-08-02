@@ -42,8 +42,11 @@ livePage.prototype.loadPage = function(){
 
 // Scans the page were on looking for resources.
 livePage.prototype.scanPage = function(){
+	console.log('Scanning page for elements to check for changes.');
+
 	// turn the HTML recieved into a element so we can scan it easily.
  	var livePage_element = document.createElement('livePageDiv');
+ 	var elements = null;
 	livePage_element.innerHTML = this.resources.html;
 	
 	elem_count = 0;
@@ -51,7 +54,8 @@ livePage.prototype.scanPage = function(){
 	// if the users wants to track it, add it to the resources object.
 	if(this.options.monitor_css == true){
 		// Cycle through all the elements & put them into a big object.
-		var elements = livePage_element.querySelectorAll('link[href*="css"]');
+		elements = livePage_element.querySelectorAll('link[href*=".css"]');
+		
 		for(var key=0; key<elements.length; key++){
 			if(this.isCheckable(elements[key].getAttribute('href'))){
 				this.resources.urls[elem_count++] = {
@@ -63,8 +67,22 @@ livePage.prototype.scanPage = function(){
 			}
 		}
 	}
+	if(this.options.monitor_less == true){
+		// Cycle through all the elements & put them into a big object.
+		elements = livePage_element.querySelectorAll('link[href*=".less"]');
+		for(var key=0; key<elements.length; key++){
+			if(this.isCheckable(elements[key].getAttribute('href'))){
+				this.resources.urls[elem_count++] = {
+					element: elements[key],
+					url: elements[key].getAttribute('href'), 
+					type: 'less',
+					headers: {}
+				}
+			}
+		}
+	}
 	if(this.options.monitor_js == true){
-		var elements = livePage_element.querySelectorAll('script[src*="js"]');
+		elements = livePage_element.querySelectorAll('script[src*=".js"]');
 		for(var key=0; key<elements.length; key++){
 			if(this.isCheckable(elements[key].getAttribute('src'))){
 				 this.resources.urls[elem_count++] = {
@@ -100,6 +118,18 @@ livePage.prototype.isCheckable = function(url){
     return true;
 }
 
+// Remove comments and what not from the code.
+livePage.prototype.tidyHTML = function(html){
+	if(this.options.tidy_html == false){
+		return html;
+	}
+	// Remove comments and whitespace.
+	html = html.replace(/<!--(.*?)-->/gim, '');
+	html = html.replace(/ /gim, '');
+	html = html.replace(/(\r\n|\n|\r|\t)/gim,'');
+	return html;
+}
+
 livePage.prototype.checkResources = function(){
 	// check were turned on
 	if(this.options.enabled !== true){
@@ -117,46 +147,51 @@ livePage.prototype.checkResources = function(){
 	xhr.type = this.resources.urls[this.resources.count].type;
 	xhr.count = this.resources.count;
 	
+	console.log('Checking: '+xhr.url, this.resources.count);
+	
 	if(xhr.type == 'html'){
-		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true);
+		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true); // if it's html, we need to compare side by side.
 	} else {
-		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true); // if it's html, we need to compare side by side.
+		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true); 
 	}
 	
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status != 304) {
 		
 			xhr.getAllResponseHeaders();
-			// Cycle through the headers and check them with the last one. 
 			var headersChanged = false;
-			for (var h in $livePage.headers) {
-				if($livePage.resources.urls[xhr.count].headers[h] != undefined && $livePage.resources.urls[xhr.count].headers[h] != xhr.getResponseHeader(h)){
+			
+			// If it's HTML, it might no-cache so check it like for like.
+			if(xhr.type == 'html'){
+				if($livePage.tidyHTML(xhr.responseText) != $livePage.tidyHTML($livePage.resources.html)){
 					headersChanged = true;
 				}
-				$livePage.resources.urls[xhr.count].headers[h] = xhr.getResponseHeader(h);
-			}
-			
-			// Do a check on the html.
-			if(xhr.type == 'html' && headersChanged != true){
-				if(xhr.responseText != $livePage.resources.html){
-					headersChanged = true;
+			} else {
+				// Cycle through the headers and check them with the last one. 
+				for (var h in $livePage.headers) {
+					if($livePage.resources.urls[xhr.count].headers[h] != undefined && $livePage.resources.urls[xhr.count].headers[h] != xhr.getResponseHeader(h)){
+						headersChanged = true;
+					}
+					$livePage.resources.urls[xhr.count].headers[h] = xhr.getResponseHeader(h);
 				}
 			}
 			
 			if(headersChanged == true){
-				//console.log(xhr.url + ' - updated');
+				console.log(xhr.url + ' - updated');
 				if(xhr.type == 'css'){
 					$livePage.refreshCSS(xhr.count);
+				}else if(xhr.type == 'less'){
+					$livePage.refreshLESS(xhr.count);
 				}else{
 					$livePage.reloadPage();
-					return; // were reloading, so stop all the thing.
+					return; // We are reloading, so stop all the things.
 				}
 			}
+			setTimeout(function(){$livePage.checkResources();}, $livePage.options.refresh_rate);
 		}
 	}
 	xhr.send();
 	this.resources.count++;
- 	setTimeout(function(){$livePage.checkResources();}, this.options.refresh_rate);
 };
 
 livePage.prototype.refreshCSS = function(element){
@@ -171,6 +206,12 @@ livePage.prototype.refreshCSS = function(element){
 	
 	this.head.removeChild(document.querySelector('link[href^="'+this.resources.urls[element].url+'"]'));
  	
+};
+
+// Attempt to refresh the LESS CSS stuff
+livePage.prototype.refreshLESS = function(element){
+	// If the person has loaded the less JS libary
+	$LivePageLESS.refresh(document.querySelector('link[href^="'+this.resources.urls[element].url+'"]'));	
 };
 
 livePage.prototype.reloadPage = function(){

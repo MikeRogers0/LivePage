@@ -31,7 +31,7 @@ function clearLivePages(){
 }
 
 // Add the list of URLs/Hosts were tracking
-host_list.innerHTML = '<li>No URLs are live :/<br />Clicking the icon in the omnibar will make a page live :)</li>';
+host_list.innerHTML = '<li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>';
 if(livepages.livePages != undefined){
 	for (var i in livepages.livePages){
 		host_list.innerHTML = '';

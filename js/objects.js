@@ -4,14 +4,15 @@ function Settings(){
 	// Set the default options:
 	this.options = {
 		monitor_css: true,
+		monitor_less: true,
 		monitor_js: true,
 		monitor_html: true,
 		hosts_session: false,
 		skip_external: true,
 		entire_hosts: false,
-		skip_comments: false,
+		tidy_html: true,
 		use_css_transitions: true,
-		refresh_rate: 1000
+		refresh_rate: 750
 	};
 	
 	// Check for old settings and do the upgrade
@@ -67,16 +68,18 @@ livePages.prototype.removeAll = function(){
 	settings.set('livePages', null);
 };
 
-livePages.prototype.remove = function(url){
+livePages.prototype.remove = function(tab){
 	this.loadAll();
-	delete this.livePages[url];
-	settings.set('livePages', this.livePages)
+	delete this.livePages[tab.url];
+	settings.set('livePages', this.livePages);
+	this.stop(tab);
 };
 
-livePages.prototype.add = function(url){
+livePages.prototype.add = function(tab){
 	this.loadAll();
-	this.livePages[url] = true;
-	settings.set('livePages', this.livePages)
+	this.livePages[tab.url] = true;
+	settings.set('livePages', this.livePages);
+	this.start(tab);
 };
 
 livePages.prototype.isLive = function(url){
@@ -87,12 +90,24 @@ livePages.prototype.isLive = function(url){
 	return false;
 };
 
-var livepages = new livePages();
-
-function Person(){
+livePages.prototype.start = function(tab){
+	settings.refresh();
 	
+	// Update the Icon
+	chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
+	chrome.browserAction.setTitle({title: 'Disable LivePage on '+tab.url, tabId: tab.id});
+	
+	// Make the page Live
+	chrome.tabs.executeScript(tab.id, {code: 'var $livePageConfig = '+JSON.stringify(settings.options)+';'});
+	if(settings.options.monitor_less == true){ // Only load the less stuff if we need it.
+		chrome.tabs.executeScript(tab.id, {file: 'js/less-1.3.0.min.js'});
+	}
+	chrome.tabs.executeScript(tab.id, {file: 'js/livepage.js'});
 }
-Person.prototype.Hi = function(){
-	alert('hi'); 
+livePages.prototype.stop = function(tab){
+	chrome.tabs.executeScript(tab.id, {code: 'if(typeof $livePage != "undefined"){$livePage.options.enabled = false;}'});
+	chrome.browserAction.setBadgeText({text: '', tabId: tab.id});
+	chrome.browserAction.setTitle({title: 'Enable LivePage on '+tab.url, tabId: tab.id});
 }
-var person = new Person();
+
+var livepages = new livePages();

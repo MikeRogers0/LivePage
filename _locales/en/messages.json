@@ -1,0 +1,18 @@
+{
+  "@name": {
+    "message": "Live Page",
+    "description": "Extension name"
+  },
+  "@description": {
+    "message": "LivePage reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server.",
+    "description": "Extension description"
+  },
+  "@browser_action": {
+    "message": "Enable LivePage on this page",
+    "description": "Extension description"
+  },
+  "@protocol_not_supported": {
+    "message": "Sorry, the protocol used on this page is not supported.",
+    "description": "When the protocol used is not support on a URL."
+  }
+}

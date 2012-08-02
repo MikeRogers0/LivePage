@@ -7,7 +7,7 @@ function supportedProtocol(tab){
 		return true;
 	}
 	//console.log('The protocol not supported.');
-	errorMessage = 'Sorry, the protocol used on '+tab.url+' is not supported';
+	errorMessage = chrome.i18n.getMessage('@protocol_not_supported');
 	return false;
 }
 

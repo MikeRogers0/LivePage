@@ -6,9 +6,10 @@ var clear_all = document.querySelector('#clear_all');
 var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"]');
 
 function spinGlobe(){
+	logo.className = '';
 	logo.className = 'updated';
 	clearTimeout(spinTimeout);
-	spinTimeout = setTimeout("logo.className = ''; ", 1100);
+	spinTimeout = setTimeout(function(){logo.className = '';}, 1100);
 }
 
 // Build the listner for when options are updated.

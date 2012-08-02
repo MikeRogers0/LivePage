@@ -6,7 +6,7 @@ function supportedProtocol(tab){
 	if(tab.url.indexOf('https://') == 0 || tab.url.indexOf('http://') == 0 || tab.url.indexOf('file://') == 0){
 		return true;
 	}
-	console.log('The protocol not supported.');
+	//console.log('The protocol not supported.');
 	errorMessage = 'Sorry, the protocol used on '+tab.url+' is not supported';
 	return false;
 }

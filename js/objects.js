@@ -12,6 +12,7 @@ function Settings(){
 		entire_hosts: false,
 		tidy_html: true,
 		use_css_transitions: true,
+		debug_mode: false,
 		refresh_rate: 750
 	};
 	

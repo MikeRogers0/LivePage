@@ -26,6 +26,12 @@ function livePage($livePageConfig){
 	this.loadPage();
 };
 
+function $LivePageDebug(message){
+	if($livePage.options.debug_mode == true){
+		console.log('LivePage: ', message);
+	}
+};
+
 // Load the current page were on & save the resonse.
 livePage.prototype.loadPage = function(){
 	
@@ -33,7 +39,7 @@ livePage.prototype.loadPage = function(){
 	xhr.open('GET', this.url, true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
-			$livePage.resources.html = xhr.responseText;
+			$livePage.resources.page = xhr.responseText;
 			$livePage.scanPage();
 		}
 	}
@@ -42,12 +48,12 @@ livePage.prototype.loadPage = function(){
 
 // Scans the page were on looking for resources.
 livePage.prototype.scanPage = function(){
-	console.log('Scanning page for elements to check for changes.');
+	$LivePageDebug('Scanning page for elements to monitor.');
 
 	// turn the HTML recieved into a element so we can scan it easily.
  	var livePage_element = document.createElement('livePageDiv');
  	var elements = null;
-	livePage_element.innerHTML = this.resources.html;
+	livePage_element.innerHTML = this.resources.page;
 	
 	elem_count = 0;
 	
@@ -62,7 +68,8 @@ livePage.prototype.scanPage = function(){
 					element: elements[key],
 					url: elements[key].getAttribute('href'), 
 					type: 'css',
-					headers: {}
+					headers: {},
+					cache: ''
 				}
 			}
 		}
@@ -76,7 +83,8 @@ livePage.prototype.scanPage = function(){
 					element: elements[key],
 					url: elements[key].getAttribute('href'), 
 					type: 'less',
-					headers: {}
+					headers: {},
+					cache: ''
 				}
 			}
 		}
@@ -88,7 +96,8 @@ livePage.prototype.scanPage = function(){
 				 this.resources.urls[elem_count++] = {
 				 	url: elements[key].getAttribute('src'), 
 				 	type: 'js',
-				 	headers: {}
+				 	headers: {},
+					cache: ''
 				 }
 			}
 		}
@@ -98,7 +107,8 @@ livePage.prototype.scanPage = function(){
 			this.resources.urls[elem_count++] = {
 			 	url: this.url, 
 			 	type: 'html',
-			 	headers: {}
+			 	headers: {},
+				cache: ''
 			 }
 		 }
 	}
@@ -141,16 +151,15 @@ livePage.prototype.checkResources = function(){
  		this.resources.count = 0;
  	}
  	
-	//console.log('Checking at '+new Date() * 1+': '+this.resources.urls[this.resources.count].url);
 	var xhr = new XMLHttpRequest();
 	xhr.url = this.resources.urls[this.resources.count].url;
 	xhr.type = this.resources.urls[this.resources.count].type;
 	xhr.count = this.resources.count;
+
+	$LivePageDebug(['Checking', xhr.url, this.resources.count]);
 	
-	console.log('Checking: '+xhr.url, this.resources.count);
-	
-	if(xhr.type == 'html'){
-		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true); // if it's html, we need to compare side by side.
+	if(xhr.type == 'html' || this.url.indexOf('file://') == 0){ // if it's local or html, we need to compare side by side.
+		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true); 
 	} else {
 		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true); 
 	}
@@ -163,8 +172,17 @@ livePage.prototype.checkResources = function(){
 			
 			// If it's HTML, it might no-cache so check it like for like.
 			if(xhr.type == 'html'){
-				if($livePage.tidyHTML(xhr.responseText) != $livePage.tidyHTML($livePage.resources.html)){
+				
+				if($livePage.tidyHTML(xhr.responseText) != $livePage.tidyHTML($livePage.resources.page)){
 					headersChanged = true;
+				}
+			}else if(xhr.type != 'html' && xhr.status == 0){
+				if($livePage.resources.urls[xhr.count].cache.length <= 1){ // Lets cache it this one time & compare later.
+					$livePage.resources.urls[xhr.count].cache = xhr.responseText;
+				}
+				if(xhr.responseText != $livePage.resources.urls[xhr.count].cache){
+					headersChanged = true;
+					$livePage.resources.urls[xhr.count].cache = xhr.responseText; // Update our cache.
 				}
 			} else {
 				// Cycle through the headers and check them with the last one. 
@@ -177,7 +195,7 @@ livePage.prototype.checkResources = function(){
 			}
 			
 			if(headersChanged == true){
-				console.log(xhr.url + ' - updated');
+				$LivePageDebug(['Refreshing', xhr.url, xhr.type]);
 				if(xhr.type == 'css'){
 					$livePage.refreshCSS(xhr.count);
 				}else if(xhr.type == 'less'){

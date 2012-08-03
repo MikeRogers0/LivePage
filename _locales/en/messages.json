@@ -1,13 +1,13 @@
 {
-  "@name": {
+  "name": {
     "message": "LivePage",
     "description": "Extension name"
   },
-  "@description": {
+  "description": {
     "message": "LivePage reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server.",
     "description": "Extension description"
   },
-  "@browser_action": {
+  "browser_action": {
     "message": "Enable LivePage on this page",
     "description": "The default tooltip on the icon"
   },

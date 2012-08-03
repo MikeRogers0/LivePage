@@ -11,10 +11,7 @@
   "default_locale": "en",
   "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
-	"tabs", 
-	"http://*/*", 
-	"https://*/*",
-	"file://*/*"
+	"tabs", "<all_urls>"
   ],
   "browser_action": {
     "default_title": "__MSG_@browser_action__",

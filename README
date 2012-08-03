@@ -1,5 +1,11 @@
-LivePage reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. 
-It's recommended you use this extension in a development environment.
+LivePage is a developer tool which reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity.
+
+Key features in version 1.3 are:
+	* LESS support
+	* Entire domains can be made live
+	* file:// protocol is now supported
+
+It's recommended you use this extension in a development environment (Such as XAMPP).
 
 Contribute on GitHub: https://github.com/MikeRogers0/LivePage
 Find it in the Chrome Web Store: https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh/

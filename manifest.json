@@ -9,7 +9,7 @@
   "options_page": "options.html",
   "homepage_url": "https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh",
   "default_locale": "en",
-   "content_security_policy": "script-src 'self'; object-src 'self';",
+  "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
 	"tabs", 
 	"http://*/*", 

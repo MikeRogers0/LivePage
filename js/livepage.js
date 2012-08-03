@@ -135,7 +135,7 @@ livePage.prototype.tidyHTML = function(html){
 	}
 	// Remove comments and whitespace.
 	html = html.replace(/<!--(.*?)-->/gim, '');
-	//html = html.replace(/ /gim, '');
+	html = html.replace(/ /gim, '');
 	html = html.replace(/(\r\n|\n|\r|\t)/gim,'');
 	return html;
 }

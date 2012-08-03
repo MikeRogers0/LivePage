@@ -101,7 +101,10 @@ livePages.prototype.add = function(tab){
 livePages.prototype.getHost = function(url){
 	var a = document.createElement('a');
 	a.href = url;
-	return a.hostname;
+	if(a.hostname != ''){
+		return a.hostname;
+	}
+	return 'Local Files (file://)';
 };
 
 livePages.prototype.isLive = function(url){

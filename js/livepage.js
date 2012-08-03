@@ -36,7 +36,7 @@ function $LivePageDebug(message){
 livePage.prototype.loadPage = function(){
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', this.url, true);
+	xhr.open('GET', this.url+'?livePage='+(new Date() * 1), true);
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
 			$livePage.resources.page = xhr.responseText;
@@ -135,7 +135,7 @@ livePage.prototype.tidyHTML = function(html){
 	}
 	// Remove comments and whitespace.
 	html = html.replace(/<!--(.*?)-->/gim, '');
-	html = html.replace(/ /gim, '');
+	//html = html.replace(/ /gim, '');
 	html = html.replace(/(\r\n|\n|\r|\t)/gim,'');
 	return html;
 }
@@ -172,9 +172,9 @@ livePage.prototype.checkResources = function(){
 			
 			// If it's HTML, it might no-cache so check it like for like.
 			if(xhr.type == 'html'){
-				
 				if($livePage.tidyHTML(xhr.responseText) != $livePage.tidyHTML($livePage.resources.page)){
 					headersChanged = true;
+					$livePage.resources.page = xhr.responseText; // Update our page cache. It should reload the page, but on file:// reloads are silly.
 				}
 			}else if(xhr.type != 'html' && xhr.status == 0){
 				if($livePage.resources.urls[xhr.count].cache.length <= 1){ // Lets cache it this one time & compare later.
@@ -233,9 +233,12 @@ livePage.prototype.refreshLESS = function(element){
 };
 
 livePage.prototype.reloadPage = function(){
- 	document.location.reload(this.url);
+ 	//document.location.reload(this.url);
+ 	chrome.extension.sendMessage({action: 'reload'}, function(){});
 };
 
 // Start the script.
-var $livePage = new livePage($livePageConfig);
+if(typeof $livePageConfig == 'object'){
+	var $livePage = new livePage($livePageConfig);
+}
 

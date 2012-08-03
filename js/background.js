@@ -46,3 +46,10 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 		livepages.add(tab);
 	}
 });
+
+// The script which will reload the tabs (it got weird on file://)
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+	if(request.action == 'reload'){
+		chrome.tabs.reload(sender.tab.id, {bypassCache: true});
+	}
+});

@@ -23,6 +23,6 @@
     "48": "icon.png",
     "128": "icon.png"
   },
-  "minimum_chrome_version": "19",
+  "minimum_chrome_version": "18",
   "offline_enabled": true
 }

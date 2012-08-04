@@ -14,5 +14,9 @@
   "@protocol_not_supported": {
     "message": "Sorry, the protocol used on this page is not supported.",
     "description": "When the protocol used is not support on a URL."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "Sorry, the file:// protocol needs enabling. Please check the \"Allow access to file URLs\" for LivePage on the extensions page (chrome://chrome/extensions/).",
+    "description": "When the protocol file:// needs enabling"
   }
 }

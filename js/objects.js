@@ -141,3 +141,10 @@ livePages.prototype.stop = function(tab){
 }
 
 var livepages = new livePages();
+
+// Debug messaing
+function $LivePageDebug(message){
+	if(settings.options.debug_mode == true){
+		console.log('LivePage BG: ', message);
+	}
+};

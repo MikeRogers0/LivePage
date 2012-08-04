@@ -21,6 +21,8 @@ function updateValue(e){
 		settings.set(elm.id, elm.value);
 	}
 	
+	$LivePageDebug(['Setting updated', elm.id]);
+	
 	spinGlobe();
 }
 

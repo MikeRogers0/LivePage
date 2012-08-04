@@ -1,3 +1,7 @@
+# LivePage
+
+## Overview
+
 LivePage is a developer tool which reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity.
 
 Key features in version 1.3 are:
@@ -6,6 +10,22 @@ Key features in version 1.3 are:
 	* file:// protocol is now supported
 
 It's recommended you use this extension in a development environment (Such as XAMPP).
+
+## Changelog
+
+All future milestones will be listed on https://github.com/MikeRogers0/LivePage/issues
+
+
+### 1.3.1.0
+
+* Added a test to check for if the "Allow access to file URLs" had been checked. 
+
+### 1.3.0.0
+
+* Adding in Less, enite domain and file:// protocol support.
+
+
+## Footnotes
 
 Contribute on GitHub: https://github.com/MikeRogers0/LivePage
 Find it in the Chrome Web Store: https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh/

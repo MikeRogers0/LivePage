@@ -10,6 +10,7 @@ function Settings(){
 		hosts_session: false,
 		skip_external: true,
 		entire_hosts: false,
+		ignore_anchors: true,
 		tidy_html: true,
 		use_css_transitions: true,
 		debug_mode: false,
@@ -69,8 +70,17 @@ livePages.prototype.removeAll = function(){
 	settings.set('livePages', null);
 };
 
+livePages.prototype.cleanURL = function(url){
+	if(settings.options.ignore_anchors == true){
+		return url.split('#')[0];	
+	}
+	return url;
+}
+
 livePages.prototype.remove = function(tab){
 	this.loadAll();
+	
+	tab.url = this.cleanURL(tab.url);
 	
 	if(settings.options.entire_hosts == true){
 		delete this.livePages[this.getHost(tab.url)];
@@ -85,6 +95,8 @@ livePages.prototype.remove = function(tab){
 livePages.prototype.add = function(tab){
 	this.loadAll();
 	settings.refresh();
+	
+	tab.url = this.cleanURL(tab.url);
 	
 	// If the user wants entire hosts, just put the host name in.
 	if(settings.options.entire_hosts == true){
@@ -109,6 +121,8 @@ livePages.prototype.getHost = function(url){
 
 livePages.prototype.isLive = function(url){
 	this.loadAll();
+	
+	url = this.cleanURL(url);
 	
 	if(settings.options.entire_hosts == true){
 		url = this.getHost(url);

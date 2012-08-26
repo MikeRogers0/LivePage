@@ -66,7 +66,7 @@ livePage.prototype.scanPage = function(){
 			if(this.isCheckable(elements[key].getAttribute('href'))){
 				this.resources.urls[elem_count++] = {
 					element: elements[key],
-					url: elements[key].getAttribute('href'), 
+					url: this.cleanURL(elements[key].getAttribute('href')), 
 					type: 'css',
 					headers: {},
 					cache: ''
@@ -81,7 +81,7 @@ livePage.prototype.scanPage = function(){
 			if(this.isCheckable(elements[key].getAttribute('href'))){
 				this.resources.urls[elem_count++] = {
 					element: elements[key],
-					url: elements[key].getAttribute('href'), 
+					url: this.cleanURL(elements[key].getAttribute('href')), 
 					type: 'less',
 					headers: {},
 					cache: ''
@@ -94,7 +94,7 @@ livePage.prototype.scanPage = function(){
 		for(var key=0; key<elements.length; key++){
 			if(this.isCheckable(elements[key].getAttribute('src'))){
 				 this.resources.urls[elem_count++] = {
-				 	url: elements[key].getAttribute('src'), 
+				 	url: this.cleanURL(elements[key].getAttribute('src')), 
 				 	type: 'js',
 				 	headers: {},
 					cache: ''
@@ -105,7 +105,7 @@ livePage.prototype.scanPage = function(){
 	if(this.options.monitor_html == true){
 		if(this.isCheckable(this.url)){
 			this.resources.urls[elem_count++] = {
-			 	url: this.url, 
+			 	url: this.cleanURL(this.url), 
 			 	type: 'html',
 			 	headers: {},
 				cache: ''
@@ -126,6 +126,14 @@ livePage.prototype.isCheckable = function(url){
     if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return false;
     if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":("+{"http:":80,"https:":443}[location.protocol]+")?$"), "") !== location.host) return false;
     return true;
+}
+
+livePage.prototype.cleanURL = function (url){
+	// From http://jelaniharris.com/2008/remove-anchors-from-a-url-in-javascript/
+	if(this.options.ignore_anchors == true){
+		return url.split('#')[0];
+	}
+	return url;
 }
 
 // Remove comments and what not from the code.

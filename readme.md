@@ -15,6 +15,12 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones will be listed on https://github.com/MikeRogers0/LivePage/issues
 
+### 1.3.1.1
+
+* Added option to ignore anchors in URLs.
+* TODO - refector & comment code
+* TODO - Improve upon I18n & L10n.
+
 
 ### 1.3.1.0
 

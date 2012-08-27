@@ -17,9 +17,9 @@ All future milestones will be listed on https://github.com/MikeRogers0/LivePage/
 
 ### 1.3.1.1
 
-* Added option to ignore anchors in URLs.
-* TODO - refector & comment code
-* TODO - Improve upon I18n & L10n.
+* Added option to ignore anchors in URLs. Thanks gsurrel for noticing.
+* Small improvement upon I18n & L10n. 
+* AJAX requests now not async, this makes the backend code a little tidier.
 
 
 ### 1.3.1.0

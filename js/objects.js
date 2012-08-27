@@ -1,5 +1,15 @@
-// The Settings object.
+/*
+ * Debugging function to make displaying errors if the users wants.
+ */
+function $LivePageDebug(message){
+	if(settings.options.debug_mode == true){
+		console.log('LivePage BG: ', message);
+	}
+};
 
+/*
+ * The Settings object, it stores users options.
+ */
 function Settings(){
 	// Set the default options:
 	this.options = {
@@ -18,12 +28,12 @@ function Settings(){
 	};
 	
 	// Check for old settings and do the upgrade
-	
-	
 	this.refresh();
 };
 
-// LocalStorage functions based on https://github.com/Gaya/Locale-Storager
+/*
+ * LocalStorage functions based on https://github.com/Gaya/Locale-Storager
+ */
 Settings.prototype.set = function(key, value){
  	localStorage.setItem(key, JSON.stringify(value));
 };
@@ -40,7 +50,6 @@ Settings.prototype.remove = function(key){
  	localStorage.removeItem(key);
  	return true;
 };
-
 Settings.prototype.refresh = function(){
  	for(var key in this.options){
  		this.options[key] = this.get(key);
@@ -48,98 +57,96 @@ Settings.prototype.refresh = function(){
  	return true;
 };
 
-
 var settings = new Settings();
 
-// The livePages object.
-
+/*
+ * The livePages object, manages making pages live & storing the live setting.
+ */
 function livePages(){
+	// The object of pages we have marked as live.
 	this.livePages = {};
-	this.loadAll();
+	this.refresh();
 };
 
-livePages.prototype.loadAll = function(){
+// Refreshes livePages from database.
+livePages.prototype.refresh = function(){
 	this.livePages = settings.get('livePages');
 	if(settings.get('livePages') == null){
 		this.livePages = {};
 	}
 };
 
-
+// Wipes the database of all live pages.
 livePages.prototype.removeAll = function(){
 	settings.set('livePages', null);
 };
 
+/*
+ * Transforms the URLS into the type the users have configured.
+ */
 livePages.prototype.cleanURL = function(url){
-	if(settings.options.ignore_anchors == true){
-		return url.split('#')[0];	
+	settings.refresh();
+	var a = document.createElement('a');
+	a.href = url;
+	
+	// If they only want entire hosts, just return the host name
+	if(settings.options.entire_hosts == true){
+		if(a.hostname != ''){
+			return a.hostname;
+		}
+		// Fallback for file:// protocol if there isn't one.
+		return 'Local Files (file://)';
 	}
+	
+	/*
+	 * Strips the hash from the URL. 
+	 * See https://developer.mozilla.org/en-US/docs/DOM/window.location#Properties for more info about the properties
+	 */
+	if(settings.options.ignore_anchors == true){
+		return a.protocol+a.port+'//'+a.hostname+a.pathname+a.search;
+	}
+	
 	return url;
 }
 
+// Deletes a url from livePages list.
 livePages.prototype.remove = function(tab){
-	this.loadAll();
-	
+	this.refresh();
 	tab.url = this.cleanURL(tab.url);
 	
-	if(settings.options.entire_hosts == true){
-		delete this.livePages[this.getHost(tab.url)];
-	} else {
-		delete this.livePages[tab.url];
-	}
-	
+	delete this.livePages[tab.url];
 	settings.set('livePages', this.livePages);
 	this.stop(tab);
 };
 
+// Add page to LivePages.
 livePages.prototype.add = function(tab){
-	this.loadAll();
-	settings.refresh();
-	
+	this.refresh();
 	tab.url = this.cleanURL(tab.url);
 	
-	// If the user wants entire hosts, just put the host name in.
-	if(settings.options.entire_hosts == true){
-		this.livePages[this.getHost(tab.url)] = true;
-	} else {
-		this.livePages[tab.url] = true;
-	}
-	
+	this.livePages[tab.url] = true;
 	settings.set('livePages', this.livePages);
 	this.start(tab);
 };
 
-// Gets the hostname from a URL
-livePages.prototype.getHost = function(url){
-	var a = document.createElement('a');
-	a.href = url;
-	if(a.hostname != ''){
-		return a.hostname;
-	}
-	return 'Local Files (file://)';
-};
-
+// Check if the url is on the livePages list.
 livePages.prototype.isLive = function(url){
-	this.loadAll();
-	
+	this.refresh();
 	url = this.cleanURL(url);
 	
-	if(settings.options.entire_hosts == true){
-		url = this.getHost(url);
-	}
-	
-	if(this.livePages[url] != undefined){
+	if(typeof this.livePages[url] != "undefined"){
 		return true;
 	}
 	return false;
 };
 
+// Turns on the LivePage on the tab.
 livePages.prototype.start = function(tab){
 	settings.refresh();
 	
 	// Update the Icon
-	chrome.browserAction.setBadgeText({text: "Live", tabId: tab.id});
-	chrome.browserAction.setTitle({title: 'Disable LivePage on '+tab.url, tabId: tab.id});
+	chrome.browserAction.setBadgeText({text: chrome.i18n.getMessage('@live'), tabId: tab.id});
+	chrome.browserAction.setTitle({title: chrome.i18n.getMessage('@disable_on_this_tab'), tabId: tab.id});
 	
 	// Make the page Live
 	chrome.tabs.executeScript(tab.id, {code: 'var $livePageConfig = '+JSON.stringify(settings.options)+';'});
@@ -148,17 +155,13 @@ livePages.prototype.start = function(tab){
 	}
 	chrome.tabs.executeScript(tab.id, {file: 'js/livepage.js'});
 }
+
+// Turns off live page on the tab.
 livePages.prototype.stop = function(tab){
+	// Stop live page running if it's there.
 	chrome.tabs.executeScript(tab.id, {code: 'if(typeof $livePage != "undefined"){$livePage.options.enabled = false;}'});
 	chrome.browserAction.setBadgeText({text: '', tabId: tab.id});
-	chrome.browserAction.setTitle({title: 'Enable LivePage on '+tab.url, tabId: tab.id});
+	chrome.browserAction.setTitle({title: chrome.i18n.getMessage('@enable_on_this_tab'), tabId: tab.id});
 }
 
 var livepages = new livePages();
-
-// Debug messaing
-function $LivePageDebug(message){
-	if(settings.options.debug_mode == true){
-		console.log('LivePage BG: ', message);
-	}
-};

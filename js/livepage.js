@@ -131,7 +131,9 @@ livePage.prototype.isCheckable = function(url){
 livePage.prototype.cleanURL = function (url){
 	// From http://jelaniharris.com/2008/remove-anchors-from-a-url-in-javascript/
 	if(this.options.ignore_anchors == true){
-		return url.split('#')[0];
+		var a = document.createElement('a');
+		a.href = url;
+		return a.protocol+a.port+'//'+a.hostname+a.pathname+a.search;
 	}
 	return url;
 }
@@ -167,56 +169,56 @@ livePage.prototype.checkResources = function(){
 	$LivePageDebug(['Checking', xhr.url, this.resources.count]);
 	
 	if(xhr.type == 'html' || this.url.indexOf('file://') == 0){ // if it's local or html, we need to compare side by side.
-		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), true); 
+		xhr.open('GET', xhr.url+'?livePage='+(new Date() * 1), false); 
 	} else {
-		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), true); 
-	}
-	
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status != 304) {
-		
-			xhr.getAllResponseHeaders();
-			var headersChanged = false;
-			
-			// If it's HTML, it might no-cache so check it like for like.
-			if(xhr.type == 'html'){
-				if($livePage.tidyHTML(xhr.responseText) != $livePage.tidyHTML($livePage.resources.page)){
-					headersChanged = true;
-					$livePage.resources.page = xhr.responseText; // Update our page cache. It should reload the page, but on file:// reloads are silly.
-				}
-			}else if(xhr.type != 'html' && xhr.status == 0){
-				if($livePage.resources.urls[xhr.count].cache.length <= 1){ // Lets cache it this one time & compare later.
-					$livePage.resources.urls[xhr.count].cache = xhr.responseText;
-				}
-				if(xhr.responseText != $livePage.resources.urls[xhr.count].cache){
-					headersChanged = true;
-					$livePage.resources.urls[xhr.count].cache = xhr.responseText; // Update our cache.
-				}
-			} else {
-				// Cycle through the headers and check them with the last one. 
-				for (var h in $livePage.headers) {
-					if($livePage.resources.urls[xhr.count].headers[h] != undefined && $livePage.resources.urls[xhr.count].headers[h] != xhr.getResponseHeader(h)){
-						headersChanged = true;
-					}
-					$livePage.resources.urls[xhr.count].headers[h] = xhr.getResponseHeader(h);
-				}
-			}
-			
-			if(headersChanged == true){
-				$LivePageDebug(['Refreshing', xhr.url, xhr.type]);
-				if(xhr.type == 'css'){
-					$livePage.refreshCSS(xhr.count);
-				}else if(xhr.type == 'less'){
-					$livePage.refreshLESS(xhr.count);
-				}else{
-					$livePage.reloadPage();
-					return; // We are reloading, so stop all the things.
-				}
-			}
-			setTimeout(function(){$livePage.checkResources();}, $livePage.options.refresh_rate);
-		}
+		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), false); 
 	}
 	xhr.send();
+	
+	if (xhr.readyState == 4 && xhr.status != 304) {
+	
+		xhr.getAllResponseHeaders();
+		var headersChanged = false;
+		
+		// If it's HTML, it might no-cache so check it like for like.
+		if(xhr.type == 'html'){
+			if(this.tidyHTML(xhr.responseText) != this.tidyHTML(this.resources.page)){
+				headersChanged = true;
+				this.resources.page = xhr.responseText; // Update our page cache. It should reload the page, but on file:// reloads are silly.
+			}
+		}else if(xhr.type != 'html' && xhr.status == 0){
+			if(this.resources.urls[xhr.count].cache.length <= 1){ // Lets cache it this one time & compare later.
+				this.resources.urls[xhr.count].cache = xhr.responseText;
+			}
+			if(xhr.responseText != $this.resources.urls[xhr.count].cache){
+				headersChanged = true;
+				this.resources.urls[xhr.count].cache = xhr.responseText; // Update our cache.
+			}
+		} else {
+			// Cycle through the headers and check them with the last one. 
+			for (var h in this.headers) {
+				if(this.resources.urls[xhr.count].headers[h] != undefined && this.resources.urls[xhr.count].headers[h] != xhr.getResponseHeader(h)){
+					headersChanged = true;
+				}
+				this.resources.urls[xhr.count].headers[h] = xhr.getResponseHeader(h);
+			}
+		}
+		
+		if(headersChanged == true){
+			$LivePageDebug(['Refreshing', xhr.url, xhr.type]);
+			if(xhr.type == 'css'){
+				this.refreshCSS(xhr.count);
+			}else if(xhr.type == 'less'){
+				this.refreshLESS(xhr.count);
+			}else{
+				this.reloadPage();
+				return; // We are reloading, so stop all the things.
+			}
+		}
+		
+	}
+	
+	setTimeout(function(){$livePage.checkResources();}, this.options.refresh_rate);
 	this.resources.count++;
 };
 

@@ -173,6 +173,10 @@ livePage.prototype.checkResources = function(){
 	} else {
 		xhr.open('HEAD', xhr.url+'?livePage='+(new Date() * 1), false); 
 	}
+	
+	// Queue the next check now, so the system feels quicker.
+	setTimeout(function(){$livePage.checkResources();}, this.options.refresh_rate);
+	
 	xhr.send();
 	
 	if (xhr.readyState == 4 && xhr.status != 304) {
@@ -218,7 +222,6 @@ livePage.prototype.checkResources = function(){
 		
 	}
 	
-	setTimeout(function(){$livePage.checkResources();}, this.options.refresh_rate);
 	this.resources.count++;
 };
 

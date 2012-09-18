@@ -190,7 +190,7 @@ livePage.prototype.checkResources = function(){
 			if(this.resources.urls[xhr.count].cache.length <= 1){ // Lets cache it this one time & compare later.
 				this.resources.urls[xhr.count].cache = xhr.responseText;
 			}
-			if(xhr.responseText != $this.resources.urls[xhr.count].cache){
+			if(xhr.responseText != this.resources.urls[xhr.count].cache){
 				headersChanged = true;
 				this.resources.urls[xhr.count].cache = xhr.responseText; // Update our cache.
 			}

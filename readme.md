@@ -15,7 +15,7 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones will be listed on https://github.com/MikeRogers0/LivePage/issues
 
-### 1.3.2.0
+### 1.4.0.0
  * Fixed bug where localhost URLs can be problematic.
  * Improved fault tollerence when polling URLs
  * Added "the file your working on get polled more often" feature.  

@@ -8,6 +8,7 @@ function livePage(config){
 	this.options = config;
 	this.options.enabled = true;
 	this.resources = [];
+	this.superiorResource = null;
 	this.lastChecked = 0;
 	this.lastUpdatedResource = null;
 	this.url = document.URL;
@@ -16,16 +17,17 @@ function livePage(config){
 	
 	// Add the nice CSS morph
 	if(this.options.use_css_transitions == true){
-		css = document.createTextNode('.livepage-loading * {-webkit-transition: all .2s ease-in;}');
-		style = document.createElement("style").setAttribute("type", "text/css").appendChild(css);
-		
+		style = document.createElement("style"),
+		css = '.livepage-loading * {-webkit-transition: all .2s ease-in;}';
+		style.setAttribute("type", "text/css");
 		this.head.appendChild(style);
+		style.appendChild(document.createTextNode(css));
 		this.html.className += ' livepage-loading';
 	}
 	
 	// if we have a sessionStorage of the last updated resource, pop it in.
 	if(sessionStorage['LivePage_LastUpdatedResource'] != undefined){
-		this.lastUpdatedResource = JSON.parse(sessionStorage['LivePage_LastUpdatedResource']);
+		this.lastUpdatedResource = JSON.parse(sessionStorage.getItem('LivePage_LastUpdatedResource'));
 	}
 };
 
@@ -48,41 +50,38 @@ livePage.prototype.scanPage = function(){
 	if(this.options.monitor_css == true){
 		elements = livePage_element.querySelectorAll('link[href*=".css"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'css');
+			this.addResource(elements[key].href, 'css', false);
 		}
 	}
 	
 	if(this.options.monitor_less == true){
 		elements = livePage_element.querySelectorAll('link[href*=".less"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'less');
+			this.addResource(elements[key].href, 'less', false);
 		}
 	}
 	
 	if(this.options.monitor_js == true){
 		elements = livePage_element.querySelectorAll('script[src*=".js"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].src, 'js');
+			this.addResource(elements[key].src, 'js', false);
 		}
 	}
 	
 	if(this.options.monitor_html == true){
-		this.addResource(this.url, 'html', null);
+		this.addResource(this.url, 'html', false);
 	}
 	
-	// Add the last resource which was updated in a few times to make it checked a bit more often.
-	if(this.lastUpdatedResource != null & this.lastChecked <= 3){
-		// Add it in a few times.
-		for(i = 0; i < (this.lastChecked / 3); i++){
-			this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type);
-		}
+	// Add the last resource updated to a more frequently checked list.
+	if(this.lastUpdatedResource != null & this.lastChecked > 4){
 		
-		// Now delete it, so we don't trigger it too much.
-		delete sessionStorage['LivePage_LastUpdatedResource'];
+		// Add it to the superior resources list.
+		this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true);
 		
-		// Now suffle the resources. Thanks to http://css-tricks.com/snippets/javascript/shuffle-array/ for the sane shuffle.
-		this.resources.sort(function() { return 0.5 - Math.random(); });
+		$LivePageDebug(['Monitoring '+this.lastUpdatedResource.url+' more frequently']);
 	}
+	
+	$LivePageDebug(['Monitoring '+this.resources.length+' resources', this.resources]);
 	
 	this.check();
 }
@@ -90,7 +89,7 @@ livePage.prototype.scanPage = function(){
 /*
  * Adds live resources to the objects.
  */
-livePage.prototype.addResource = function(url, type){
+livePage.prototype.addResource = function(url, type, superior){
 	// Normalize the URL
 	url = this.normalizeURL(url);
 	
@@ -99,8 +98,13 @@ livePage.prototype.addResource = function(url, type){
 		return false;
 	}
 	
-	// this.resources - count
+	if(superior == true){
+		this.superiorResource = new LiveResource(url, type);
+		return;
+	}
+	
 	this.resources[this.lastChecked++] = new LiveResource(url, type);
+
 }
 
 /*
@@ -157,9 +161,27 @@ livePage.prototype.check = function(){
 		this.lastChecked = 0;
 	}
 	
-	this.resources[this.lastChecked].check();
+	// Store lastChecked incase the next check runs before this one finishes.
+	var lastChecked = this.lastChecked;
 	
 	setTimeout(function(){$livePage.check();}, this.options.refresh_rate);
+	
+	// Check the superior resource. If we do, make sure we don't check it with the non-superior object.
+	if(this.superiorResource != null){
+		
+		// Only check the superior every other poll
+		if(lastChecked%2 == 0){
+			this.superiorResource.check();
+		}
+		
+		if(this.superiorResource.url != this.resources[lastChecked].url){
+			this.resources[lastChecked].check();
+		}else{
+			this.resources[lastChecked] = this.superiorResource;
+		}
+	} else {
+		this.resources[lastChecked].check();
+	}
 }
 
 /*
@@ -180,8 +202,6 @@ function LiveResource(url, type){
 	this.headers = {"Etag": null, "Last-Modified": null, "Content-Length": null};
 	this.cache = '';
 	this.xhr = null;
-	
-	$LivePageDebug(['Monitoring', this.url]);
 }
 
 /*
@@ -191,10 +211,16 @@ LiveResource.prototype.check = function(){
 	$LivePageDebug(['Checking', this.url]);
 	
 	this.xhr = new XMLHttpRequest();
-	this.xhr.open(this.method, this.url+'?livePage='+(new Date() * 1), false);
+	
+	// Catch errors & remove bad links.
 	try{
+		this.xhr.open(this.method, this.url+'?livePage='+(new Date() * 1), false);
 		this.xhr.send();
 		this.xhr.getAllResponseHeaders();
+		
+		if(this.xhr.status == 404){
+			throw 'Cannot find file';
+		}
 	}catch(e){
 		// Ok an error occoured, so lets remove it from the array than shuffle.
 		$LivePageDebug(['Error Checking', this.url, e, 'Removing from list']);
@@ -229,7 +255,7 @@ LiveResource.prototype.checkHeaders = function(){
 	var headersChanged = false;
 	for (var h in this.headers) {
 		if(this.headers[h] != null && this.headers[h] != this.xhr.getResponseHeader(h)){
-			$LivePageDebug(['Header Changed', [this.url, h, this.xhr.getResponseHeader(h)]])
+			$LivePageDebug(['Header Changed', [this.url, this.headers[h], this.xhr.getResponseHeader(h)]])
 			headersChanged = true;
 		}
 		// Update the headers.
@@ -249,31 +275,47 @@ LiveResource.prototype.checkResponse = function(){
 	return false;
 }
 
+/*
+ * Clears
+ */
+LiveResource.prototype.sessionCache = function(){
+	cache = {};
+	cache.url = this.url;
+	cache.type = this.type;
+	
+	sessionStorage.setItem('LivePage_LastUpdatedResource', JSON.stringify(cache));
+}
 
 /*
  * Refresh the code
  */
 LiveResource.prototype.refresh = function (){
 	$LivePageDebug(['Refreshing', this.url]);
-	sessionStorage['LivePage_LastUpdatedResource'] = JSON.stringify(this);
 	
-	if(this.type = 'css'){
+	// Update the Superior Resource, so it gets checked more frqeuently.
+	$livePage.superiorResource = this;
+	
+	if(this.type == 'css'){
 		// create a new html element
-		var cssElement = document.createElement('link').setAttribute("type", "text/css").setAttribute("rel", "stylesheet");
-		cssElement.setAttribute("href", this.element.url + "?LivePage=" + new Date() * 1);
+		var cssElement = document.createElement('link');
+		cssElement.setAttribute("type", "text/css");
+		cssElement.setAttribute("rel", "stylesheet");
+		cssElement.setAttribute("href", this.url + "?LivePage=" + new Date() * 1);
 		
 		$livePage.head.appendChild(cssElement);
 		
 		// Remove the old element we created in the last update. Than update.
 		if(this.element != null){
-			$livePage.head.removeChild(document.querySelector('link[href^="'+this.element.url+'"]'));
+			$livePage.head.removeChild(document.querySelector('link[href^="'+this.element.href+'"]'));
 		}
 		this.element = cssElement;
-		
-	}else if(xhr.type == 'less'){
+	}else if(this.type == 'less'){
 		// Tell LESS CSS to reload.
 		$LivePageLESS.refresh(document.querySelector('link[href^="'+this.url+'"]'));	
 	}else{
+		// Cache the item last updated so we poll it more.
+		this.sessionCache();
+		
 		// This can let us reload the page & force a cache reload.
 		chrome.extension.sendMessage({action: 'reload'}, function(){});
 	}
@@ -293,8 +335,6 @@ LiveResource.prototype.tidyCode = function(html){
 	return html;
 }
 
-if(typeof $livePageConfig == "object"){var $livePage = new livePage($livePageConfig); $livePage.scanPage();}
-
 /*
  * Displays debugging information.
  */
@@ -303,3 +343,5 @@ function $LivePageDebug(message){
 		console.log('LivePage: ', message);
 	}
 };
+
+if(typeof $livePageConfig == "object"){var $livePage = new livePage($livePageConfig); $LivePageDebug('Starting Up');  $livePage.scanPage();}

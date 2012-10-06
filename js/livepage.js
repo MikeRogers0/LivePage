@@ -201,6 +201,7 @@ function LiveResource(url, type){
 	
 	this.headers = {"Etag": null, "Last-Modified": null, "Content-Length": null};
 	this.cache = '';
+	this.response = '';
 	this.xhr = null;
 }
 
@@ -232,16 +233,16 @@ LiveResource.prototype.check = function(){
 	if (this.xhr.readyState == 4 && this.xhr.status != 304) {
 	
 		// Firstly, tidy up the code
-		this.xhr.responseText = this.tidyCode(this.xhr.responseText);
+		this.response = this.tidyCode(this.xhr.responseText);
 		
 		// If this is the first check, cache it and than move along.
-		if(this.cache == '' && this.xhr.responseText != ''){
-			this.cache = this.xhr.responseText;
+		if(this.cache == '' && this.response != ''){
+			this.cache = this.response;
 			return;
 		}
 		
 		// Compare the headers && responseText
-		if(this.checkHeaders() || this.checkResponse()){
+		if(this.checkHeaders() && this.checkResponse()){
 			this.refresh();
 		}
 		
@@ -255,7 +256,6 @@ LiveResource.prototype.checkHeaders = function(){
 	var headersChanged = false;
 	for (var h in this.headers) {
 		if(this.headers[h] != null && this.headers[h] != this.xhr.getResponseHeader(h)){
-			$LivePageDebug(['Header Changed', [this.url, this.headers[h], this.xhr.getResponseHeader(h)]])
 			headersChanged = true;
 		}
 		// Update the headers.
@@ -268,11 +268,11 @@ LiveResource.prototype.checkHeaders = function(){
  * Compares the responseText to the cached. 
  */
 LiveResource.prototype.checkResponse = function(){
-	if(this.method == 'GET' && this.cache != this.xhr.responseText){
-		this.cache = this.xhr.responseText
-		return true;
+	if(this.method == 'GET'  && this.cache != this.response){
+		this.cache = this.response;
+		return false;
 	}
-	return false;
+	return true;
 }
 
 /*

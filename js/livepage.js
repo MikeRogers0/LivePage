@@ -259,9 +259,7 @@ LiveResource.prototype.refresh = function (){
 	
 	if(this.type = 'css'){
 		// create a new html element
-		var cssElement = document.createElement('link');
-		cssElement.setAttribute("type", "text/css");
-		cssElement.setAttribute("rel", "stylesheet");
+		var cssElement = document.createElement('link').setAttribute("type", "text/css").setAttribute("rel", "stylesheet");
 		cssElement.setAttribute("href", this.element.url + "?LivePage=" + new Date() * 1);
 		
 		$livePage.head.appendChild(cssElement);

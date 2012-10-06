@@ -37,8 +37,8 @@ livePage.prototype.scanPage = function(){
 	
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', this.url, false);
-	xhr.send({'livePage': (new Date() * 1)});
+	xhr.open('GET', this.url+'?livePage='+(new Date() * 1), false);
+	xhr.send();
 	
 	// Make the resonse page an element & scan it
 	var livePage_element = document.createElement('livePageDiv');
@@ -48,21 +48,21 @@ livePage.prototype.scanPage = function(){
 	if(this.options.monitor_css == true){
 		elements = livePage_element.querySelectorAll('link[href*=".css"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'css', elements[key]);
+			this.addResource(elements[key].href, 'css');
 		}
 	}
 	
 	if(this.options.monitor_less == true){
 		elements = livePage_element.querySelectorAll('link[href*=".less"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'less', elements[key]);
+			this.addResource(elements[key].href, 'less');
 		}
 	}
 	
 	if(this.options.monitor_js == true){
 		elements = livePage_element.querySelectorAll('script[src*=".js"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].src, 'js', elements[key]);
+			this.addResource(elements[key].src, 'js');
 		}
 	}
 	
@@ -74,7 +74,7 @@ livePage.prototype.scanPage = function(){
 	if(this.lastUpdatedResource != null & this.lastChecked <= 3){
 		// Add it in a few times.
 		for(i = 0; i < (this.lastChecked / 3); i++){
-			this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, this.lastUpdatedResource.element);
+			this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type);
 		}
 		
 		// Now delete it, so we don't trigger it too much.
@@ -90,7 +90,7 @@ livePage.prototype.scanPage = function(){
 /*
  * Adds live resources to the objects.
  */
-livePage.prototype.addResource = function(url, type, element){
+livePage.prototype.addResource = function(url, type){
 	// Normalize the URL
 	url = this.normalizeURL(url);
 	
@@ -100,7 +100,7 @@ livePage.prototype.addResource = function(url, type, element){
 	}
 	
 	// this.resources - count
-	this.resources[this.lastChecked++] = new LiveResource(url, type, element);
+	this.resources[this.lastChecked++] = new LiveResource(url, type);
 }
 
 /*
@@ -165,10 +165,10 @@ livePage.prototype.check = function(){
 /*
  * LiveResource Object
  */
-function LiveResource(url, type, element){
+function LiveResource(url, type){
 	this.url = url;
 	this.type = type;
-	this.element = element;
+	this.element = null;
 	
 	// set the method, if it's a local file or html we need to check the HTML.
 	this.method = 'HEAD';
@@ -264,10 +264,15 @@ LiveResource.prototype.refresh = function (){
 		
 		$livePage.head.appendChild(cssElement);
 		
-		$livePage.head.removeChild(document.querySelector('link[href^="'+this.element.url+'"]'));
+		// Remove the old element we created in the last update. Than update.
+		if(this.element != null){
+			$livePage.head.removeChild(document.querySelector('link[href^="'+this.element.url+'"]'));
+		}
+		this.element = cssElement;
+		
 	}else if(xhr.type == 'less'){
 		// Tell LESS CSS to reload.
-		$LivePageLESS.refresh(document.querySelector('link[href^="'+this.element.url+'"]'));	
+		$LivePageLESS.refresh(document.querySelector('link[href^="'+this.url+'"]'));	
 	}else{
 		// This can let us reload the page & force a cache reload.
 		chrome.extension.sendMessage({action: 'reload'}, function(){});

@@ -164,14 +164,11 @@ livePage.prototype.checkBatch = function(){
 		this.superiorResource.check();
 	}
 	
-	// If there is more than 5 resources, do in batches of 4.
-	if(this.resources.length >= 5){
-		this.check();
-		this.check();
+	// If there is more than 3 resources, do in batches of 2.
+	if(this.resources.length >= 3){
 		this.check();
 		this.check();
 	} else {
-		this.check();
 		this.check();
 	}
 	
@@ -236,20 +233,21 @@ LiveResource.prototype.check = function(){
 	try{
 		this.xhr.open(this.method, this.url+'?livePage='+(new Date() * 1), false);
 		this.xhr.send();
-		this.xhr.getAllResponseHeaders();
 		
+		// If it 404s
 		if(this.xhr.status == 404){
-			throw 'Cannot find file';
+			throw "Error 404";
 		}
 	}catch(e){
-		// Ok an error occoured, so lets remove it from the array than shuffle.
 		$LivePageDebug(['Error Checking', this.url, e, 'Removing from list']);
 		$livePage.removeResource(this.url);
-		return;
-		//debugger;
+		return ;
 	}
 	
+	
 	if (this.xhr.readyState == 4 && this.xhr.status != 304) {
+		// Pull all the headers
+		this.xhr.getAllResponseHeaders();
 	
 		// Firstly, tidy up the code
 		this.response = this.tidyCode(this.xhr.responseText);
@@ -265,6 +263,8 @@ LiveResource.prototype.check = function(){
 			this.refresh();
 		}
 	}
+	
+	this.xhr = null;
 }
 
 /*
@@ -273,7 +273,7 @@ LiveResource.prototype.check = function(){
 LiveResource.prototype.checkHeaders = function(){
 	var headersChanged = false;
 	for (var h in this.headers) {
-		if(this.headers[h] != null && this.headers[h] != this.xhr.getResponseHeader(h)){
+		if(this.xhr.getResponseHeader(h) == null || (this.headers[h] != null && this.headers[h] != this.xhr.getResponseHeader(h))){
 			headersChanged = true;
 		}
 		// Update the headers.
@@ -286,11 +286,11 @@ LiveResource.prototype.checkHeaders = function(){
  * Compares the responseText to the cached. 
  */
 LiveResource.prototype.checkResponse = function(){
-	if(this.method == 'GET'  && this.cache != this.response){
-		this.cache = this.response;
-		return false;
+	if(this.response != '' && this.cache != this.response){
+		return true;
 	}
-	return true;
+	this.cache = this.response;
+	return false;
 }
 
 /*

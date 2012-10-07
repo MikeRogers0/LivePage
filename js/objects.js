@@ -24,7 +24,7 @@ function Settings(){
 		tidy_html: true,
 		use_css_transitions: true,
 		debug_mode: false,
-		refresh_rate: 150
+		refresh_rate: 200
 	};
 	
 	// Check for old settings and do the upgrade

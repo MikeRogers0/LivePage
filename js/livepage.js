@@ -81,7 +81,7 @@ livePage.prototype.scanPage = function(){
 		// Add it to the superior resources list.
 		this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true);
 		
-		$LivePageDebug(['Monitoring '+this.lastUpdatedResource.url+' more frequently']);
+		$LivePageDebug(['Monitoring '+this.lastUpdatedResource.url+' at higher priority']);
 	}
 	
 	$LivePageDebug(['Monitoring '+this.resources.length+' resources', this.resources]);

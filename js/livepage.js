@@ -225,7 +225,7 @@ function LiveResource(url, type){
  * Checks if a newer version of the file is there.
  */
 LiveResource.prototype.check = function(){
-	$LivePageDebug(['Checking', this.url]);
+	//$LivePageDebug(['Checking', this.url]);
 	
 	this.xhr = new XMLHttpRequest();
 	
@@ -287,6 +287,7 @@ LiveResource.prototype.checkHeaders = function(){
  */
 LiveResource.prototype.checkResponse = function(){
 	if(this.response != '' && this.cache != this.response){
+		this.cache = this.response;
 		return true;
 	}
 	this.cache = this.response;
@@ -308,7 +309,7 @@ LiveResource.prototype.sessionCache = function(){
  * Refresh the code
  */
 LiveResource.prototype.refresh = function (){
-	$LivePageDebug(['Refreshing', this.url]);
+	$LivePageDebug(['Refreshing', this.url, this]);
 	
 	// Update the Superior Resource, so it gets checked more frqeuently.
 	$livePage.superiorResource = this;

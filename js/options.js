@@ -3,7 +3,14 @@ var spinTimeout = null;
 var logo = document.querySelector('#logo');
 var host_list = document.querySelector('#host_list');
 var clear_all = document.querySelector('#clear_all');
-var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"]');
+var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"]');
+
+var rangeField = document.querySelector('#refresh_rate');
+
+// Add the change event, so we can fire changes on load.
+var changeEvent = document.createEvent('Event');
+changeEvent.initEvent('change', true, false);
+
 
 function spinGlobe(){
 	logo.className = '';
@@ -33,6 +40,11 @@ function clearLivePages(){
 	spinGlobe();
 }
 
+function updateRange(e){
+	var elm = e.srcElement;
+	document.querySelector('#'+elm.id+'_text').innerHTML = elm.value;
+}
+
 // Add the list of URLs/Hosts were tracking
 host_list.innerHTML = '<li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>';
 if(livepages.livePages != undefined){
@@ -45,7 +57,9 @@ if(livepages.livePages != undefined){
 	}
 }
 
+
 // Add the clear all listner
+rangeField.addEventListener('change',updateRange,false);
 clear_all.addEventListener('click',clearLivePages,false);
 
 // now update the checkboxes and select field with values from the database.
@@ -63,5 +77,6 @@ for(var key=0; key<settingFields.length; key++){
 	
 	// now add the listner
 	settingFields[key].addEventListener('change',updateValue,false);
+	settingFields[key].dispatchEvent(changeEvent);
 }
 //console.log('Updated default options on fields.');

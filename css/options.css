@@ -102,7 +102,12 @@ ul{
 		margin-right: 15px;
 	}
 	
-	
+
+input[type="range"]{
+	width: 50%;
+	margin-top:5px;
+}
+
 footer ul{
 	margin: 0;
 	padding: 0;

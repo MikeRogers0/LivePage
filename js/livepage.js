@@ -72,6 +72,9 @@ livePage.prototype.scanPage = function(){
 		this.addResource(this.url, 'html', false);
 	}
 	
+	// Randomise the checking process, so were not hitting groups the same of files.
+	this.resources.sort(function() { return 0.5 - Math.random(); });
+	
 	// Add the last resource updated to a more frequently checked list.
 	if(this.lastUpdatedResource != null & this.lastChecked > 4){
 		
@@ -83,7 +86,7 @@ livePage.prototype.scanPage = function(){
 	
 	$LivePageDebug(['Monitoring '+this.resources.length+' resources', this.resources]);
 	
-	this.check();
+	this.checkBatch();
 }
 
 /*
@@ -149,13 +152,37 @@ livePage.prototype.trackableURL = function(url){
 }
 
 /*
- * Triggers a resource check.
+ * Lets us check the resources in small batches.
  */
-livePage.prototype.check = function(){
+livePage.prototype.checkBatch = function(){
 	if(this.options.enabled == false){
 		return false;
 	}
+	
+	// Run the superior resource in every batch.
+	if(this.superiorResource != null){
+		this.superiorResource.check();
+	}
+	
+	// If there is more than 5 resources, do in batches of 4.
+	if(this.resources.length >= 5){
+		this.check();
+		this.check();
+		this.check();
+		this.check();
+	} else {
+		this.check();
+		this.check();
+	}
+	
+	setTimeout(function(){$livePage.checkBatch();}, this.options.refresh_rate);
+}
 
+/*
+ * Triggers a resource check.
+ */
+livePage.prototype.check = function(){
+	// Que up the next resource, if it dosen't exist start again.
 	this.lastChecked++;
 	if(this.resources[this.lastChecked] == undefined){
 		this.lastChecked = 0;
@@ -164,16 +191,8 @@ livePage.prototype.check = function(){
 	// Store lastChecked incase the next check runs before this one finishes.
 	var lastChecked = this.lastChecked;
 	
-	setTimeout(function(){$livePage.check();}, this.options.refresh_rate);
-	
 	// Check the superior resource. If we do, make sure we don't check it with the non-superior object.
 	if(this.superiorResource != null){
-		
-		// Only check the superior every other poll
-		if(lastChecked%2 == 0){
-			this.superiorResource.check();
-		}
-		
 		if(this.superiorResource.url != this.resources[lastChecked].url){
 			this.resources[lastChecked].check();
 		}else{
@@ -194,7 +213,7 @@ function LiveResource(url, type){
 	
 	// set the method, if it's a local file or html we need to check the HTML.
 	this.method = 'HEAD';
-	if(this.type == 'html'|| this.url.indexOf('file://') == 0){
+	if(this.type == 'html' || this.url.indexOf('file://') == 0){
 		this.method = 'GET';
 	}
 	
@@ -245,7 +264,6 @@ LiveResource.prototype.check = function(){
 		if(this.checkHeaders() && this.checkResponse()){
 			this.refresh();
 		}
-		
 	}
 }
 
@@ -276,7 +294,7 @@ LiveResource.prototype.checkResponse = function(){
 }
 
 /*
- * Clears
+ * Sets a session var of the last updated file.
  */
 LiveResource.prototype.sessionCache = function(){
 	cache = {};

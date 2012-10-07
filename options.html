@@ -27,25 +27,34 @@
 				<li><label><input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label></li>
 			</ul>
 		</section>
+		
+		<section>
+			<h2>General Settings</h2>
+			<ul>
+				<li><label><input id="use_css_transitions" name="use_css_transitions" type="checkbox" value="true" />Use CSS transitions for changes to CSS</label></li>
+				<li><label><input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label></li>
+			</ul>
+		</section>
+		
+		<section>
+			<h2>Polling Settings</h2>
+			<ul>
+				<li>
+					<label>Rest time between checks: <span id="refresh_rate_text">150</span>ms</label>
+					<input id="refresh_rate" type="range" name="refresh_rate" min="25" max="1000" step="25" value="150" />
+					<div><em>Local development can be set to less than 100ms, live development should be 200ms or higher.</em></div>
+				</li>
+			</ul>
+		</section>
+		
 		<section>
 			<h2>Advanced Settings:</h2>
 			<ul>
 				<!--<li><label><input id="hosts_session" name="hosts_session" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>-->
 				<li><label><input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com)</label></li>
-				<li><label><input id="use_css_transitions" name="use_css_transitions" type="checkbox" value="true" />Use CSS transitions for changes to CSS</label></li>
-				<li><label><input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on an entire domain</label></li>
 				<li><label><input id="ignore_anchors" name="ignore_anchors" type="checkbox" value="true" />Ignore URL anchors</label></li>
 				<li><label><input id="tidy_html" name="tidy_html" type="checkbox" value="true" />Ignore comments in HTML</label></li>
 				<li><label><input id="debug_mode" name="debug_mode" type="checkbox" value="true" />Debugging mode</label></li>
-				<li><label>Check for newer resources every: 
-				<select id="refresh_rate" name="refresh_rate">
-					<option value="500">500ms</option>
-					<option value="750">750ms</option>
-					<option value="1000">1s</option>
-					<option value="2500">2.5s</option>
-					<option value="5000">5s</option>
-				</select>
-				</label></li>
 			</ul>
 		</section>
 		<section>

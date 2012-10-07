@@ -164,8 +164,9 @@ livePage.prototype.checkBatch = function(){
 		this.superiorResource.check();
 	}
 	
-	// If there is more than 3 resources, do in batches of 2.
-	if(this.resources.length >= 3){
+	// If there is more than 4 resources, do in batches of 3.
+	if(this.resources.length >= 4){
+		this.check();
 		this.check();
 		this.check();
 	} else {
@@ -363,4 +364,4 @@ function $LivePageDebug(message){
 	}
 };
 
-if(typeof $livePageConfig == "object"){var $livePage = new livePage($livePageConfig); $LivePageDebug('Starting Up');  $livePage.scanPage();}
+if(typeof $livePageConfig == "object"){var $livePage = new livePage($livePageConfig); $LivePageDebug('Starting Up'); $livePage.scanPage();}

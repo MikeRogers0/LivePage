@@ -5,23 +5,23 @@
 LivePage is a developer tool which reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity.
 
 Key features in version 1.3 are:
-	* LESS support
-	* Entire domains can be made live
-	* file:// protocol is now supported
+ * LESS support
+ * Entire domains can be made live
+ * file:// protocol is now supported
 
 It's recommended you use this extension in a development environment (Such as XAMPP).
 
 ## Changelog
 
-All future milestones will be listed on https://github.com/MikeRogers0/LivePage/issues
+All future milestones can be found on https://github.com/MikeRogers0/LivePage/issues
 
 ### 1.4.0.0
+ * Massively tidied up the livepage.js file.
  * Fixed bug where localhost URLs can be problematic.
  * Improved fault tollerence when polling URLs
  * Added "the file your working on get polled more often" feature.  
  * Made "Check for newer resources every" a range field, new default for this option is 200ms from 750ms (new code strucute is more efficient)
  * Rearranged options page to be a little more tidier.
- * 
 
 ### 1.3.1.2
  * Fixed bug where sometimes html changes were not detected.

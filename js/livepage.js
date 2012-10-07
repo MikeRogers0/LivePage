@@ -164,9 +164,8 @@ livePage.prototype.checkBatch = function(){
 		this.superiorResource.check();
 	}
 	
-	// If there is more than 4 resources, do in batches of 3.
+	// If there is more than 4 resources, do in batches of 2.
 	if(this.resources.length >= 4){
-		this.check();
 		this.check();
 		this.check();
 	} else {

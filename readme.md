@@ -18,9 +18,9 @@ All future milestones can be found on https://github.com/MikeRogers0/LivePage/is
 ### 1.4.0.0
  * Massively tidied up the livepage.js file.
  * Fixed bug where localhost URLs can be problematic.
- * Improved fault tollerence when polling URLs
+ * Improved fault tolerance  when polling URLs
  * Added "the file your working on get polled more often" feature.  
- * Made "Check for newer resources every" a range field, new default for this option is 200ms from 750ms (new code strucute is more efficient)
+ * Made "Check for newer resources every" a range field, new default for this option is 200ms from 750ms (new code structure is more efficient)
  * Rearranged options page to be a little more tidier.
 
 ### 1.3.1.2

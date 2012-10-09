@@ -335,8 +335,14 @@ LiveResource.prototype.refresh = function (){
 		// Cache the item last updated so we poll it more.
 		this.sessionCache();
 		
-		// This can let us reload the page & force a cache reload.
-		chrome.extension.sendMessage({action: 'reload'}, function(){});
+		// Now reload the page.
+		try{
+			// This can let us reload the page & force a cache reload.
+			chrome.extension.sendMessage({action: 'reload'}, function(){});
+		}catch(e){
+			// An error occoured refreshing the page with the chrome socket. Do it differently.
+			document.location.reload($livePage.url);
+		}
 	}
 }
 

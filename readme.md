@@ -15,6 +15,9 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones can be found on https://github.com/MikeRogers0/LivePage/issues
 
+### 1.4.0.1
+ * Fallback for when sockets between the background tab & livepage fails.
+
 ### 1.4.0.0
  * Massively tidied up the livepage.js file.
  * Fixed bug where localhost URLs can be problematic.

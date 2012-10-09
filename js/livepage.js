@@ -39,7 +39,16 @@ livePage.prototype.scanPage = function(){
 	
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', this.url+'?livePage='+(new Date() * 1), false);
+	if(this.url.indexOf('?') > 0 ){
+		xhr.open('GET', this.url+'&livePage='+(new Date() * 1), false);
+	} else {
+		xhr.open('GET', this.url+'?livePage='+(new Date() * 1), false);
+	}
+	 
+	//xhr.setRequestHeader('If-Modified-Since', (new Date(0) * 1));
+	//xhr.setRequestHeader('Cache-Control', 'no-cache');
+	//xhr.setRequestHeader('Pragma', 'no-cache');
+	
 	xhr.send();
 	
 	// Make the resonse page an element & scan it
@@ -164,13 +173,7 @@ livePage.prototype.checkBatch = function(){
 		this.superiorResource.check();
 	}
 	
-	// If there is more than 4 resources, do in batches of 2.
-	if(this.resources.length >= 4){
-		this.check();
-		this.check();
-	} else {
-		this.check();
-	}
+	this.check();
 	
 	setTimeout(function(){$livePage.checkBatch();}, this.options.refresh_rate);
 }
@@ -183,6 +186,10 @@ livePage.prototype.check = function(){
 	this.lastChecked++;
 	if(this.resources[this.lastChecked] == undefined){
 		this.lastChecked = 0;
+		if(this.resources[this.lastChecked] == undefined){ // Nothing left to check
+			$livePage.options.enabled = false;
+			return ;
+		}
 	}
 	
 	// Store lastChecked incase the next check runs before this one finishes.
@@ -222,6 +229,17 @@ function LiveResource(url, type){
 }
 
 /*
+ * Generated a URL with a cache breaker in it.
+ */
+LiveResource.prototype.nonCacheURL = function(){
+	if(this.url.indexOf('?') > 0 ){
+		return this.url+'&livePage='+(new Date() * 1);
+	}
+	return this.url+'?livePage='+(new Date() * 1);
+}
+
+
+/*
  * Checks if a newer version of the file is there.
  */
 LiveResource.prototype.check = function(){
@@ -231,7 +249,10 @@ LiveResource.prototype.check = function(){
 	
 	// Catch errors & remove bad links.
 	try{
-		this.xhr.open(this.method, this.url+'?livePage='+(new Date() * 1), false);
+		this.xhr.open(this.method, this.nonCacheURL(), false);
+		//this.xhr.setRequestHeader('If-Modified-Since', (new Date(0) * 1));
+		//this.xhr.setRequestHeader('Cache-Control', 'no-cache');
+		//this.xhr.setRequestHeader('Pragma', 'no-cache');
 		this.xhr.send();
 		
 		// If it 404s
@@ -241,7 +262,7 @@ LiveResource.prototype.check = function(){
 	}catch(e){
 		$LivePageDebug(['Error Checking', this.url, e, 'Removing from list']);
 		$livePage.removeResource(this.url);
-		return ;
+		return;
 	}
 	
 	

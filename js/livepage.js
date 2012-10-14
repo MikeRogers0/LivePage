@@ -52,8 +52,11 @@ livePage.prototype.scanPage = function(){
 	xhr.send();
 	
 	// Make the resonse page an element & scan it
-	var livePage_element = document.createElement('livepage');
+	wrapperPage = document.implementation.createHTMLDocument();
+	
+	livePage_element = wrapperPage.querySelector('html');
 	livePage_element.innerHTML = xhr.response;
+	
 	
 	// Add resources checkers in here
 	if(this.options.monitor_css == true){
@@ -64,15 +67,17 @@ livePage.prototype.scanPage = function(){
 		}
 		
 		// Now go through the @import elements
-		var styleSheets = livePage_element.querySelectorAll('style');
+		styleSheets = livePage_element.querySelectorAll('style');
+		
 		for(var key=0; key<styleSheets.length; key++){
 			var sheet = styleSheets[key].sheet;
+			
 			// If it has a href we can monitor
-			if(sheet && sheet.href){
+			if(sheet.href){
 				this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
 			}
 			
-			if(sheet && sheet.cssRules){
+			if(sheet.cssRules){
 				// Now lets checks for @import stuff within this stylesheet.	
 				for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
 					 var rule = sheet.cssRules[ruleKey];

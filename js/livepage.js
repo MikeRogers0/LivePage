@@ -52,33 +52,54 @@ livePage.prototype.scanPage = function(){
 	xhr.send();
 	
 	// Make the resonse page an element & scan it
-	var livePage_element = document.createElement('livePageDiv');
-	livePage_element.innerHTML = xhr.responseText;
+	var livePage_element = document.createElement('livepage');
+	livePage_element.innerHTML = xhr.response;
 	
 	// Add resources checkers in here
 	if(this.options.monitor_css == true){
+		// First go through the linked elemented
 		elements = livePage_element.querySelectorAll('link[href*=".css"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'css', false);
+			this.addResource(elements[key].href, 'css', false, elements[key].media);
+		}
+		
+		// Now go through the @import elements
+		var styleSheets = livePage_element.querySelectorAll('style');
+		for(var key=0; key<styleSheets.length; key++){
+			var sheet = styleSheets[key].sheet;
+			// If it has a href we can monitor
+			if(sheet && sheet.href){
+				this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
+			}
+			
+			if(sheet && sheet.cssRules){
+				// Now lets checks for @import stuff within this stylesheet.	
+				for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
+					 var rule = sheet.cssRules[ruleKey];
+					 if(rule && rule.href){
+					 	this.addResource(rule.href, 'css', false, rule.media.mediaText);
+					 }
+				}
+			}
 		}
 	}
 	
 	if(this.options.monitor_less == true){
 		elements = livePage_element.querySelectorAll('link[href*=".less"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'less', false);
+			this.addResource(elements[key].href, 'less', false, false);
 		}
 	}
 	
 	if(this.options.monitor_js == true){
 		elements = livePage_element.querySelectorAll('script[src*=".js"]');
 		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].src, 'js', false);
+			this.addResource(elements[key].src, 'js', false, false);
 		}
 	}
 	
 	if(this.options.monitor_html == true){
-		this.addResource(this.url, 'html', false);
+		this.addResource(this.url, 'html', false, false);
 	}
 	
 	// Randomise the checking process, so were not hitting groups the same of files.
@@ -86,11 +107,13 @@ livePage.prototype.scanPage = function(){
 	
 	// Add the last resource updated to a more frequently checked list.
 	if(this.lastUpdatedResource != null & this.lastChecked > 4){
+	
+		if((this.lastUpdatedResource.type == 'js' && this.options.monitor_js == true) || (this.lastUpdatedResource.type == 'less' && this.options.monitor_less == true) || (this.lastUpdatedResource.type == 'html' && this.options.monitor_html == true)){
+			// Add it to the superior resources list.
+			this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true, this.lastUpdatedResource.media);
 		
-		// Add it to the superior resources list.
-		this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true);
-		
-		$LivePageDebug(['Monitoring '+this.lastUpdatedResource.url+' at higher priority']);
+			$LivePageDebug(['Monitoring '+this.lastUpdatedResource.url+' at higher priority']);
+		}
 	}
 	
 	$LivePageDebug(['Monitoring '+this.resources.length+' resources', this.resources]);
@@ -101,7 +124,7 @@ livePage.prototype.scanPage = function(){
 /*
  * Adds live resources to the objects.
  */
-livePage.prototype.addResource = function(url, type, superior){
+livePage.prototype.addResource = function(url, type, superior, media){
 	// Normalize the URL
 	url = this.normalizeURL(url);
 	
@@ -111,11 +134,11 @@ livePage.prototype.addResource = function(url, type, superior){
 	}
 	
 	if(superior == true){
-		this.superiorResource = new LiveResource(url, type);
+		this.superiorResource = new LiveResource(url, type, media);
 		return;
 	}
 	
-	this.resources[this.lastChecked++] = new LiveResource(url, type);
+	this.resources[this.lastChecked++] = new LiveResource(url, type, media);
 
 }
 
@@ -210,10 +233,11 @@ livePage.prototype.check = function(){
 /*
  * LiveResource Object
  */
-function LiveResource(url, type){
+function LiveResource(url, type, media){
 	this.url = url;
 	this.type = type;
 	this.element = null;
+	this.media = media;
 	
 	// set the method, if it's a local file or html we need to check the HTML.
 	this.method = 'HEAD';
@@ -322,6 +346,7 @@ LiveResource.prototype.sessionCache = function(){
 	cache = {};
 	cache.url = this.url;
 	cache.type = this.type;
+	cache.media = this.media;
 	
 	sessionStorage.setItem('LivePage_LastUpdatedResource', JSON.stringify(cache));
 }
@@ -341,6 +366,7 @@ LiveResource.prototype.refresh = function (){
 		cssElement.setAttribute("type", "text/css");
 		cssElement.setAttribute("rel", "stylesheet");
 		cssElement.setAttribute("href", this.url + "?LivePage=" + new Date() * 1);
+		cssElement.setAttribute("media", this.media);
 		
 		$livePage.head.appendChild(cssElement);
 		

@@ -21,6 +21,7 @@ function Settings(){
 		skip_external: true,
 		entire_hosts: false,
 		ignore_anchors: true,
+		use_only_get: false,
 		tidy_html: true,
 		tidy_inline_html: false,
 		use_css_transitions: true,

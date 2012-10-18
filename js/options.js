@@ -77,6 +77,8 @@ for(var key=0; key<settingFields.length; key++){
 	
 	// now add the listner
 	settingFields[key].addEventListener('change',updateValue,false);
+}
+for(var key=0; key<settingFields.length; key++){
 	settingFields[key].dispatchEvent(changeEvent);
 }
 //console.log('Updated default options on fields.');

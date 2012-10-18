@@ -52,7 +52,7 @@ livePage.prototype.scanPage = function(){
 	xhr.send();
 	
 	// Make the resonse page an element & scan it
-	responseWrapper = document.createElement('livePage');
+	responseWrapper = document.createElement('html');
 	responseWrapper.innerHTML = xhr.response;
 	livePage_element = document.importNode(responseWrapper, true, true);
 	
@@ -69,7 +69,7 @@ livePage.prototype.scanPage = function(){
 		
 		for(var key=0; key<styleSheets.length; key++){
 			var sheet = styleSheets[key].sheet;
-			
+			debugger;
 			// If it has a href we can monitor
 			if(sheet.href){
 				this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
@@ -244,7 +244,7 @@ function LiveResource(url, type, media){
 	
 	// set the method, if it's a local file or html we need to check the HTML.
 	this.method = 'HEAD';
-	if(this.type == 'html' || this.url.indexOf('file://') == 0){
+	if(this.type == 'html' || this.url.indexOf('file://') == 0 || $livePage.options.use_only_get == true){
 		this.method = 'GET';
 	}
 	
@@ -301,7 +301,7 @@ LiveResource.prototype.check = function(){
 		this.response = this.tidyCode(this.xhr.responseText);
 		
 		// If this is the first check, cache it and than move along.
-		if(this.cache == '' && this.response != ''){
+		if(this.method != 'HEAD' && this.cache == '' && this.response != ''){
 			this.cache = this.response;
 			return;
 		}
@@ -334,7 +334,7 @@ LiveResource.prototype.checkHeaders = function(){
  * Compares the responseText to the cached. 
  */
 LiveResource.prototype.checkResponse = function(){
-	if((this.method == 'HEAD' && this.cache != '') || (this.response != '' && this.cache != this.response)){
+	if(this.method == 'HEAD' || (this.response != '' && this.cache != this.response)){
 		this.cache = this.response;
 		return true;
 	}

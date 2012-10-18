@@ -18,7 +18,7 @@ All future milestones can be found on https://github.com/MikeRogers0/LivePage/is
 ### 1.4.2
  * Adding support for @import
  * Fixing bug where changing session will not affect superior resources.
- * Adding option to ignore inline JavaScript & hidden form values.
+ * Adding option to ignore inline JavaScript & hidden form values. 
 
 ### 1.4.1
  * Fallback for when sockets between the background tab & livepage fails.

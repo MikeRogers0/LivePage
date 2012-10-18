@@ -353,7 +353,7 @@ LiveResource.prototype.refresh = function (){
 		var cssElement = document.createElement('link');
 		cssElement.setAttribute("type", "text/css");
 		cssElement.setAttribute("rel", "stylesheet");
-		cssElement.setAttribute("href", this.url + "?LivePage=" + new Date() * 1);
+		cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
 		cssElement.setAttribute("media", this.media);
 		
 		$livePage.head.appendChild(cssElement);

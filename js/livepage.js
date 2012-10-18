@@ -52,11 +52,9 @@ livePage.prototype.scanPage = function(){
 	xhr.send();
 	
 	// Make the resonse page an element & scan it
-	wrapperPage = document.implementation.createHTMLDocument();
-	
-	livePage_element = wrapperPage.querySelector('html');
-	livePage_element.innerHTML = xhr.response;
-	
+	responseWrapper = document.createElement('livePage');
+	responseWrapper.innerHTML = xhr.response;
+	livePage_element = document.importNode(responseWrapper, true, true);
 	
 	// Add resources checkers in here
 	if(this.options.monitor_css == true){

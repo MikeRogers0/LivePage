@@ -336,7 +336,7 @@ LiveResource.prototype.checkHeaders = function(){
  * Compares the responseText to the cached. 
  */
 LiveResource.prototype.checkResponse = function(){
-	if(this.response != '' && this.cache != this.response){
+	if((this.method == 'HEAD' && this.cache != '') || (this.response != '' && this.cache != this.response)){
 		this.cache = this.response;
 		return true;
 	}

@@ -20,6 +20,7 @@ All future milestones can be found on https://github.com/MikeRogers0/LivePage/is
  * Fixing bug where changing session will not affect superior resources.
  * Adding option to ignore inline JavaScript & hidden form values. 
  * Added in option to force GET requests.
+ * Scans the pages using document, instead of doing an ajax request - could mess up massivly.
 
 ### 1.4.1
  * Fallback for when sockets between the background tab & livepage fails.

@@ -37,65 +37,50 @@ function livePage(config){
 livePage.prototype.scanPage = function(){
 	$LivePageDebug(['Scanning Page']);
 	
-	
-	var xhr = new XMLHttpRequest();
-	if(this.url.indexOf('?') > 0 ){
-		xhr.open('GET', this.url+'&livePage='+(new Date() * 1), false);
-	} else {
-		xhr.open('GET', this.url+'?livePage='+(new Date() * 1), false);
-	}
-	 
-	//xhr.setRequestHeader('If-Modified-Since', (new Date(0) * 1));
-	//xhr.setRequestHeader('Cache-Control', 'no-cache');
-	//xhr.setRequestHeader('Pragma', 'no-cache');
-	
-	xhr.send();
-	
-	// Make the resonse page an element & scan it
-	responseWrapper = document.createElement('html');
-	responseWrapper.innerHTML = xhr.response;
-	livePage_element = document.importNode(responseWrapper, true, true);
+
 	
 	// Add resources checkers in here
 	if(this.options.monitor_css == true){
 		// First go through the linked elemented
-		elements = livePage_element.querySelectorAll('link[href*=".css"]');
+		elements = document.querySelectorAll('link[href*=".css"]');
 		for(var key=0; key<elements.length; key++){
 			this.addResource(elements[key].href, 'css', false, elements[key].media);
 		}
 		
 		// Now go through the @import elements
-		styleSheets = livePage_element.querySelectorAll('style');
+		styleSheets = document.styleSheets;
 		
 		for(var key=0; key<styleSheets.length; key++){
 			var sheet = styleSheets[key].sheet;
-			debugger;
-			// If it has a href we can monitor
-			if(sheet.href){
-				this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
-			}
 			
-			if(sheet.cssRules){
-				// Now lets checks for @import stuff within this stylesheet.	
-				for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
-					 var rule = sheet.cssRules[ruleKey];
-					 if(rule && rule.href){
-					 	this.addResource(rule.href, 'css', false, rule.media.mediaText);
-					 }
+			if(sheet){			
+				// If it has a href we can monitor
+				if(sheet.href){
+					this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
+				}
+				
+				if(sheet.cssRules){
+					// Now lets checks for @import stuff within this stylesheet.	
+					for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
+						 var rule = sheet.cssRules[ruleKey];
+						 if(rule && rule.href){
+						 	this.addResource(rule.href, 'css', false, rule.media.mediaText);
+						 }
+					}
 				}
 			}
 		}
 	}
 	
 	if(this.options.monitor_less == true){
-		elements = livePage_element.querySelectorAll('link[href*=".less"]');
+		elements = document.querySelectorAll('link[href*=".less"]');
 		for(var key=0; key<elements.length; key++){
 			this.addResource(elements[key].href, 'less', false, false);
 		}
 	}
 	
 	if(this.options.monitor_js == true){
-		elements = livePage_element.querySelectorAll('script[src*=".js"]');
+		elements = document.querySelectorAll('script[src*=".js"]');
 		for(var key=0; key<elements.length; key++){
 			this.addResource(elements[key].src, 'js', false, false);
 		}
@@ -321,7 +306,7 @@ LiveResource.prototype.check = function(){
 LiveResource.prototype.checkHeaders = function(){
 	var headersChanged = false;
 	for (var h in this.headers) {
-		if(this.xhr.getResponseHeader(h) == null || (this.headers[h] != null && this.headers[h] != this.xhr.getResponseHeader(h))){
+		if(this.headers[h] != null && (this.xhr.getResponseHeader(h) == null || this.headers[h] != this.xhr.getResponseHeader(h))){
 			headersChanged = true;
 		}
 		// Update the headers.
@@ -384,7 +369,6 @@ LiveResource.prototype.refresh = function (){
 	}else{
 		// Cache the item last updated so we poll it more.
 		this.sessionCache();
-		debugger;
 		// Now reload the page.
 		try{
 			// This can let us reload the page & force a cache reload.

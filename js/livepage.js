@@ -386,7 +386,7 @@ LiveResource.prototype.refresh = function (){
 	}else{
 		// Cache the item last updated so we poll it more.
 		this.sessionCache();
-		
+		debugger;
 		// Now reload the page.
 		try{
 			// This can let us reload the page & force a cache reload.
@@ -401,14 +401,19 @@ LiveResource.prototype.refresh = function (){
 /*
  * Tidies up HTML (Removes comments and whitespace), if the users wants.
  */
-LiveResource.prototype.tidyCode = function(html){
-	if($livePage.options.tidy_html == false){
-		return html;
+LiveResource.prototype.tidyCode = function(html){	
+	if($livePage.options.tidy_inline_html == true){
+		html = html.replace(/<script\b[^>]*>(.*?)<\/script>/gim, '');
+		//html = html.replace(/<style(.*?)>(.*?)<\/style>/gim, '');
+		html = html.replace(/<input(.*?)hidden(.*?)>/gim, '');
 	}
-	// Remove comments and whitespace.
-	html = html.replace(/<!--(.*?)-->/gim, '');
-	html = html.replace(/ /gim, '');
-	html = html.replace(/(\r\n|\n|\r|\t)/gim,'');
+	
+	if($livePage.options.tidy_html == true){
+		// Remove comments and whitespace.
+		html = html.replace(/<!--(.*?)-->/gim, '');
+		html = html.replace(/ /gim, '');
+		html = html.replace(/(\r\n|\n|\r|\t)/gim,'');
+	}
 	return html;
 }
 

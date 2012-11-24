@@ -229,7 +229,7 @@ function LiveResource(url, type, media){
 	
 	// set the method, if it's a local file or html we need to check the HTML.
 	this.method = 'HEAD';
-	if(this.type == 'html' || this.url.indexOf('file://') == 0 || $livePage.options.use_only_get == true){
+	if(this.type == 'html' || this.url.indexOf('file://') == 0  || $livePage.url.indexOf('file://') == 0 || $livePage.options.use_only_get == true){
 		this.method = 'GET';
 	}
 	
@@ -304,6 +304,10 @@ LiveResource.prototype.check = function(){
  * Cycles through the headers recieved looking for changes.
  */
 LiveResource.prototype.checkHeaders = function(){
+	if(this.method == 'GET' && (this.url.indexOf('file://') == 0 || $livePage.url.indexOf('file://') == 0)){ // If it's a file, it will always send bad headers. So check the content.
+		return true;
+	}
+
 	var headersChanged = false;
 	for (var h in this.headers) {
 		if(this.headers[h] != null && (this.xhr.getResponseHeader(h) == null || this.headers[h] != this.xhr.getResponseHeader(h))){

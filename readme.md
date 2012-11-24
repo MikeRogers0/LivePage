@@ -15,6 +15,9 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## 1.4.4
+ * Patching issue where @import was not working on file:// protocol.
+
 ## 1.4.3
  * Fixing bug with inline CSS @imports not loading correctly.
 

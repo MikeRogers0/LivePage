@@ -15,6 +15,9 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## 1.4.3
+ * Fixing bug with inline CSS @imports not loading correctly.
+
 ### 1.4.2
  * Adding support for @import
  * Fixing bug where changing session will not affect superior resources.

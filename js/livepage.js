@@ -51,7 +51,7 @@ livePage.prototype.scanPage = function(){
 		styleSheets = document.styleSheets;
 		
 		for(var key=0; key<styleSheets.length; key++){
-			var sheet = styleSheets[key].sheet;
+			var sheet = styleSheets[key];
 			
 			if(sheet){			
 				// If it has a href we can monitor

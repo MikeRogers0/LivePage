@@ -41,35 +41,48 @@ livePage.prototype.scanPage = function(){
 	
 	// Add resources checkers in here
 	if(this.options.monitor_css == true){
-		// First go through the linked elemented
-		elements = document.querySelectorAll('link[href*=".css"]');
-		for(var key=0; key<elements.length; key++){
-			this.addResource(elements[key].href, 'css', false, elements[key].media);
-		}
-		
-		// Now go through the @import elements
-		styleSheets = document.styleSheets;
-		
-		for(var key=0; key<styleSheets.length; key++){
-			var sheet = styleSheets[key];
-			
-			if(sheet){			
-				// If it has a href we can monitor
-				if(sheet.href){
-					this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
-				}
-				
-				if(sheet.cssRules){
-					// Now lets checks for @import stuff within this stylesheet.	
-					for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
-						 var rule = sheet.cssRules[ruleKey];
-						 if(rule && rule.href){
-						 	this.addResource(rule.href, 'css', false, rule.media.mediaText);
-						 }
-					}
-				}
-			}
-		}
+	    elements = document.querySelectorAll('link[href*=".css"]');
+	    for(var key=0; key<elements.length; key++){
+	        this.addResource(elements[key].href, 'css', false, elements[key].media);
+	    }
+	
+	    styleSheets = document.styleSheets;
+	
+	    for(var key=0; key<styleSheets.length; key++){
+	    var sheet = styleSheets[key];
+	
+	    if(sheet){
+	        // If it has a href we can monitor
+	        if(sheet.href){
+	            this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
+	        }
+	
+	        var sheet_folder = sheet.href.replace(sheet.href.split('/').pop(), '');
+	        if(sheet.cssRules){
+	            // Now lets checks for @import stuff within this stylesheet.
+	            for(var ruleKey=0; ruleKey<sheet.cssRules.length; ruleKey++){
+	                 var rule = sheet.cssRules[ruleKey];
+	
+	                if(rule && rule.href){
+	                    var rule_href = (function(){
+	                        var stack = sheet_folder.replace(/\/$/, '').split('/'),
+	                            parts = rule.href.split('/');
+	                        for (var i=0; i<parts.length; i++){
+	                            if (parts[i] == '.')
+	                                continue;
+	                            if (parts[i] == '..')
+	                                stack.pop();
+	                            else
+	                                stack.push(parts[i]);
+	                        }
+	                        return stack.join('/');
+	                    });
+	
+	                    this.addResource(rule_href(), 'css', false, rule.media.mediaText);
+	                }
+	            }
+	        }
+	    }
 	}
 	
 	if(this.options.monitor_less == true){

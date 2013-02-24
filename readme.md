@@ -4,7 +4,7 @@
 
 LivePage is a developer tool which reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity.
 
-Key features in version 1.3 are:
+Key features are:
  * LESS support
  * Entire domains can be made live
  * file:// protocol is now supported
@@ -13,7 +13,11 @@ It's recommended you use this extension in a development environment (Such as XA
 
 ## Changelog
 
-All future milestones can be found on https://github.com/MikeRogers0/LivePage/issues
+All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
+
+## 1.5.0
+ * Support added for monitoring additional html, css, js and less files using <link rel="livePage" href="/path/to/file"> in your HTML (Thank you to micflan for this).
+ * Improved support for where @import is used in an externall CSS file (Thanks damirfoy!).
 
 ## 1.4.4
  * Patching issue where @import was not working on file:// protocol.

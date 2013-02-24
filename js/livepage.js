@@ -85,6 +85,16 @@ livePage.prototype.scanPage = function(){
 			this.addResource(elements[key].src, 'js', false, false);
 		}
 	}
+
+	if(this.options.monitor_custom == true){
+		elements = document.querySelectorAll('link[rel="livePage"]');
+		for(var key=0; key<elements.length; key++){
+			fileType = elements[key].href.split('.').pop();
+			if (['css','html','less','js'].indexOf(fileType)){
+				this.addResource(elements[key].href, 'custom', false);
+			}
+		}
+	}
 	
 	if(this.options.monitor_html == true){
 		this.addResource(this.url, 'html', false, false);

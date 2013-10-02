@@ -154,7 +154,7 @@ livePages.prototype.start = function(tab){
 	// Make the page Live
 	chrome.tabs.executeScript(tab.id, {code: 'var $livePageConfig = '+JSON.stringify(settings.options)+'; var $livePage = false;'});
 	if(settings.options.monitor_less == true){ // Only load the less stuff if we need it.
-		chrome.tabs.executeScript(tab.id, {file: 'js/less-1.3.0.min.js'});
+		chrome.tabs.executeScript(tab.id, {file: 'js/less-1.4.1.min.js'});
 	}
 	chrome.tabs.executeScript(tab.id, {file: 'js/livepage.js'});
 }

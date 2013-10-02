@@ -15,6 +15,9 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## 1.5.1
+ * Updating version of LESS from 1.3.0 to 1.5.1
+
 ## 1.5.0
  * Support added for monitoring additional html, css, js and less files using <link rel="livePage" href="/path/to/file"> in your HTML (Thank you to micflan for this).
  * Improved support for where @import is used in an externall CSS file (Thanks damirfoy!).

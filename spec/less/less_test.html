@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Less Test</title>
+    <link rel="stylesheet/less" type="text/css" href="less_test.less">
+    <script>
+      less = {
+        env: "development",
+        async: false,
+        fileAsync: false,
+        poll: 1000,
+        relativeUrls: false
+      };
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.3.1/less.min.js"></script>
+    <script>less.watch();</script>
+  </head>
+  <body>
+    <h1>LivePage 1.5.2</h1>
+    <div class="hello_world">
+      <p>Hello World</p>
+    </div>
+  </body>
+</html>

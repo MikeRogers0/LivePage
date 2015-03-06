@@ -82,13 +82,6 @@ livePage.prototype.scanPage = function () {
         }
     }
 
-    if (this.options.monitor_less == true) {
-        elements = document.querySelectorAll('link[href*=".less"]');
-        for (var key = 0; key < elements.length; key++) {
-            this.addResource(elements[key].href, 'less', false, false);
-        }
-    }
-
     if (this.options.monitor_js == true) {
         elements = document.querySelectorAll('script[src*=".js"]');
         for (var key = 0; key < elements.length; key++) {
@@ -100,7 +93,7 @@ livePage.prototype.scanPage = function () {
 		elements = document.querySelectorAll('link[rel="livePage"]');
 		for(var key=0; key<elements.length; key++){
 			fileType = elements[key].href.split('.').pop();
-			if (['css','html','less','js'].indexOf(fileType)){
+			if (['css','html','js'].indexOf(fileType)){
 				this.addResource(elements[key].href, 'custom', false);
 			}
 		}
@@ -118,7 +111,7 @@ livePage.prototype.scanPage = function () {
     // Add the last resource updated to a more frequently checked list.
     if (this.lastUpdatedResource != null & this.lastChecked > 4) {
 
-        if ((this.lastUpdatedResource.type == 'js' && this.options.monitor_js == true) || (this.lastUpdatedResource.type == 'less' && this.options.monitor_less == true) || (this.lastUpdatedResource.type == 'html' && this.options.monitor_html == true)) {
+        if ((this.lastUpdatedResource.type == 'js' && this.options.monitor_js == true) || (this.lastUpdatedResource.type == 'html' && this.options.monitor_html == true)) {
             // Add it to the superior resources list.
             this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true, this.lastUpdatedResource.media);
 
@@ -400,9 +393,6 @@ LiveResource.prototype.refresh = function () {
             $livePage.head.removeChild(document.querySelector('link[href^="' + this.element.href + '"]'));
         }
         this.element = cssElement;
-    } else if (this.type == 'less') {
-        // Tell LESS CSS to reload.
-        $LivePageLESS.refresh(document.querySelector('link[href^="' + this.url + '"]'));
     } else {
         // Cache the item last updated so we poll it more.
         this.sessionCache();

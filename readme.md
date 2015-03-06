@@ -15,6 +15,9 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+### 1.5.2
+ * Removing LESS support, the setup I had for LESS support was not viable long term. Instead LESS has its own way of keeping its own CSS fresh ( http://lesscss.org/usage/#using-less-in-the-browser-watch-mode ). 
+
 ### 1.5.1
  * Updating version of LESS from 1.3.0 to 1.4.1
 

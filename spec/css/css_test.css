@@ -9,3 +9,5 @@ h1 {
 .hello_world p {
   font-weight: normal;
 }
+
+p{ display: none; }

@@ -3,7 +3,7 @@ var spinTimeout = null;
 var logo = document.querySelector('#logo');
 var host_list = document.querySelector('#host_list');
 var clear_all = document.querySelector('#clear_all');
-var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"]');
+var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"], #options input[type="number"]');
 
 // Add the change event, so we can fire changes on load.
 var changeEvent = document.createEvent('Event');

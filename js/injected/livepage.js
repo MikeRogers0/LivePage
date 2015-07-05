@@ -9,15 +9,9 @@ function livePage(config) {
   this.resources = [];
   this.superiorResource = null;
   this.lastChecked = 0;
-  this.lastUpdatedResource = null;
   this.url = document.URL;
   this.head = document.querySelector("head");
   this.html = document.querySelector('html');
-
-  // if we have a sessionStorage of the last updated resource, pop it in.
-  if (sessionStorage['LivePage_LastUpdatedResource'] != undefined) {
-    this.lastUpdatedResource = JSON.parse(sessionStorage.getItem('LivePage_LastUpdatedResource'));
-  }
 };
 
 /*
@@ -26,11 +20,6 @@ function livePage(config) {
 livePage.prototype.scanPage = function() {
   // Add resources checkers in here
   if (this.options.monitor_css == true) {
-    elements = document.querySelectorAll('link[href*=".css"]');
-    for (var key = 0; key < elements.length; key++) {
-      this.addResource(elements[key].href, 'css', false, elements[key].media);
-    }
-
     styleSheets = document.styleSheets;
 
     for (var key = 0; key < styleSheets.length; key++) {
@@ -39,14 +28,14 @@ livePage.prototype.scanPage = function() {
       if (sheet) {
         // If it has a href we can monitor
         if (sheet.href) {
-          this.addResource(sheet.href, 'css', false, sheet.media.mediaText);
+          this.addResource(sheet.href, 'css', false, sheet.media.mediaText, sheet.ownerNode);
           var sheet_folder = sheet.href.replace(sheet.href.split('/').pop(), '');
         } else {
           var sheet_folder = '';
         }
 
+        // Now lets checks for @import stuff within this stylesheet.
         if (sheet.cssRules) {
-          // Now lets checks for @import stuff within this stylesheet.
           for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
             var rule = sheet.cssRules[ruleKey];
 
@@ -66,7 +55,7 @@ livePage.prototype.scanPage = function() {
                 return stack.join('/');
               });
 
-              this.addResource(rule_href(), 'css', false, rule.media.mediaText);
+              this.addResource(rule_href(), 'import-css', false, sheet, sheet.ownerNode);
             }
           }
         }
@@ -77,7 +66,7 @@ livePage.prototype.scanPage = function() {
   if (this.options.monitor_js == true) {
     elements = document.querySelectorAll('script[src*=".js"]');
     for (var key = 0; key < elements.length; key++) {
-      this.addResource(elements[key].src, 'js', false, false);
+      this.addResource(elements[key].src, 'js', false, false, null);
     }
   }
 
@@ -86,13 +75,13 @@ livePage.prototype.scanPage = function() {
     for (var key = 0; key < elements.length; key++) {
       fileType = elements[key].href.split('.').pop();
       if (['css', 'html', 'js'].indexOf(fileType)) {
-        this.addResource(elements[key].href, 'custom', false);
+        this.addResource(elements[key].href, 'custom', false, null);
       }
     }
   }
 
   if (this.options.monitor_html == true) {
-    this.addResource(this.url, 'html', false, false);
+    this.addResource(this.url, 'html', false, false, null);
   }
 
   // Randomise the checking process, so were not hitting groups the same of files.
@@ -100,22 +89,13 @@ livePage.prototype.scanPage = function() {
     return 0.5 - Math.random();
   });
 
-  // Add the last resource updated to a more frequently checked list.
-  if (this.lastUpdatedResource != null & this.lastChecked > 4) {
-
-    if ((this.lastUpdatedResource.type == 'js' && this.options.monitor_js == true) || (this.lastUpdatedResource.type == 'html' && this.options.monitor_html == true)) {
-      // Add it to the superior resources list.
-      this.addResource(this.lastUpdatedResource.url, this.lastUpdatedResource.type, true, this.lastUpdatedResource.media);
-    }
-  }
-
   this.checkBatch();
 }
 
 /*
  * Adds live resources to the objects.
  */
-livePage.prototype.addResource = function(url, type, superior, media) {
+livePage.prototype.addResource = function(url, type, superior, media, ownerNode) {
   // Normalize the URL
   url = this.normalizeURL(url);
 
@@ -124,13 +104,7 @@ livePage.prototype.addResource = function(url, type, superior, media) {
     return false;
   }
 
-  if (superior == true) {
-    this.superiorResource = new LiveResource(url, type, media);
-    return;
-  }
-
-  this.resources[this.lastChecked++] = new LiveResource(url, type, media);
-
+  this.resources[this.lastChecked++] = new LiveResource(url, type, media, ownerNode);
 }
 
 /*
@@ -186,17 +160,7 @@ livePage.prototype.checkBatch = function() {
   if (this.options.enabled == false) {
     return false;
   }
-
-  // Run the superior resource in every batch.
-  if (this.superiorResource != null) {
-    this.superiorResource.check();
-  }
-
   this.check();
-
-  setTimeout(function() {
-    $livePage.checkBatch();
-  }, this.options.refresh_rate);
 }
 
 /*
@@ -213,19 +177,9 @@ livePage.prototype.check = function() {
     }
   }
 
-  // Store lastChecked incase the next check runs before this one finishes.
-  var lastChecked = this.lastChecked;
-
-  // Check the superior resource. If we do, make sure we don't check it with the non-superior object.
-  if (this.superiorResource != null) {
-    if (this.superiorResource.url != this.resources[lastChecked].url) {
-      this.resources[lastChecked].check();
-    } else {
-      this.resources[lastChecked] = this.superiorResource;
-    }
-  } else {
-    this.resources[lastChecked].check();
-  }
+  this.resources[this.lastChecked].check(function(){
+    setTimeout(function() { $livePage.checkBatch(); }, $livePage.options.refresh_rate);
+  });
 }
 
 if (typeof $livePageConfig == "object") {

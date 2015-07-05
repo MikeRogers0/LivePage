@@ -1,10 +1,10 @@
 /*
  * LiveResource Object
  */
-function LiveResource(url, type, media) {
+function LiveResource(url, type, media, ownerNode) {
   this.url = url;
   this.type = type;
-  this.element = null;
+  this.element = ownerNode;
   this.media = media;
 
   // set the method, if it's a local file or html we need to check the HTML.
@@ -37,8 +37,9 @@ LiveResource.prototype.nonCacheURL = function() {
 /*
  * Checks if a newer version of the file is there.
  */
-LiveResource.prototype.check = function() {
+LiveResource.prototype.check = function(callback) {
   var _this = this;
+  var _callback = callback;
 
   this.xhr = new XMLHttpRequest();
 
@@ -49,6 +50,10 @@ LiveResource.prototype.check = function() {
     // If it 404s
     if (this.status == 404) {
       $livePage.removeResource(this.url);
+    }
+
+    if (this.readyState == 4){
+      _callback();
     }
 
     if (this.readyState == 4 && this.status != 304) {
@@ -132,12 +137,9 @@ LiveResource.prototype.refresh = function() {
     cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
     cssElement.setAttribute("media", this.media);
 
-    $livePage.head.appendChild(cssElement);
+    $livePage.head.insertBefore(cssElement, this.element);
+    $livePage.head.removeChild(this.element);
 
-    // Remove the old element we created in the last update. Than update.
-    if (this.element != null) {
-      $livePage.head.removeChild(document.querySelector('link[href^="' + this.element.href + '"]'));
-    }
     this.element = cssElement;
   } else {
     // Cache the item last updated so we poll it more.

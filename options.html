@@ -1,77 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head><title>LivePage - Options</title>
-<link rel="stylesheet" href="/css/options.css">
-<script src="/js/objects.js"></script>
+
+<head>
+  <title>LivePage - Options</title>
+  <link rel="stylesheet" href="/css/options.css">
+  <script src="/js/core.js"></script>
 </head>
+
 <body>
-<div class="container">
-	<header>
-		<h1>LivePage <em>Options</em></h1>
-		<a href="https://github.com/MikeRogers0/LivePage" title="Project GitHub" id="logo"><img src="/imgs/icon.png" width="62" height="62" alt="Logo" /></a>
-	</header>
-	<section>
-		<h2>LivePage will run on:</h2>
-		<ul id="host_list">
-			
-		</ul>
-		<input type="button" id="clear_all" value="Clear all" />
-	</section>
-	<form id="options" name="options" action="#">
-		<section>
-			<h2>LivePage should monitor:</h2>
-			<ul>
-				<li><label><input id="monitor_css" name="monitor_css" type="checkbox" value="true" />CSS</label></li>
-				<li><label><input id="monitor_js" name="monitor_js" type="checkbox" value="true" />JavaScript</label></li>
-				<li><label><input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label></li>
-				<li><label><input id="monitor_custom" name="monitor_custom" type="checkbox" value="true" />LivePage Links <em>&mdash; Monitor files using &lt;link rel=&quot;livePage&quot; href=&quot;/path/to/file.html&quot; /&gt;</em></label></li>
-			</ul>
-		</section>
-		
-		<section>
-			<h2>General Settings</h2>
-			<ul>
-				<li><label><input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label></li>
-			</ul>
-		</section>
-		
-		<section>
-			<h2>Polling Setting</h2>
-			<ul>
-				<li>
-					<label>Poll for changes every: <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />ms</label>
-				</li>
-                <p><em>Local development can safely be set to less than 175ms, developing on a live server should be 250ms or higher.</em></p>
-			</ul>
-		</section>
-		
-		<section>
-			<h2>Advanced Settings</h2>
-			<ul>
-				<!--<li><label><input id="hosts_session" name="hosts_session" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>-->
-				<li><label><input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com or CDNs)</label></li>
-				<li><label><input id="ignore_anchors" name="ignore_anchors" type="checkbox" value="true" />Ignore URL anchors</label></li>
-				<li><label><input id="use_only_get" name="use_only_get" type="checkbox" value="true" />Use only GET requests when polling for changes</label></li>
-				<li><label><input id="tidy_html" name="tidy_html" type="checkbox" value="true" />Ignore comments in HTML</label></li>
-				<li><label><input id="tidy_inline_html" name="tidy_inline_html" type="checkbox" value="true" />Ignore inline JavaScript &amp; hidden fields in HTML</label></li>
-			</ul>
-		</section>
-		<section>
-			<h2>Notes</h2>
-			<p>To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked "Allow access to file URLs" for the LivePage extension.</p>
-			<p><img src="/imgs/allow-access-to-files.jpg" alt="allow-access-to-files" width="600" height="130"></p>
-		</section>
-	</form>
-</div>
-<footer class="container">
-	<ul>
-		<li><a href="https://github.com/MikeRogers0/LivePage">Contribute &amp; report bugs via GitHub</a></li>
-	</ul>
-	<ul>
-		<li>Lovingly coded by <a href="http://www.fullondesign.co.uk/">Mike Rogers</a></li>
-		<li>Tweet me: <a href="https://twitter.com/MikeRogers0">@MikeRogers0</a></li>
-	</ul>
-</footer>
-<script src="/js/options.js"></script>
+  <div class="container">
+    <header>
+      <h1>LivePage <em>Options</em></h1>
+      <a href="https://github.com/MikeRogers0/LivePage" title="Project GitHub" id="logo"><img src="/imgs/icon.png" width="62" height="62" alt="Logo" /></a>
+    </header>
+    <section>
+      <h2>LivePage will run on:</h2>
+      <ul id="host_list">
+
+      </ul>
+      <input type="button" id="clear_all" value="Clear all" />
+    </section>
+    <form id="options" name="options" action="#">
+      <section>
+        <h2>LivePage should monitor:</h2>
+        <ul>
+          <li>
+            <label>
+              <input id="monitor_css" name="monitor_css" type="checkbox" value="true" />CSS</label>
+          </li>
+          <li>
+            <label>
+              <input id="monitor_js" name="monitor_js" type="checkbox" value="true" />JavaScript</label>
+          </li>
+          <li>
+            <label>
+              <input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label>
+          </li>
+          <li>
+            <label>
+              <input id="monitor_custom" name="monitor_custom" type="checkbox" value="true" />LivePage Links <em>&mdash; Monitor files using &lt;link rel=&quot;livePage&quot; href=&quot;/path/to/file.html&quot; /&gt;</em></label>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>General Settings</h2>
+        <ul>
+          <li>
+            <label>
+              <input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Polling Setting</h2>
+        <ul>
+          <li>
+            <label>Poll for changes every:
+              <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />ms</label>
+          </li>
+          <p><em>Local development can safely be set to less than 175ms, developing on a live server should be 250ms or higher.</em></p>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Advanced Settings</h2>
+        <ul>
+          <!--<li><label><input id="hosts_session" name="hosts_session" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>-->
+          <li>
+            <label>
+              <input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com or CDNs)</label>
+          </li>
+          <li>
+            <label>
+              <input id="ignore_anchors" name="ignore_anchors" type="checkbox" value="true" />Ignore URL anchors</label>
+          </li>
+          <li>
+            <label>
+              <input id="use_only_get" name="use_only_get" type="checkbox" value="true" />Use only GET requests when polling for changes</label>
+          </li>
+          <li>
+            <label>
+              <input id="tidy_html" name="tidy_html" type="checkbox" value="true" />Ignore comments in HTML</label>
+          </li>
+          <li>
+            <label>
+              <input id="tidy_inline_html" name="tidy_inline_html" type="checkbox" value="true" />Ignore inline JavaScript &amp; hidden fields in HTML</label>
+          </li>
+        </ul>
+      </section>
+      <section>
+        <h2>Notes</h2>
+        <p>To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked "Allow access to file URLs" for the LivePage extension.</p>
+        <p><img src="/imgs/allow-access-to-files.jpg" alt="allow-access-to-files" width="600" height="130"></p>
+      </section>
+    </form>
+  </div>
+  <footer class="container">
+    <ul>
+      <li><a href="https://github.com/MikeRogers0/LivePage">Contribute &amp; report bugs via GitHub</a></li>
+    </ul>
+    <ul>
+      <li>Lovingly coded by <a href="http://www.fullondesign.co.uk/">Mike Rogers</a></li>
+      <li>Tweet me: <a href="https://twitter.com/MikeRogers0">@MikeRogers0</a></li>
+    </ul>
+  </footer>
+  <script src="/js/options.js"></script>
 </body>
+
 </html>

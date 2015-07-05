@@ -12,14 +12,14 @@
   "default_locale": "en",
   "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
-	"tabs", "<all_urls>"
+    "tabs", "<all_urls>"
   ],
   "browser_action": {
     "default_title": "__MSG_browser_action__",
     "default_icon": "imgs/icon.png"
   },
   "icons": {
-  	"16": "imgs/icon.png",
+    "16": "imgs/icon.png",
     "48": "imgs/icon.png",
     "128": "imgs/icon.png"
   },

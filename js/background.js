@@ -52,18 +52,18 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 	} else {
 		// If it's file:// check we have permission
 		if(tab.url.indexOf('file://') == 0 && typeof sessionStorage['file-test'] == 'undefined'){
-			$LivePageDebug(['Testing file://', 'Started']);
-			
+
 			// It's a file, so lets run a quick test to see if we support it. Based on http://pastebin.com/3deXunJV because Chromes API dosen't throw errors!
 		    chrome.tabs.executeScript(tab.id, {file: 'js/file_protocol_test.js'}, function() {
 		        // This function always fires *after* the attempt to run the code
-		        var exec_error = setTimeout(function(){alert(chrome.i18n.getMessage('@file_protocol_needs_enabling')); $LivePageDebug(['Testing file://', 'Failed']);}, 100);
+		        var exec_error = setTimeout(function(){
+                  alert(chrome.i18n.getMessage('@file_protocol_needs_enabling'));
+                }, 100);
 		        chrome.tabs.sendRequest(tab.id, 'Ping', function(result) {
 		            if (result === 'Pong') {
 		                clearTimeout(exec_error);
 		                sessionStorage['file-test'] = true;
 		                livepages.add(tab);
-		                $LivePageDebug(['Testing file://', 'Passed & cached for this session']);
 		            }
 		        });
 		    });

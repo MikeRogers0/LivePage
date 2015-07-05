@@ -1,11 +1,11 @@
 {
   "name": "__MSG_name__",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "manifest_version": 2,
   "description": "__MSG_description__",
   "default_locale": "en",
   "background": {
-    "scripts": ["js/objects.js","js/background.js"]
+    "scripts": ["js/core.js","js/background.js"]
   },
   "options_page": "options.html",
   "homepage_url": "https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh",

@@ -1,13 +1,4 @@
 /*
- * Debugging function to make displaying errors if the users wants.
- */
-function $LivePageDebug(message){
-	if(settings.options.debug_mode == true){
-		console.log('LivePage BG: ', message);
-	}
-};
-
-/*
  * The Settings object, it stores users options.
  */
 function Settings(){
@@ -24,8 +15,6 @@ function Settings(){
 		use_only_get: false,
 		tidy_html: true,
 		tidy_inline_html: false,
-		use_css_transitions: false,
-		debug_mode: false,
 		refresh_rate: 200
 	};
 	
@@ -152,7 +141,8 @@ livePages.prototype.start = function(tab){
 	
 	// Make the page Live
 	chrome.tabs.executeScript(tab.id, {code: 'var $livePageConfig = '+JSON.stringify(settings.options)+'; var $livePage = false;'});
-	chrome.tabs.executeScript(tab.id, {file: 'js/livepage.js'});
+	chrome.tabs.executeScript(tab.id, {file: 'js/injected/live_resource.js'});
+	chrome.tabs.executeScript(tab.id, {file: 'js/injected/livepage.js'});
 }
 
 // Turns off live page on the tab.

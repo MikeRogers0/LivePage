@@ -15,6 +15,10 @@ It's recommended you use this extension in a development environment (Such as XA
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+### 1.5.3
+
+ * Fixing a bug where linking to CSS files was erroring out.
+
 ### 1.5.2
  * Removing LESS support, the setup I had for LESS support was not viable long term. Instead LESS has its own way of keeping its own CSS fresh ( http://lesscss.org/usage/#using-less-in-the-browser-watch-mode ). 
 

@@ -45,6 +45,10 @@ livePage.prototype.scanPage = function() {
                   return window.location.protocol + rule.href;
                 }
 
+                if (rule.href.indexOf("http://") == 0 || rule.href.indexOf("https://") == 0) {
+                  return rule.href;
+                }
+
                 var stack = sheet_folder.replace(/\/$/, '').split('/'),
                   parts = rule.href.split('/');
                 for (var i = 0; i < parts.length; i++) {

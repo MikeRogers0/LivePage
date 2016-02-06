@@ -5,7 +5,6 @@
 LivePage is a developer tool which reloads website resources (such as CSS, LESS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity.
 
 Key features are:
- * LESS support
  * Entire domains can be made live
  * file:// protocol is now supported
 

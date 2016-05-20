@@ -8,10 +8,6 @@ Key features are:
 
 It's recommended you use this extension only in a local development environment and not in a production enviromment. 
 
-## Developing on this locally
-
-    sass --watch options.scss:options.css
-
 ## Footnotes
 
 Contribute on GitHub: https://github.com/MikeRogers0/LivePage

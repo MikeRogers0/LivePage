@@ -1,6 +1,4 @@
 // Set the global varibles.
-var spinTimeout = null;
-var logo = document.querySelector('#logo');
 var host_list = document.querySelector('#host_list');
 var clear_all = document.querySelector('#clear_all');
 var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"], #options input[type="number"]');
@@ -10,15 +8,6 @@ var changeEvent = document.createEvent('Event');
 changeEvent.initEvent('change', true, false);
 
 
-function spinGlobe() {
-  logo.className = '';
-  logo.className = 'updated';
-  clearTimeout(spinTimeout);
-  spinTimeout = setTimeout(function() {
-    logo.className = '';
-  }, 1100);
-}
-
 // Build the listner for when options are updated.
 function updateValue(e) {
   var elm = e.srcElement; // the elements which was clicked.
@@ -27,15 +16,12 @@ function updateValue(e) {
   } else {
     settings.set(elm.id, elm.value);
   }
-
-  spinGlobe();
 }
 
 // build the listner for when all the URL's are cleared.
 function clearLivePages() {
   host_list.innerHTML = host_list.innerHTML = '<li>No URLs are currently live.</li>';
   livepages.removeAll();
-  spinGlobe();
 }
 
 // Add the list of URLs/Hosts were tracking
@@ -73,4 +59,3 @@ for (var key = 0; key < settingFields.length; key++) {
 for (var key = 0; key < settingFields.length; key++) {
   settingFields[key].dispatchEvent(changeEvent);
 }
-//console.log('Updated default options on fields.');

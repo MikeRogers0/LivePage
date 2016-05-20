@@ -9,7 +9,7 @@ function LiveResource(url, type, media, ownerNode) {
 
   // set the method, if it's a local file or html we need to check the HTML.
   this.method = 'HEAD';
-  if (this.type == 'html' || this.url.indexOf('file://') == 0 || $livePage.url.indexOf('file://') == 0 || $livePage.options.use_only_get == true) {
+  if (this.type == 'html' || this.url.indexOf('file://') == 0 || $livePage.url.indexOf('file://') == 0 || this.url.indexOf('://localhost') != -1 || $livePage.options.use_only_get == true) {
     this.method = 'GET';
   }
 
@@ -83,7 +83,7 @@ LiveResource.prototype.check = function(callback) {
  * Cycles through the headers recieved looking for changes.
  */
 LiveResource.prototype.checkHeaders = function() {
-  if (this.method == 'GET' && (this.url.indexOf('file://') == 0 || $livePage.url.indexOf('file://') == 0)) { // If it's a file, it will always send bad headers. So check the content.
+  if (this.method == 'GET') { // If we have a copy of the file, check that instead.
     return true;
   }
 
@@ -106,7 +106,6 @@ LiveResource.prototype.checkResponse = function() {
     this.cache = this.response;
     return true;
   }
-  this.cache = this.response;
   return false;
 }
 
@@ -169,8 +168,8 @@ LiveResource.prototype.tidyCode = function(html) {
   }
 
   if ($livePage.options.tidy_inline_html == true) {
+    // Remove script tags and hidden inputs
     html = html.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, '');
-    //html = html.replace(/<style(.*?)>(.*?)<\/style>/gim, '');
     html = html.replace(/<input(.*?)hidden(.*?)>/gim, '');
   }
   return html;

@@ -8,19 +8,17 @@
 </head>
 
 <body>
-  <div class="container">
     <header>
-      <h1>LivePage <em>Options</em></h1>
-      <a href="https://github.com/MikeRogers0/LivePage" title="Project GitHub" id="logo"><img src="/imgs/icon.png" width="62" height="62" alt="Logo" /></a>
     </header>
-    <section>
-      <h2>LivePage will run on:</h2>
-      <ul id="host_list">
-
-      </ul>
-      <input type="button" id="clear_all" value="Clear all" />
-    </section>
     <form id="options" name="options" action="#">
+      <section>
+        <h2>LivePage will run on:</h2>
+        <ul id="host_list">
+          <li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>
+        </ul>
+        <input type="button" id="clear_all" value="Clear all" />
+      </section>
+
       <section>
         <h2>LivePage should monitor:</h2>
         <ul>
@@ -44,30 +42,23 @@
       </section>
 
       <section>
-        <h2>General Settings</h2>
-        <ul>
-          <li>
-            <label>
-              <input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label>
-          </li>
-        </ul>
-      </section>
-
-      <section>
         <h2>Polling Setting</h2>
         <ul>
           <li>
             <label>Poll for changes every:
               <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />ms</label>
           </li>
-          <p><em>Local development can safely be set to less than 175ms, developing on a live server should be 250ms or higher.</em></p>
+          <p><em>Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.</em></p>
         </ul>
       </section>
 
       <section>
         <h2>Advanced Settings</h2>
         <ul>
-          <!--<li><label><input id="hosts_session" name="hosts_session" type="checkbox" value="true" />LivePage URLs only stored for a session</label></li>-->
+          <li>
+            <label>
+              <input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label>
+          </li>
           <li>
             <label>
               <input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com or CDNs)</label>
@@ -96,13 +87,12 @@
         <p><img src="/imgs/allow-access-to-files.jpg" alt="allow-access-to-files" width="600" height="130"></p>
       </section>
     </form>
-  </div>
-  <footer class="container">
+  <footer>
     <ul>
       <li><a href="https://github.com/MikeRogers0/LivePage">Contribute &amp; report bugs via GitHub</a></li>
     </ul>
     <ul>
-      <li>Lovingly coded by <a href="http://www.fullondesign.co.uk/">Mike Rogers</a></li>
+      <li>Developed by <a href="https://mikerogers.io/">Mike Rogers</a></li>
       <li>Tweet me: <a href="https://twitter.com/MikeRogers0">@MikeRogers0</a></li>
     </ul>
   </footer>

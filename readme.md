@@ -6,7 +6,7 @@ Key features are:
  * Entire domains can be made live
  * file:// protocol is now supported
 
-It's recommended you use this extension only in a local development environment and not in a production enviromment. 
+It's recommended you use this extension only in a local development environment and not in a production environment. 
 
 ## Footnotes
 

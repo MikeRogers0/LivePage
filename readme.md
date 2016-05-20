@@ -4,7 +4,7 @@ LivePage is a developer tool which reloads website resources (such as CSS, LESS,
 
 Key features are:
  * Entire domains can be made live
- * file:// protocol is now supported
+ * file:// protocol is now supported, though required "Allow access to file URLs" to be checked on the chrome extensions page.
 
 It's recommended you use this extension only in a local development environment and not in a production environment. 
 

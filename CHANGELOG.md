@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.0.1](https://github.com/MikeRogers0/LivePage/tree/2.0.1) (2016-05-22)
+
+ - By default, it now ignores CloudFlares email protection URLs, doubleclick adverts and any references to the cache breakers URL attribute.
+
 ## [2.0.0](https://github.com/MikeRogers0/LivePage/tree/2.0.0) (2016-05-20)
 
  - Fixed bug where files being served from `http://localhost/` where not treated as local file.

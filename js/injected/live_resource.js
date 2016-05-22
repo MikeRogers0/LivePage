@@ -165,6 +165,15 @@ LiveResource.prototype.tidyCode = function(html) {
     html = html.replace(/<!--([\s\S]*?)-->/gim, '');
     html = html.replace(/  /gim, ' ');
     html = html.replace(/(\r\n|\n|\r|\t\s)/gim, '');
+
+    // Remove CloudFlare's email protection URLs
+    html = html.replace(/href\=\"\/cdn-cgi\/l\/email-protection#(.*?)"/gim, '');
+
+    // Remove references to LivePages cache breaker
+    html = html.replace(/livePage=([0-9]+)/gim, '');
+
+    // Ignore doubleclick links
+    html = html.replace(/"https:\/\/ad.doubleclick.net(.*?)"/gim, '');
   }
 
   if ($livePage.options.tidy_inline_html == true) {

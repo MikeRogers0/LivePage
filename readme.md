@@ -14,7 +14,7 @@ Contribute on GitHub: https://github.com/MikeRogers0/LivePage
 
 Find it in the Chrome Web Store: https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh/
 
-Extension by: Mike Rogers (@MikeRogers0)
+Extension by: Mike Rogers ([@MikeRogers0](https://twitter.com/mikerogers0))
 
 Original LiveJS: @mrtnkl / http://livejs.com/
 

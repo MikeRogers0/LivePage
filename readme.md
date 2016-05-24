@@ -14,13 +14,26 @@ Clone this repo to your local machine. Then visit to `chrome://extensions/` in C
 
 Within the Extension page, click "Load unpacked extension". A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
 
+## Roadmap
+
+### 3.0.0
+
+Version 3.0.0 will be primarily be aimed at making LivePage a better experience for non-english speakers. Here are they main stories I intend to do:
+
+ * Simplify the english on the options pages.
+ * Localise the options page
+ * Add translations for Spanish, German, French & Russian. Initially this will just be the phrases put into Google Translate.
+ * A new logo. I think I can come up with something the implies reloading more clearly.
+ * Update promotional images / videos. I really want to emphasise it simply polls for changes, but is simple to setup.
+ * I'm going to look into ways of monetising via LivePage. I'm undecided whether this will be by asking for donations or making 3.0 a paid for version. Either way, all current users should be have to pay.
+
 ## Footnotes
 
 Contribute on GitHub: https://github.com/MikeRogers0/LivePage
 
 Find it in the Chrome Web Store: https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh/
 
-Extension by: Mike Rogers ([@MikeRogers0](https://twitter.com/mikerogers0))
+Extension by: Mike Rogers ([@MikeRogers0](https://twitter.com/mikerogers0)) / [https://mikerogers.io/](https://mikerogers.io/)
 
 Original LiveJS: @mrtnkl / http://livejs.com/
 

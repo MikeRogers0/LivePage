@@ -2,10 +2,12 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
-## [2.0.2](https://github.com/MikeRogers0/LivePage/tree/2.0.2) (2016-06-02)
+## [2.1.0](https://github.com/MikeRogers0/LivePage/tree/2.0.2) (2016-06-02)
 
  - Fixes #39 where CSS stylesheets outside of the `<head>` tag threw an error.
- - Removing option to only use "GET" requests. All requests are now GET requests.
+ - Removing option to only use "GET" requests. All requests are now GET requests. Removed LiveResource.checkHeaders() method.
+ - Removed unused LiveResource.sessionCache() method.
+ - Broke LiveResource into two objects. We now have LiveResource and LiveCSSResource. 
 
 ## [2.0.1](https://github.com/MikeRogers0/LivePage/tree/2.0.1) (2016-05-22)
 

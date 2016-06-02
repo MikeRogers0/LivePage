@@ -21,10 +21,7 @@ livePage.prototype.scanPage = function() {
   }
 
   if (this.options.monitor_js == true) {
-    elements = document.querySelectorAll('script[src*=".js"]');
-    for (var key = 0; key < elements.length; key++) {
-      this.addResource(new LiveResource(elements[key].src));
-    }
+    this.scanJS();
   }
 
   if (this.options.monitor_custom == true) {
@@ -42,6 +39,13 @@ livePage.prototype.scanPage = function() {
 
   this.checkBatch();
 }
+
+livePage.prototype.scanJS = function(){
+  elements = document.querySelectorAll('script[src*=".js"]');
+  for (var key = 0; key < elements.length; key++) {
+    this.addResource(new LiveResource(elements[key].src));
+  }
+};
 
 livePage.prototype.scanCSS = function(){
   styleSheets = document.styleSheets;
@@ -74,6 +78,7 @@ livePage.prototype.scanCSS = function(){
               }
 
               // Convert http://127.0.0.1:4000/spec/css/index.html to http://127.0.0.1:4000/spec/css/
+              // then add the current href on.
               var url_parts = document.URL.split("/");
               url_parts.pop();
               var recombined_url = url_parts.join("/") + "/";

@@ -6,11 +6,6 @@ function LiveResource(url) {
 }
 
 LiveResource.prototype.method = "GET";
-LiveResource.prototype.headers = {
-  "Etag": null,
-  "Last-Modified": null,
-  "Content-Length": null
-};
 LiveResource.prototype.cache = '';
 LiveResource.prototype.response = '';
 LiveResource.prototype.xhr = null;

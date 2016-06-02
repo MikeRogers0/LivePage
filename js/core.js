@@ -12,7 +12,6 @@ function Settings() {
     skip_external: true,
     entire_hosts: false,
     ignore_anchors: true,
-    use_only_get: false,
     tidy_html: true,
     tidy_inline_html: false,
     refresh_rate: 200
@@ -151,6 +150,9 @@ livePages.prototype.start = function(tab) {
   });
   chrome.tabs.executeScript(tab.id, {
     file: 'js/injected/live_resource.js'
+  });
+  chrome.tabs.executeScript(tab.id, {
+    file: 'js/injected/live_css_resource.js'
   });
   chrome.tabs.executeScript(tab.id, {
     file: 'js/injected/livepage.js'

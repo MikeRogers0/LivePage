@@ -7,7 +7,6 @@ function livePage(config) {
   this.options = config;
   this.options.enabled = true;
   this.resources = [];
-  this.superiorResource = null;
   this.lastChecked = 0;
   this.url = document.URL;
 };
@@ -18,72 +17,22 @@ function livePage(config) {
 livePage.prototype.scanPage = function() {
   // Add resources checkers in here
   if (this.options.monitor_css == true) {
-    styleSheets = document.styleSheets;
-
-    for (var key = 0; key < styleSheets.length; key++) {
-      var sheet = styleSheets[key];
-
-      if (sheet) {
-        // If it has a href we can monitor
-        if (sheet.href) {
-          this.addResource(sheet.href, 'css', false, sheet.media.mediaText, sheet.ownerNode);
-          var sheet_folder = sheet.href.replace(sheet.href.split('/').pop(), '');
-        } else {
-          var sheet_folder = '';
-        }
-
-        // Now lets checks for @import stuff within this stylesheet.
-        if (sheet.cssRules) {
-          for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
-            var rule = sheet.cssRules[ruleKey];
-
-            if (rule && rule.href) {
-              var rule_href = (function() {
-                if (rule.href.indexOf("//") == 0) {
-                  return window.location.protocol + rule.href;
-                }
-
-                if (rule.href.indexOf("http://") == 0 || rule.href.indexOf("https://") == 0) {
-                  return rule.href;
-                }
-
-                var stack = sheet_folder.replace(/\/$/, '').split('/'),
-                  parts = rule.href.split('/');
-                for (var i = 0; i < parts.length; i++) {
-                  if (parts[i] == '.') continue;
-                  if (parts[i] == '..') stack.pop();
-                  else stack.push(parts[i]);
-                }
-                return stack.join('/');
-              });
-
-              this.addResource(rule_href(), 'import-css', false, sheet, sheet.ownerNode);
-            }
-          }
-        }
-      }
-    }
+    this.scanCSS();
   }
 
   if (this.options.monitor_js == true) {
     elements = document.querySelectorAll('script[src*=".js"]');
     for (var key = 0; key < elements.length; key++) {
-      this.addResource(elements[key].src, 'js', false, false, null);
+      this.addResource(new LiveResource(elements[key].src));
     }
   }
 
   if (this.options.monitor_custom == true) {
-    elements = document.querySelectorAll('link[rel="livePage"]');
-    for (var key = 0; key < elements.length; key++) {
-      fileType = elements[key].href.split('.').pop();
-      if (['css', 'html', 'js'].indexOf(fileType)) {
-        this.addResource(elements[key].href, 'custom', false, null);
-      }
-    }
+    this.scanCustom();
   }
 
   if (this.options.monitor_html == true) {
-    this.addResource(this.url, 'html', false, false, null);
+    this.addResource( new LiveResource(this.url) );
   }
 
   // Randomise the checking process, so were not hitting groups the same of files.
@@ -94,19 +43,73 @@ livePage.prototype.scanPage = function() {
   this.checkBatch();
 }
 
+livePage.prototype.scanCSS = function(){
+  styleSheets = document.styleSheets;
+
+  for (var key = 0; key < styleSheets.length; key++) {
+    var sheet = styleSheets[key];
+
+    if (sheet) {
+      // If it has a href we can monitor
+      if (sheet.href) {
+        this.addResource(new LiveCSSResource(sheet.href, sheet.media.mediaText, sheet.ownerNode));
+        var sheet_folder = sheet.href.replace(sheet.href.split('/').pop(), '');
+      } else {
+        var sheet_folder = '';
+      }
+
+      // Now lets checks for @import stuff within this stylesheet.
+      if (sheet.cssRules) {
+        for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
+          var rule = sheet.cssRules[ruleKey];
+
+          if (rule && rule.href) {
+            var rule_href = (function() {
+              if (rule.href.indexOf("//") == 0) {
+                return window.location.protocol + rule.href;
+              }
+
+              if (rule.href.indexOf("http://") == 0 || rule.href.indexOf("https://") == 0  || rule.href.indexOf("/") == 0) {
+                return rule.href;
+              }
+
+              // Convert http://127.0.0.1:4000/spec/css/index.html to http://127.0.0.1:4000/spec/css/
+              var url_parts = document.URL.split("/");
+              url_parts.pop();
+              var recombined_url = url_parts.join("/") + "/";
+              return recombined_url  + rule.href;
+            });
+
+            this.addResource(new LiveResource(rule_href()));
+          }
+        }
+      }
+    }
+  }
+};
+
+livePage.prototype.scanCustom = function(){
+  elements = document.querySelectorAll('link[rel="livePage"]');
+  for (var key = 0; key < elements.length; key++) {
+    if (elements[key].href) {
+      this.addResource(new LiveResource(elements[key].href));
+    }
+  }
+};
+
 /*
- * Adds live resources to the objects.
+ * Adds live resources to the list of trackable objects.
  */
-livePage.prototype.addResource = function(url, type, superior, media, ownerNode) {
+livePage.prototype.addResource = function(resource) {
   // Normalize the URL
-  url = this.normalizeURL(url);
+  resource.url = this.normalizeURL(resource.url);
 
   // Check the URL is ok
-  if (!this.trackableURL(url)) {
+  if (!this.trackableURL(resource.url)) {
     return false;
   }
 
-  this.resources[this.lastChecked++] = new LiveResource(url, type, media, ownerNode);
+  this.resources[this.lastChecked++] = resource;
 }
 
 /*
@@ -126,7 +129,7 @@ livePage.prototype.removeResource = function(url) {
 }
 
 /*
- * Normalise the URL. - Remove anything after a #, also add a host if missing.
+ * Normalise the URL. - Remove anything after a #
  */
 livePage.prototype.normalizeURL = function(url) {
 
@@ -149,9 +152,9 @@ livePage.prototype.trackableURL = function(url) {
   match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
   if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return false;
   if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":(" + {
-      "http:": 80,
-      "https:": 443
-    }[location.protocol] + ")?$"), "") !== location.host) return false;
+    "http:": 80,
+    "https:": 443
+  }[location.protocol] + ")?$"), "") !== location.host) return false;
   return true;
 }
 

@@ -1,27 +1,19 @@
 /*
  * LiveResource Object
  */
-function LiveResource(url, type, media, ownerNode) {
+function LiveResource(url) {
   this.url = url;
-  this.type = type;
-  this.element = ownerNode;
-  this.media = media;
-
-  // set the method, if it's a local file or html we need to check the HTML.
-  this.method = 'HEAD';
-  if (this.type == 'html' || this.url.indexOf('file://') == 0 || $livePage.url.indexOf('file://') == 0 || this.url.indexOf('://localhost') != -1 || $livePage.options.use_only_get == true) {
-    this.method = 'GET';
-  }
-
-  this.headers = {
-    "Etag": null,
-    "Last-Modified": null,
-    "Content-Length": null
-  };
-  this.cache = '';
-  this.response = '';
-  this.xhr = null;
 }
+
+LiveResource.prototype.method = "GET";
+LiveResource.prototype.headers = {
+  "Etag": null,
+  "Last-Modified": null,
+  "Content-Length": null
+};
+LiveResource.prototype.cache = '';
+LiveResource.prototype.response = '';
+LiveResource.prototype.xhr = null;
 
 /*
  * Generated a URL with a cache breaker in it.
@@ -43,7 +35,7 @@ LiveResource.prototype.check = function(callback) {
 
   this.xhr = new XMLHttpRequest();
 
-  this.xhr.open(this.method, this.nonCacheURL());
+  this.xhr.open("GET", this.nonCacheURL());
 
   this.xhr.onreadystatechange = function() {
 
@@ -57,20 +49,17 @@ LiveResource.prototype.check = function(callback) {
     }
 
     if (this.readyState == 4 && this.status != 304) {
-      // Pull all the headers
-      this.getAllResponseHeaders();
-
       // Firstly, tidy up the code
       _this.response = _this.tidyCode(this.responseText);
 
       // If this is the first check, cache it and than move along.
-      if (this.method != 'HEAD' && _this.cache == '' && _this.response != '') {
+      if (_this.cache == '' && _this.response != '') {
         _this.cache = _this.response;
         return;
       }
 
       // Compare the headers && responseText
-      if (_this.checkHeaders() && _this.checkResponse()) {
+      if (_this.checkResponse()) {
         _this.refresh();
       }
     }
@@ -80,29 +69,10 @@ LiveResource.prototype.check = function(callback) {
 }
 
 /*
- * Cycles through the headers recieved looking for changes.
- */
-LiveResource.prototype.checkHeaders = function() {
-  if (this.method == 'GET') { // If we have a copy of the file, check that instead.
-    return true;
-  }
-
-  var headersChanged = false;
-  for (var h in this.headers) {
-    if (this.headers[h] != null && (this.xhr.getResponseHeader(h) == null || this.headers[h] != this.xhr.getResponseHeader(h))) {
-      headersChanged = true;
-    }
-    // Update the headers.
-    this.headers[h] = this.xhr.getResponseHeader(h);
-  }
-  return headersChanged;
-}
-
-/*
  * Compares the responseText to the cached. 
  */
 LiveResource.prototype.checkResponse = function() {
-  if (this.method == 'HEAD' || (this.response != '' && this.cache != this.response)) {
+  if (this.response != '' && this.cache != this.response) {
     this.cache = this.response;
     return true;
   }
@@ -110,49 +80,18 @@ LiveResource.prototype.checkResponse = function() {
 }
 
 /*
- * Sets a session var of the last updated file.
- */
-LiveResource.prototype.sessionCache = function() {
-  cache = {};
-  cache.url = this.url;
-  cache.type = this.type;
-  cache.media = this.media;
-
-  sessionStorage.setItem('LivePage_LastUpdatedResource', JSON.stringify(cache));
-}
-
-/*
  * Refresh the code
  */
 LiveResource.prototype.refresh = function() {
-  // Update the Superior Resource, so it gets checked more frqeuently.
-  $livePage.superiorResource = this;
-
-  if (this.type == 'css') {
-    // create a new html element
-    var cssElement = document.createElement('link');
-    cssElement.setAttribute("type", "text/css");
-    cssElement.setAttribute("rel", "stylesheet");
-    cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
-    cssElement.setAttribute("media", this.media);
-
-    this.element.parentNode.insertBefore(cssElement, this.element)
-    this.element.parentNode.removeChild(this.element);
-
-    this.element = cssElement;
-  } else {
-    // Cache the item last updated so we poll it more.
-    this.sessionCache();
-    // Now reload the page.
-    try {
-      // This can let us reload the page & force a cache reload.
-      chrome.extension.sendMessage({
-        action: 'reload'
-      }, function() {});
-    } catch (e) {
-      // An error occoured refreshing the page with the chrome socket. Do it differently.
-      document.location.reload($livePage.url);
-    }
+  // Now reload the page.
+  try {
+    // This can let us reload the page & force a cache reload.
+    chrome.extension.sendMessage({
+      action: 'reload'
+    }, function() {});
+  } catch (e) {
+    // An error occoured refreshing the page with the chrome socket. Do it differently.
+    document.location.reload($livePage.url);
   }
 }
 

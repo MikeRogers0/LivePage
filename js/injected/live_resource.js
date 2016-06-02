@@ -136,8 +136,8 @@ LiveResource.prototype.refresh = function() {
     cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
     cssElement.setAttribute("media", this.media);
 
-    $livePage.head.insertBefore(cssElement, this.element);
-    $livePage.head.removeChild(this.element);
+    this.element.parentNode.insertBefore(cssElement, this.element)
+    this.element.parentNode.removeChild(this.element);
 
     this.element = cssElement;
   } else {

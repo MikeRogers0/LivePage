@@ -8,6 +8,7 @@ h1 {
 
 .hello_world p {
   font-weight: normal;
+  color: #ddd;
 }
 
 p{ display: none; }

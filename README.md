@@ -6,7 +6,7 @@ Key features are:
  * Entire domains can be made live
  * file:// protocol is now supported, though required "Allow access to file URLs" to be checked on the chrome extensions page.
 
-It's recommended you use this extension only in a local development environment and not in a production environment. 
+It's recommended you use this extension only in a local development environment and not in a production environment.
 
 ## Running development version in Chrome
 
@@ -23,7 +23,7 @@ Version 3.0.0 will be primarily be aimed at making LivePage a better experience 
  * Simplify the english on the options pages.
  * Localise the options page
  * Add translations for Spanish, German, French & Russian. Initially this will just be the phrases put into Google Translate.
- * A new logo. I think I can come up with something the implies reloading more clearly.
+ ~* A new logo. I think I can come up with something the implies reloading more clearly.~
  * Update promotional images / videos. I really want to emphasise it simply polls for changes, but is simple to setup.
  * I'm going to look into ways of monetising via LivePage. I'm undecided whether this will be by asking for donations or making 3.0 a paid for version. Either way, all current users shouldn't have to pay.
 
@@ -35,6 +35,6 @@ Find it in the Chrome Web Store: https://chrome.google.com/webstore/detail/pilno
 
 Extension by: Mike Rogers ([@MikeRogers0](https://twitter.com/mikerogers0)) / [https://mikerogers.io/](https://mikerogers.io/)
 
-Original LiveJS: @mrtnkl / http://livejs.com/
+Icon By: [Tibi Lehocz](https://creativemarket.com/VectorBurn)
 
-Icon By: Everaldo Coelho http://www.iconfinder.com/icondetails/17829/128/global_internet_network_planet_seo_web_icon
+LivePage was originally based on [LiveJS](http://livejs.com/) by [@mrtnkl](https://twitter.com/mrtnkl).

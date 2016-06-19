@@ -1,10 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
   font-family: 'Open Sans', sans-serif;
   background: #D5E6ED;
   margin: 0;
   padding: 0 0 20px 0;
+  min-width: 750px;
 }
 
 a {
@@ -88,4 +89,11 @@ footer {
   a {
     color: #42464F;
   }
+}
+
+.allow-access-to-files {
+  width: 100%;
+  max-width: 739px;
+  margin: 0 auto;
+  display: block;
 }

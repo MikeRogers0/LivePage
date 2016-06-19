@@ -13,7 +13,7 @@ function Settings() {
     entire_hosts: false,
     ignore_anchors: true,
     tidy_html: true,
-    tidy_inline_html: false,
+    tidy_inline_html: true,
     refresh_rate: 200
   };
 

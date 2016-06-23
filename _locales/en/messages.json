@@ -4,7 +4,7 @@
     "description": "Extension name"
   },
   "description": {
-    "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they change on the server. To make a page Live, click on the icon in the toolbar.",
+    "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they change on the server.",
     "description": "Extension description"
   },
   "browser_action": {

@@ -32,11 +32,16 @@ LiveResource.prototype.check = function(callback) {
 
   this.xhr.open("GET", this.nonCacheURL());
 
+  // Timeout or error, remove the resource
+  this.xhr.ontimeout = this.xhr.onerror = function(){
+    $livePage.removeResource(_this.url);
+  }
+
   this.xhr.onreadystatechange = function() {
 
-    // If it 404s
+    // If it 404s, remove the resource
     if (this.status == 404) {
-      $livePage.removeResource(this.url);
+      $livePage.removeResource(_this.url);
     }
 
     if (this.readyState == 4){

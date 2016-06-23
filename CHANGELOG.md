@@ -2,6 +2,11 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.2.0](https://github.com/MikeRogers0/LivePage/tree/2.2.0) (2016-06-24)
+
+  - New logo / icon
+  - Bugfix for 404's not being remove from global list correctly, fixes #49 - thank you @CodinCat
+
 ## [2.1.1](https://github.com/MikeRogers0/LivePage/tree/2.1.1) (2016-06-02)
 
  - Fixes #39 where CSS stylesheets outside of the `<head>` tag threw an error.

@@ -10,9 +10,11 @@ It's recommended you use this extension only in a local development environment 
 
 ## Running development version in Chrome
 
-Clone this repo to your local machine. Then visit to `chrome://extensions/` in Chrome. 
-
-Within the Extension page, check the "Developer Mode" checkbox, a button with the label "Load unpacked extension" should have appeared, click it. . A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
+ 1. Clone this repo to your local machine. 
+ 2. Then visit to `chrome://extensions/` in Chrome. 
+ 3. Within the Extension page, check the "Developer Mode" checkbox. 
+ 4. A button with the label "Load unpacked extension" should have appeared, click it. 
+ 5. A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
 
 ## Roadmap
 

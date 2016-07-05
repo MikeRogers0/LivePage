@@ -3,6 +3,10 @@
     "message": "LivePage",
     "description": "Extension name"
   },
+  "short_name": {
+    "message": "LivePage",
+    "description": "Short Extension name"
+  },
   "description": {
     "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they change on the server.",
     "description": "Extension description"

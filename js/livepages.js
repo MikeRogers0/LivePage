@@ -42,7 +42,11 @@ livePages.prototype.cleanURL = function(url) {
    * See https://developer.mozilla.org/en-US/docs/DOM/window.location#Properties for more info about the properties
    */
   if (settings.options.ignore_anchors == true) {
-    return a.protocol + a.port + '//' + a.hostname + a.pathname + a.search;
+    if( a.port === "" || a.port === 80 || a.port === 443 ){
+      return a.protocol + '//' + a.hostname + a.pathname + a.search;
+    } else {
+      return a.protocol + '//' + a.hostname + ":" + a.port + a.pathname + a.search;
+    }
   }
 
   return url;

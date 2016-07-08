@@ -7,6 +7,9 @@ var settingFields = document.querySelectorAll('#options select, #options input[t
 var changeEvent = document.createEvent('Event');
 changeEvent.initEvent('change', true, false);
 
+// i18n up the page
+livepages.i18n.populateElementsCopy();
+
 
 // Build the listner for when options are updated.
 function updateValue(e) {

@@ -15,6 +15,8 @@
     "message": "Enable LivePage on this page",
     "description": "The default tooltip on the icon"
   },
+
+
   "@protocol_not_supported": {
     "message": "Sorry, the protocol used on this page is not supported.",
     "description": "When the protocol used is not support on a URL."
@@ -23,16 +25,39 @@
     "message": "Sorry, the file:// protocol needs enabling. Please check the \"Allow access to file URLs\" for LivePage on the extensions page (chrome://chrome/extensions/).",
     "description": "When the protocol file:// needs enabling"
   },
+
+  
   "@live": {
     "message": "Live",
     "description": "The badge text for a live page"
   },
-  "@disable_on_this_tab": {
-    "message": "Disable LivePage on this tab",
-    "description": "Icon hover text when livepage is running."
+  "@disable_on_this_page": {
+    "message": "Disable LivePage on this page",
+    "description": "Icon hover text to disable LivePage"
   },
-  "@enable_on_this_tab": {
-    "message": "Enable LivePage on this tab",
-    "description": "Icon hover text when livepage isn't running."
+  "@disable_on_this_host": {
+    "message": "Disable LivePage for this host",
+    "description": "Icon hover text to disable LivePage for entire host"
+  },
+  "@enable_on_this_page": {
+    "message": "Enable LivePage on this page",
+    "description": "Icon hover text to enable LivePage"
+  },
+  "@enable_on_this_host": {
+    "message": "Enable LivePage for this host",
+    "description": "Icon hover text to enable LivePage for entire host"
+  },
+  
+  "@options_clear_all": {
+    "message": "Clear All",
+    "description": "Options Page: label for button that clears all active URLs"
+  },
+  "@options_refresh_rate_note": {
+    "message": "Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.",
+    "description": ""
+  },
+  "@options_allow_access_to_files": {
+    "message": "To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked \"Allow access to file URLs\" for the LivePage extension.",
+    "description": ""
   }
 }

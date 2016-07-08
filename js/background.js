@@ -32,6 +32,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
   // If livepage is on this guy, lets start it.
   if (livepages.isLive(tab.url)) {
     livepages.start(tab);
+  } else {
+    livepages.setEnableOnText(tab);
   }
 
 });

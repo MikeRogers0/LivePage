@@ -4,86 +4,94 @@
 <head>
   <title>LivePage - Options</title>
   <link rel="stylesheet" href="/css/options.css">
+  <script src="/js/i18n_helper.js"></script>
   <script src="/js/settings.js"></script>
   <script src="/js/livepages.js"></script>
 </head>
 
 <body>
-    <header>
-    </header>
-    <form id="options" name="options" action="#">
-      <section>
-        <h2>LivePage will run on:</h2>
-        <ul id="host_list">
-          <li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>
-        </ul>
-        <input type="button" id="clear_all" value="Clear all" />
-      </section>
+  
+  <form id="options" name="options" action="#">
+    <section>
+      <h2>LivePage will run on:</h2>
+      <ul id="host_list">
+        <li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>
+      </ul>
+      <input type="button" id="clear_all" value="Clear all" data-i18n-key="@options_clear_all" />
+    </section>
 
-      <section>
-        <h2>LivePage should monitor:</h2>
-        <ul>
-          <li>
-            <label>
-              <input id="monitor_css" name="monitor_css" type="checkbox" value="true" />CSS</label>
-          </li>
-          <li>
-            <label>
-              <input id="monitor_js" name="monitor_js" type="checkbox" value="true" />JavaScript</label>
-          </li>
-          <li>
-            <label>
-              <input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label>
-          </li>
-          <li>
-            <label>
-              <input id="monitor_custom" name="monitor_custom" type="checkbox" value="true" />LivePage Links <em>&mdash; Monitor files using &lt;link rel=&quot;livePage&quot; href=&quot;/path/to/file.html&quot; /&gt;</em></label>
-          </li>
-        </ul>
-      </section>
+    <section>
+      <h2>LivePage should monitor:</h2>
+      <ul>
+        <li>
+          <label>
+            <input id="monitor_css" name="monitor_css" type="checkbox" value="true" />CSS</label>
+        </li>
+        <li>
+          <label>
+            <input id="monitor_js" name="monitor_js" type="checkbox" value="true" />JavaScript</label>
+        </li>
+        <li>
+          <label>
+            <input id="monitor_html" name="monitor_html" type="checkbox" value="true" />HTML</label>
+        </li>
+        <li>
+          <label>
+            <input id="monitor_custom" name="monitor_custom" type="checkbox" value="true" />LivePage Links <em>&mdash; Monitor files using &lt;link rel=&quot;livePage&quot; href=&quot;/path/to/file.html&quot; /&gt;</em></label>
+        </li>
+      </ul>
+    </section>
 
-      <section>
-        <h2>Polling Setting</h2>
-        <ul>
-          <li>
-            <label>Poll for changes every:
-              <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />ms</label>
-          </li>
-          <p><em>Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.</em></p>
-        </ul>
-      </section>
+    <section>
+      <h2>Polling Setting</h2>
+      <ul>
+        <li>
+          <label>Poll for changes every:
+            <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />ms
+          </label>
+        </li>
+        <p><em data-i18n-key="@options_refresh_rate_note"></em></p>
+      </ul>
+    </section>
 
-      <section>
-        <h2>Advanced Settings</h2>
-        <ul>
-          <li>
-            <label>
-              <input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains</label>
-          </li>
-          <li>
-            <label>
-              <input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com or CDNs)</label>
-          </li>
-          <li>
-            <label>
-              <input id="ignore_anchors" name="ignore_anchors" type="checkbox" value="true" />Ignore URL anchors</label>
-          </li>
-          <li>
-            <label>
-              <input id="tidy_html" name="tidy_html" type="checkbox" value="true" />Ignore comments in HTML</label>
-          </li>
-          <li>
-            <label>
-              <input id="tidy_inline_html" name="tidy_inline_html" type="checkbox" value="true" />Ignore inline JavaScript &amp; hidden fields in HTML</label>
-          </li>
-        </ul>
-      </section>
-      <section>
-        <h2>Notes</h2>
-        <p>To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked "Allow access to file URLs" for the LivePage extension.</p>
-        <p><img src="/imgs/allow-access-to-files.png" alt="Check allow access to files" class="allow-access-to-files"></p>
-      </section>
-    </form>
+    <section>
+      <h2>Advanced Settings</h2>
+      <ul>
+        <li>
+          <label>
+            <input id="entire_hosts" name="entire_hosts" type="checkbox" value="true" />Run LivePage on entire domains
+          </label>
+        </li>
+        <li>
+          <label>
+            <input id="skip_external" name="skip_external" type="checkbox" value="true" />Skip external resources (such as googleapis.com or CDNs)
+          </label>
+        </li>
+        <li>
+          <label>
+            <input id="ignore_anchors" name="ignore_anchors" type="checkbox" value="true" />Ignore URL anchors
+          </label>
+        </li>
+        <li>
+          <label>
+            <input id="tidy_html" name="tidy_html" type="checkbox" value="true" />Ignore comments in HTML
+          </label>
+        </li>
+        <li>
+          <label>
+            <input id="tidy_inline_html" name="tidy_inline_html" type="checkbox" value="true" />Ignore inline JavaScript &amp; hidden fields in HTML
+          </label>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <p data-i18n-key="@options_allow_access_to_files"></p>
+      <p><img src="/imgs/allow-access-to-files.png" alt="Check allow access to files" class="allow-access-to-files"></p>
+    </section>
+  </form>
+
   <footer>
     <ul>
       <li><a href="https://github.com/MikeRogers0/LivePage">Contribute &amp; report bugs via GitHub</a></li>

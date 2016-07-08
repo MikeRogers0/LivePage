@@ -4,6 +4,7 @@
 function livePages() {
   // The object of pages we have marked as live.
   this.livePages = {};
+  this.i18n = new i18nHelper();
   this.refresh();
 };
 
@@ -17,7 +18,7 @@ livePages.prototype.refresh = function() {
 
 // Wipes the database of all live pages.
 livePages.prototype.removeAll = function() {
-  settings.set('livePages', null);
+  settings.set('livePages', {});
 };
 
 /*
@@ -93,7 +94,7 @@ livePages.prototype.start = function(tab) {
     tabId: tab.id
   });
   chrome.browserAction.setTitle({
-    title: chrome.i18n.getMessage('@disable_on_this_tab'),
+    title: this.i18n.disable_on(),
     tabId: tab.id
   });
 
@@ -118,14 +119,20 @@ livePages.prototype.stop = function(tab) {
   chrome.tabs.executeScript(tab.id, {
     code: 'if(typeof $livePage != "undefined"){$livePage.options.enabled = false;}'
   });
+
+  this.setEnableOnText(tab);
+}
+
+livePages.prototype.setEnableOnText = function(tab) {
   chrome.browserAction.setBadgeText({
     text: '',
     tabId: tab.id
   });
   chrome.browserAction.setTitle({
-    title: chrome.i18n.getMessage('@enable_on_this_tab'),
+    title: this.i18n.enable_on(),
     tabId: tab.id
   });
 }
+
 
 var livepages = new livePages();

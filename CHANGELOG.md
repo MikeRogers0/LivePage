@@ -2,6 +2,13 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.2.1](https://github.com/MikeRogers0/LivePage/tree/2.2.1) (2016-07-09)
+
+  - Setup options page for internationalisation
+  - Added en_US and en_GB transations. Closes #51.
+  - Fixes issue where ports were not showing correct on options page. Closes #48.
+  - LivePage now attempts to persist the scroll position between reloads/redraws, closes #50 - Thank you @arechsteiner 
+
 ## [2.2.0](https://github.com/MikeRogers0/LivePage/tree/2.2.0) (2016-06-24)
 
   - New logo / icon

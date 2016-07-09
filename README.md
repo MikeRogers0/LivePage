@@ -33,8 +33,8 @@ It's recommended you use this extension only in a local development environment 
 Version 3.0.0 will be primarily be aimed at making LivePage a better experience for non-english speakers. Here are they main stories I intend to do:
 
  * Simplify the english on the options pages.
- * Localise the options page
- * Add translations for Spanish, German, French & Russian. Initially this will just be the phrases put into Google Translate.
+ * ~~Localise the options page~~
+ * Add translations for Spanish, German, French & Russian. This can we done via the chrome store after confirming copy is a-ok!
  * ~~A new logo. I think I can come up with something the implies reloading more clearly.~~
  * ~~Update promotional images / videos. I really want to emphasise it simply polls for changes, but is simple to setup.~~
  * ~~I'm going to look into ways of monetising via LivePage. I'm undecided whether this will be by asking for donations or making 3.0 a paid for version. Either way, all current users shouldn't have to pay.~~

@@ -1,60 +1,10 @@
 /*
- * The Settings object, it stores users options.
- */
-function Settings() {
-  // Set the default options:
-  this.options = {
-    monitor_css: true,
-    monitor_js: true,
-    monitor_html: true,
-    monitor_custom: true,
-    hosts_session: false,
-    skip_external: true,
-    entire_hosts: false,
-    ignore_anchors: true,
-    tidy_html: true,
-    tidy_inline_html: true,
-    refresh_rate: 200
-  };
-
-  // Check for old settings and do the upgrade
-  this.refresh();
-};
-
-/*
- * LocalStorage functions based on https://github.com/Gaya/Locale-Storager
- */
-Settings.prototype.set = function(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
-};
-Settings.prototype.get = function(key) {
-  // if we don't have the setting, fallback to the default one.
-  var getSetting = JSON.parse(localStorage.getItem(key));
-  if (getSetting !== null) {
-    return getSetting;
-  }
-  //console.log(key+' : '+getSetting+' so returning '+this.options[key]);
-  return this.options[key];
-};
-Settings.prototype.remove = function(key) {
-  localStorage.removeItem(key);
-  return true;
-};
-Settings.prototype.refresh = function() {
-  for (var key in this.options) {
-    this.options[key] = this.get(key);
-  }
-  return true;
-};
-
-var settings = new Settings();
-
-/*
  * The livePages object, manages making pages live & storing the live setting.
  */
 function livePages() {
   // The object of pages we have marked as live.
   this.livePages = {};
+  this.i18n = new i18nHelper();
   this.refresh();
 };
 
@@ -68,7 +18,7 @@ livePages.prototype.refresh = function() {
 
 // Wipes the database of all live pages.
 livePages.prototype.removeAll = function() {
-  settings.set('livePages', null);
+  settings.set('livePages', {});
 };
 
 /*
@@ -93,7 +43,11 @@ livePages.prototype.cleanURL = function(url) {
    * See https://developer.mozilla.org/en-US/docs/DOM/window.location#Properties for more info about the properties
    */
   if (settings.options.ignore_anchors == true) {
-    return a.protocol + a.port + '//' + a.hostname + a.pathname + a.search;
+    if( a.port === "" || a.port === 80 || a.port === 443 ){
+      return a.protocol + '//' + a.hostname + a.pathname + a.search;
+    } else {
+      return a.protocol + '//' + a.hostname + ":" + a.port + a.pathname + a.search;
+    }
   }
 
   return url;
@@ -140,7 +94,7 @@ livePages.prototype.start = function(tab) {
     tabId: tab.id
   });
   chrome.browserAction.setTitle({
-    title: chrome.i18n.getMessage('@disable_on_this_tab'),
+    title: this.i18n.disable_on(),
     tabId: tab.id
   });
 
@@ -165,14 +119,20 @@ livePages.prototype.stop = function(tab) {
   chrome.tabs.executeScript(tab.id, {
     code: 'if(typeof $livePage != "undefined"){$livePage.options.enabled = false;}'
   });
+
+  this.setEnableOnText(tab);
+}
+
+livePages.prototype.setEnableOnText = function(tab) {
   chrome.browserAction.setBadgeText({
     text: '',
     tabId: tab.id
   });
   chrome.browserAction.setTitle({
-    title: chrome.i18n.getMessage('@enable_on_this_tab'),
+    title: this.i18n.enable_on(),
     tabId: tab.id
   });
 }
+
 
 var livepages = new livePages();

@@ -146,6 +146,40 @@ livePage.prototype.normalizeURL = function(url) {
 }
 
 /*
+ * saveScrollPosition / restoreScrollPosition
+ * Keeps page looking at some scrolll position
+ * Handy for when you're working on the bottom of a page between
+ * reloads and redraws.
+ */
+livePage.prototype.saveScrollPosition = function() {
+  if( !this.options.persist_scroll_points ){
+    return;
+  }
+
+  sessionStorage.setItem("livepage-scrollpoints", JSON.stringify({
+    scrollX: window.scrollX,
+    scrollY: window.scrollY
+  }));
+}
+
+livePage.prototype.restoreScrollPosition = function() {
+  if( !this.options.persist_scroll_points ){
+    return;
+  }
+  
+  var scrollPoints = JSON.parse(sessionStorage.getItem("livepage-scrollpoints"));
+
+  // No points? Don't restore anything.
+  if(scrollPoints == null){
+    return false;
+  }
+
+  window.scroll(scrollPoints.scrollX, scrollPoints.scrollY);
+
+  sessionStorage.removeItem("livepage-scrollpoints");
+}
+
+/*
  * Tells LivePage if the URL is ok.
  */
 livePage.prototype.trackableURL = function(url) {
@@ -194,5 +228,6 @@ livePage.prototype.check = function() {
 
 if (typeof $livePageConfig == "object") {
   var $livePage = new livePage($livePageConfig);
+  $livePage.restoreScrollPosition();
   $livePage.scanPage();
 }

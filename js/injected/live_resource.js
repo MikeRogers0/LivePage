@@ -60,6 +60,7 @@ LiveResource.prototype.check = function(callback) {
 
       // Compare the headers && responseText
       if (_this.checkResponse()) {
+        $livePage.saveScrollPosition();
         _this.refresh();
       }
     }

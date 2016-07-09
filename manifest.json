@@ -6,7 +6,12 @@
   "description": "__MSG_description__",
   "default_locale": "en",
   "background": {
-    "scripts": ["js/core.js","js/background.js"]
+    "scripts": [
+      "js/i18n_helper.js",
+      "js/settings.js",
+      "js/livepages.js",
+      "js/background.js"
+    ]
   },
   "options_ui": {
     "page": "options.html",

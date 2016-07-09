@@ -22,6 +22,11 @@ LiveCSSResource.prototype.refresh = function(){
   cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
   cssElement.setAttribute("media", this.media);
 
+  cssElement.addEventListener("load", function(){
+    // Restore the scroll point
+    $livePage.restoreScrollPosition();
+  });
+
   // Replace the new one in the palace of the old one.
   this.element.parentNode.insertBefore(cssElement, this.element)
   this.element.parentNode.removeChild(this.element);

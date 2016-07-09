@@ -10,11 +10,21 @@ It's recommended you use this extension only in a local development environment 
 
 ## Running development version in Chrome
 
- 1. Clone this repo to your local machine. 
- 2. Then visit to `chrome://extensions/` in Chrome. 
- 3. Within the Extension page, check the "Developer Mode" checkbox. 
- 4. A button with the label "Load unpacked extension" should have appeared, click it. 
- 5. A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
+1. Clone this repo to your local machine. 
+2. Then visit to `chrome://extensions/` in Chrome. 
+3. Within the Extension page, check the "Developer Mode" checkbox. 
+4. A button with the label "Load unpacked extension" should have appeared, click it. 
+5. A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
+
+### Handy scripts for local development
+
+#### Build the CSS
+
+    sass -w css/options.scss:css/options.css
+
+#### Run the local demo folder
+
+    php -S 127.0.0.1:8000 -t demo/
 
 ## Roadmap
 

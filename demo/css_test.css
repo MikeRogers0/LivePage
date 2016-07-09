@@ -12,3 +12,7 @@ h1 {
 }
 
 p{ display: none; }
+
+.past_the_scroll_point {
+  margin-top: 1800px;
+}

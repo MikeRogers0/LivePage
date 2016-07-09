@@ -14,7 +14,8 @@ function Settings() {
     ignore_anchors: true,
     tidy_html: true,
     tidy_inline_html: true,
-    refresh_rate: 200
+    refresh_rate: 200,
+    persist_scroll_points: true,
   };
 
   // Check for old settings and do the upgrade

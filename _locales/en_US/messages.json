@@ -135,6 +135,10 @@
     "message": "Ignore inline JavaScript & hidden fields in HTML",
     "description": "English: Ignore inline JavaScript & hidden fields in HTML"
   },
+  "@options_persist_scroll_points": {
+    "message": "Attempt to persist scroll X/Y positions",
+    "description": "English: Attempt to persist scroll X/Y positions"
+  },
 
   "@options_h2_notes": {
     "message": "Notes:",

@@ -1,0 +1,160 @@
+{
+  "name": {
+    "message": "LivePage",
+    "description": "Extension name"
+  },
+  "short_name": {
+    "message": "LivePage",
+    "description": "Short Extension name"
+  },
+  "description": {
+    "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they change on the server.",
+    "description": "Extension description"
+  },
+  "browser_action": {
+    "message": "Enable LivePage on this page",
+    "description": "The default tooltip on the icon"
+  },
+
+
+  "@protocol_not_supported": {
+    "message": "Sorry, the protocol used on this page is not supported.",
+    "description": "When the protocol used is not support on a URL."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "Sorry, the file:// protocol needs enabling. Please check the \"Allow access to file URLs\" for LivePage on the extensions page (chrome://chrome/extensions/).",
+    "description": "When the protocol file:// needs enabling"
+  },
+
+  
+  "@live": {
+    "message": "Live",
+    "description": "The badge text for a live page"
+  },
+  "@disable_on_this_page": {
+    "message": "Disable LivePage on this page",
+    "description": "Icon hover text to disable LivePage"
+  },
+  "@disable_on_this_host": {
+    "message": "Disable LivePage for this host",
+    "description": "Icon hover text to disable LivePage for entire host"
+  },
+  "@enable_on_this_page": {
+    "message": "Enable LivePage on this page",
+    "description": "Icon hover text to enable LivePage"
+  },
+  "@enable_on_this_host": {
+    "message": "Enable LivePage for this host",
+    "description": "Icon hover text to enable LivePage for entire host"
+  },
+  
+
+  "@options_title": {
+    "message": "LivePage - Options",
+    "description": "Livepage Title tag"
+  },
+
+  "@options_h2_url_list": {
+    "message": "LivePage will run on:",
+    "description": "English: LivePage will run on"
+  },
+  "@options_url_list_empty": {
+    "message": "No URLs are currently live, clicking the icon next to the omnibar will make a page live :)",
+    "description": "Fallback message for when extension has  not been activated on any pages yet"
+  },
+  "@options_clear_all": {
+    "message": "Clear All",
+    "description": "Options Page: label for button that clears all active URLs"
+  },
+
+  "@options_h2_should_monitor": {
+    "message": "LivePage should monitor:",
+    "description": "English: LivePage should monitor"
+  },
+  "@language_css": {
+    "message": "CSS",
+    "description": "English: CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript",
+    "description": "English: JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML",
+    "description": "English: HTML"
+  },
+  "@options_livepage_links": {
+    "message": "LivePage Links",
+    "description": "English: LivePage Links"
+  },
+  "@options_livepage_links_note": {
+    "message": "Monitor adhoc files using:",
+    "description": "English: Monitor adhoc files using:"
+  },
+
+  
+  "@options_h2_refresh_rate": {
+    "message": "Polling Settings:",
+    "description": "English: Polling Settings"
+  },
+  "@options_refresh_rate": {
+    "message": "Poll for changes every:",
+    "description": "English: Poll for changes every:"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms",
+    "description": "abbreviated version of milliseconds"
+  },
+  "@options_refresh_rate_note": {
+    "message": "Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.",
+    "description": "English: Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher."
+  },
+
+  
+  "@options_h2_advanced_settings": {
+    "message": "Advanced Settings:",
+    "description": "English: Advanced Settings"
+  },
+  "@options_entire_hosts": {
+    "message": "Run LivePage on entire domains",
+    "description": "English: Run LivePage on entire domains"
+  },
+  "@options_skip_external": {
+    "message": "Skip external resources such as googleapis.com or CDNs",
+    "description": "English: Skip external resources such as googleapis.com or CDNs"
+  },
+  "@options_ignore_anchors": {
+    "message": "Ignore URL anchors",
+    "description": "Ignore everything after # in a URL."
+  },
+  "@options_tidy_html": {
+    "message": "Ignore comments in HTML",
+    "description": "English: Ignore comments in HTML"
+  },
+  "@options_tidy_inline_html": {
+    "message": "Ignore inline JavaScript & hidden fields in HTML",
+    "description": "English: Ignore inline JavaScript & hidden fields in HTML"
+  },
+
+  "@options_h2_notes": {
+    "message": "Notes:",
+    "description": "English: Notes"
+  },
+  "@options_allow_access_to_files": {
+    "message": "To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked \"Allow access to file URLs\" for the LivePage extension.",
+    "description": "Inform user to enable 'Allow access to file URLs' on the extensions page"
+  },
+
+  "@options_contribute_and_support": {
+    "message": "Contribute & report bugs via GitHub",
+    "description": "English: Contribute & report bugs via GitHub"
+  },
+  "@options_developed_by": {
+    "message": "Developed by:",
+    "description": "English: Developed by"
+  },
+  "@options_tweet_me": {
+    "message": "Tweet me:",
+    "description": "English: Tweet me"
+  }
+}

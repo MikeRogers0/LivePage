@@ -23,12 +23,12 @@ function updateValue(e) {
 
 // build the listner for when all the URL's are cleared.
 function clearLivePages() {
-  host_list.innerHTML = host_list.innerHTML = '<li>No URLs are currently live.</li>';
+  host_list.innerHTML = host_list.innerHTML = '<li>' + livepages.i18n.url_list_empty() + '</li>';
   livepages.removeAll();
 }
 
 // Add the list of URLs/Hosts were tracking
-host_list.innerHTML = '<li>No URLs are live :/<br />Clicking the icon next to the omnibar will make a page live :)</li>';
+host_list.innerHTML = '<li>' + livepages.i18n.url_list_empty() + '</li>';
 if (livepages.livePages != undefined) {
   for (var i in livepages.livePages) {
     host_list.innerHTML = '';

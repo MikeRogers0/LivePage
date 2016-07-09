@@ -15,6 +15,10 @@ i18nHelper.prototype.disable_on = function(){
   return chrome.i18n.getMessage(settings.options.entire_hosts ? "@disable_on_this_page" : "@disable_on_this_host");
 }
 
+i18nHelper.prototype.url_list_empty = function(){
+  return chrome.i18n.getMessage("@options_url_list_empty");
+}
+
 /*
  * Populates a span with the key from the i18n
  */

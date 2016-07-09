@@ -22,7 +22,7 @@ It's recommended you use this extension only in a local development environment 
 
     sass -w css/options.scss:css/options.css
 
-#### Run a local demo folder
+#### Run the local demo folder
 
     php -S 127.0.0.1:8000 -t demo/
 

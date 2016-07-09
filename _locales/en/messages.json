@@ -51,16 +51,16 @@
 
   "@options_title": {
     "message": "LivePage - Options",
-    "description": ""
+    "description": "Livepage Title tag"
   },
 
   "@options_h2_url_list": {
     "message": "LivePage will run on:",
-    "description": ""
+    "description": "English: LivePage will run on"
   },
   "@options_url_list_empty": {
     "message": "No URLs are currently live, clicking the icon next to the omnibar will make a page live :)",
-    "description": ""
+    "description": "Fallback message for when extension has  not been activated on any pages yet"
   },
   "@options_clear_all": {
     "message": "Clear All",
@@ -69,92 +69,92 @@
 
   "@options_h2_should_monitor": {
     "message": "LivePage should monitor:",
-    "description": ""
+    "description": "English: LivePage should monitor"
   },
   "@language_css": {
     "message": "CSS",
-    "description": ""
+    "description": "English: CSS"
   },
   "@language_javascript": {
     "message": "JavaScript",
-    "description": ""
+    "description": "English: JavaScript"
   },
   "@language_html": {
     "message": "HTML",
-    "description": ""
+    "description": "English: HTML"
   },
   "@options_livepage_links": {
     "message": "LivePage Links",
-    "description": ""
+    "description": "English: LivePage Links"
   },
   "@options_livepage_links_note": {
-    "message": "Monitor adhoc files using: ",
-    "description": ""
+    "message": "Monitor adhoc files using:",
+    "description": "English: Monitor adhoc files using:"
   },
 
   
   "@options_h2_refresh_rate": {
     "message": "Polling Settings:",
-    "description": ""
+    "description": "English: Polling Settings"
   },
   "@options_refresh_rate": {
-    "message": "Poll for changes every: ",
-    "description": ""
+    "message": "Poll for changes every:",
+    "description": "English: Poll for changes every:"
   },
   "@options_refresh_rate_milliseconds": {
     "message": "ms",
-    "description": ""
+    "description": "abbreviated version of milliseconds"
   },
   "@options_refresh_rate_note": {
     "message": "Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.",
-    "description": ""
+    "description": "English: Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher."
   },
 
   
   "@options_h2_advanced_settings": {
     "message": "Advanced Settings:",
-    "description": ""
+    "description": "English: Advanced Settings"
   },
   "@options_entire_hosts": {
     "message": "Run LivePage on entire domains",
-    "description": ""
+    "description": "English: Run LivePage on entire domains"
   },
   "@options_skip_external": {
     "message": "Skip external resources such as googleapis.com or CDNs",
-    "description": ""
+    "description": "English: Skip external resources such as googleapis.com or CDNs"
   },
   "@options_ignore_anchors": {
     "message": "Ignore URL anchors",
-    "description": ""
+    "description": "Ignore everything after # in a URL."
   },
   "@options_tidy_html": {
     "message": "Ignore comments in HTML",
-    "description": ""
+    "description": "English: Ignore comments in HTML"
   },
   "@options_tidy_inline_html": {
     "message": "Ignore inline JavaScript & hidden fields in HTML",
-    "description": ""
+    "description": "English: Ignore inline JavaScript & hidden fields in HTML"
   },
 
   "@options_h2_notes": {
     "message": "Notes:",
-    "description": ""
+    "description": "English: Notes"
   },
   "@options_allow_access_to_files": {
     "message": "To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked \"Allow access to file URLs\" for the LivePage extension.",
-    "description": ""
+    "description": "Inform user to enable 'Allow access to file URLs' on the extensions page"
   },
 
   "@options_contribute_and_support": {
     "message": "Contribute & report bugs via GitHub",
-    "description": ""
+    "description": "English: Contribute & report bugs via GitHub"
   },
   "@options_developed_by": {
     "message": "Developed by:",
-    "description": ""
+    "description": "English: Developed by"
   },
   "@options_tweet_me": {
     "message": "Tweet me:",
-    "description": ""
+    "description": "English: Tweet me"
   }
 }

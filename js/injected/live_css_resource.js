@@ -15,6 +15,7 @@ LiveCSSResource.prototype.constructor = LiveCSSResource;
  * Refresh the element in place
  */
 LiveCSSResource.prototype.refresh = function(){
+  var _this = this;
   // create a new html element
   var cssElement = document.createElement('link');
   cssElement.setAttribute("type", "text/css");
@@ -23,14 +24,15 @@ LiveCSSResource.prototype.refresh = function(){
   cssElement.setAttribute("media", this.media);
 
   cssElement.addEventListener("load", function(){
+    _this.element.parentNode.removeChild(_this.element);
+
+    // Update reference
+    _this.element = cssElement;
+
     // Restore the scroll point
     $livePage.restoreScrollPosition();
   });
 
   // Replace the new one in the palace of the old one.
   this.element.parentNode.insertBefore(cssElement, this.element)
-  this.element.parentNode.removeChild(this.element);
-
-  // Update reference
-  this.element = cssElement;
 }

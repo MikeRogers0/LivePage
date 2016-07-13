@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.2.2](https://github.com/MikeRogers0/LivePage/tree/2.2.2) (2016-07-09)
+
+  - Added German translations
+
 ## [2.2.1](https://github.com/MikeRogers0/LivePage/tree/2.2.1) (2016-07-09)
 
   - Setup options page for internationalisation

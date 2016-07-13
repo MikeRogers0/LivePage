@@ -2,7 +2,7 @@
 
 LivePage is a developer tool which reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity. You can install LivePage via the [Chrome Web Store](https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh/details).
 
-Key features are:
+Features:
  * Entire domains can be made live
  * file:// protocol is now supported, though required "Allow access to file URLs" to be checked on the chrome extensions page.
 

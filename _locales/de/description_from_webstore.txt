@@ -6,4 +6,4 @@ Die wichtigsten Funktionen sind:
 
 Es wird empfohlen, dass Sie diese Erweiterung nur in einer lokalen Entwicklungsumgebung und nicht in einer Produktionsumgebung verwenden.
 
-Alle zukünftigen Meilensteine ​​& aktuelle Themen sind auf https://github.com/MikeRogers0/LivePage/issues zu finden
+Alle zukünftigen Meilensteine & aktuelle Themen sind auf https://github.com/MikeRogers0/LivePage/issues zu finden

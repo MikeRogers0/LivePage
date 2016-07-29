@@ -1,0 +1,113 @@
+{
+  "name": {
+    "message": "LivePage"
+  },
+  "short_name": {
+    "message": "LivePage"
+  },
+  "description": {
+    "message": "LivePage перезагружает ресурсы веб-сайта, такие как CSS, HTML и JavaScript, по мере того как они обновляются на сервере."
+  },
+  "browser_action": {
+    "message": "Включить LivePage на этой странице"
+  },
+  "@protocol_not_supported": {
+    "message": "К сожалению используемый на этой странице протокол не поддерживается."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "Извините, протокол file:// требует активации. Пожалуйста, отметьте  \"Разрешить доступ к URL-адресам файлов\" для LivePage на странице расширений (chrome://chrome/extensions/)."
+  },
+  "@live": {
+    "message": "Live"
+  },
+  "@disable_on_this_page": {
+    "message": "Отключить LivePage на этой странице"
+  },
+  "@disable_on_this_host": {
+    "message": "Отключить LivePage для этого хоста"
+  },
+  "@enable_on_this_page": {
+    "message": "Включить LivePage на этой странице"
+  },
+  "@enable_on_this_host": {
+    "message": "Включить LivePage для этого хоста"
+  },
+  "@options_title": {
+    "message": "LivePage - Опции"
+  },
+  "@options_h2_url_list": {
+    "message": "LivePage будет работать на:"
+  },
+  "@options_url_list_empty": {
+    "message": "В настоящее время обрабатываемых URL-адресов нет. Нажатие на значок рядом с Omnibar активирует страницу :)"
+  },
+  "@options_clear_all": {
+    "message": "Очистить все"
+  },
+  "@options_h2_should_monitor": {
+    "message": "LivePage должен отслеживать:"
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@options_livepage_links": {
+    "message": "Ссылки LivePage"
+  },
+  "@options_livepage_links_note": {
+    "message": "Отслеживать файлы Adhoc с помощью:"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "Настройка проверки:"
+  },
+  "@options_refresh_rate": {
+    "message": "Проверять обновления каждые:"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "мс"
+  },
+  "@options_refresh_rate_note": {
+    "message": "Комфортное значение для сервера разработки - менее 175ms, значение на рабочем сервере должно быть 250мс или выше."
+  },
+  "@options_h2_advanced_settings": {
+    "message": "Расширенные настройки:"
+  },
+  "@options_entire_hosts": {
+    "message": "Запускать LivePage на целых доменах"
+  },
+  "@options_skip_external": {
+    "message": "Пропускать внешние ресурсы, такие как googleapis.com или CDN"
+  },
+  "@options_ignore_anchors": {
+    "message": "Игнорировать URL-якори"
+  },
+  "@options_tidy_html": {
+    "message": "Игнорировать комментарии в HTML"
+  },
+  "@options_tidy_inline_html": {
+    "message": "Игнорировать встроенный JavaScript и скрытые поля в HTML"
+  },
+  "@options_persist_scroll_points": {
+    "message": "Пытаться прокручивать X/Y позиции"
+  },
+  "@options_h2_notes": {
+    "message": "Примечания:"
+  },
+  "@options_allow_access_to_files": {
+    "message": "Чтобы использовать протокол file://, убедитесь, что на странице расширения (chrome://chrome/extensions/), вы поставили галочку \"Разрешить доступ к URL-адресов файлов\" для расширения LivePage."
+  },
+  "@options_contribute_and_support": {
+    "message": "Сообщите об ошибках через GitHub"
+  },
+  "@options_developed_by": {
+    "message": "Разработчик:"
+  },
+  "@options_tweet_me": {
+    "message": "Твитнуть мне:"
+  }
+}

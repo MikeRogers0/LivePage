@@ -1,0 +1,113 @@
+{
+  "name": {
+    "message": "LivePage"
+  },
+  "short_name": {
+    "message": "LivePage"
+  },
+  "description": {
+    "message": "LivePage carga de nuevo recursos de sitios web tales como CSS, HTML y JavaScript cuando cambian en el servidor."
+  },
+  "browser_action": {
+    "message": "Habilitar LivePage en esta página"
+  },
+  "@protocol_not_supported": {
+    "message": "Lo sentimos, el protocolo usado en esta página no es compatible."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "Lo sentimos, se debe habilitar el protocolo file://. Por favor revisa \"Permitir acceso a los URL de archivo\" para LivePage en la página de extensiones (chrome://chrome/extensions/)."
+  },
+  "@live": {
+    "message": "En vivo"
+  },
+  "@disable_on_this_page": {
+    "message": "Deshabilitar LivePage en esta página"
+  },
+  "@disable_on_this_host": {
+    "message": "Deshabilitar LivePage para este host"
+  },
+  "@enable_on_this_page": {
+    "message": "Habilitar LivePage en esta página"
+  },
+  "@enable_on_this_host": {
+    "message": "Habilitar LivePage para este host"
+  },
+  "@options_title": {
+    "message": "LivePage - Opciones"
+  },
+  "@options_h2_url_list": {
+    "message": "LivePage se ejecuta en:"
+  },
+  "@options_url_list_empty": {
+    "message": "No hay URL actualmente activos, hacer clic en el ícono al lado de la omnibarra la convertirá en página activa :)"
+  },
+  "@options_clear_all": {
+    "message": "Borrar todo"
+  },
+  "@options_h2_should_monitor": {
+    "message": "LivePage debe monitorear:"
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@options_livepage_links": {
+    "message": "Enlaces LivePage"
+  },
+  "@options_livepage_links_note": {
+    "message": "Monitorear archivos adhoc usando:"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "Ajustes de sondeo:"
+  },
+  "@options_refresh_rate": {
+    "message": "Sondear cambios cada:"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_rate_note": {
+    "message": "Para el desarrollo local se puede definir con seguridad en menos de 175 ms, al desarrollar en un servidor en línea de producción debe estar en 250 ms o más."
+  },
+  "@options_h2_advanced_settings": {
+    "message": "Ajustes avanzados:"
+  },
+  "@options_entire_hosts": {
+    "message": "Ejecutar LivePage en dominios completos"
+  },
+  "@options_skip_external": {
+    "message": "Omitir recursos externos tales como googleapis.com o CDN"
+  },
+  "@options_ignore_anchors": {
+    "message": "Ignorar delimitadores de los URL"
+  },
+  "@options_tidy_html": {
+    "message": "Ignorar comentarios en HTML"
+  },
+  "@options_tidy_inline_html": {
+    "message": "Ignorar JavaScript en línea y campos ocultos en el HTML"
+  },
+  "@options_persist_scroll_points": {
+    "message": "Intentar persistencia en desplazamiento de posiciones X/Y"
+  },
+  "@options_h2_notes": {
+    "message": "Notas:"
+  },
+  "@options_allow_access_to_files": {
+    "message": "Para usar el protocolo file://, asegúrate que en la página de extensiones (chrome://chrome/extensions/), hayas marcado \"Permitir acceso a los URL de archivo\" para la extensión LivePage."
+  },
+  "@options_contribute_and_support": {
+    "message": "Contribuciones e informes de errores en GitHub"
+  },
+  "@options_developed_by": {
+    "message": "Desarrollado por:"
+  },
+  "@options_tweet_me": {
+    "message": "Envíame un Tweet:"
+  }
+}

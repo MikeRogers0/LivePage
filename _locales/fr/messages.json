@@ -1,0 +1,113 @@
+{
+  "name": {
+    "message": "LivePage"
+  },
+  "short_name": {
+    "message": "LivePage"
+  },
+  "description": {
+    "message": "LivePage recharge des ressources CSS, HTML ou JavaScript de site Web dès qu'elles ont changées sur le serveur."
+  },
+  "browser_action": {
+    "message": "Activer LivePage sur cette page"
+  },
+  "@protocol_not_supported": {
+    "message": "Désolé, le protocole utilisé sur cette page n'est pas pris en charge."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "Désolé, le protocole file:// doit être habilité. Veuillez cocher la case « Autoriser l'accès aux URL du fichier » pour LivePage sur la page de gestion des extensions (chrome://chrome/extensions/)."
+  },
+  "@live": {
+    "message": "Affichage en direct"
+  },
+  "@disable_on_this_page": {
+    "message": "Désactiver LivePage sur cette page"
+  },
+  "@disable_on_this_host": {
+    "message": "Désactiver LivePage pour cet hôte"
+  },
+  "@enable_on_this_page": {
+    "message": "Activer LivePage sur cette page"
+  },
+  "@enable_on_this_host": {
+    "message": "Activer LivePage pour cet hôte"
+  },
+  "@options_title": {
+    "message": "LIVEPAGE : Options"
+  },
+  "@options_h2_url_list": {
+    "message": "LivePage s'exécutera sur :"
+  },
+  "@options_url_list_empty": {
+    "message": "Aucune URL n'est actuellement affichée en direct, en cliquant sur l'icône à côté de l'omnibar, la page sera ffichée en direct :)"
+  },
+  "@options_clear_all": {
+    "message": "Tout effacer"
+  },
+  "@options_h2_should_monitor": {
+    "message": "LivePage contrôlera :"
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@options_livepage_links": {
+    "message": "Liens LIVEPAGE"
+  },
+  "@options_livepage_links_note": {
+    "message": "Contrôle des fichiers ad hoc à travers :"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "Paramètres d'interrogation :"
+  },
+  "@options_refresh_rate": {
+    "message": "Sondage des changements tous les :"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_rate_note": {
+    "message": "Le développement local peut être réglé à moins de 175 ms sans risques, pour les développements sur un serveur de production en direct, le réglage devra être 250 ms ou plus."
+  },
+  "@options_h2_advanced_settings": {
+    "message": "Réglages avancés :"
+  },
+  "@options_entire_hosts": {
+    "message": "Exécuter LivePage sur l'ensemble des domaines"
+  },
+  "@options_skip_external": {
+    "message": "Ignorer les ressources externes telles que googleapis.com ou CDNs"
+  },
+  "@options_ignore_anchors": {
+    "message": "Ignorer les ancrages d'URL"
+  },
+  "@options_tidy_html": {
+    "message": "Ignorer les commentaires en HTML"
+  },
+  "@options_tidy_inline_html": {
+    "message": "Ignorer les champs inline JavaScript et cachés en HTML"
+  },
+  "@options_persist_scroll_points": {
+    "message": "Tentative de conservation du défilement des positions X/Y"
+  },
+  "@options_h2_notes": {
+    "message": "Remarques :"
+  },
+  "@options_allow_access_to_files": {
+    "message": "Pour utiliser utiliser le protocole file://, assurez-vous d'avoir coché « Autoriser l'accès aux URL de fichier » pour l'extension LivePage sur la page de gestion des extensions (chrome://chrome/extensions/)."
+  },
+  "@options_contribute_and_support": {
+    "message": "Aidez-nous en rapportant les bugs sur GitHub"
+  },
+  "@options_developed_by": {
+    "message": "Développé par :"
+  },
+  "@options_tweet_me": {
+    "message": "Tweetez moi :"
+  }
+}

@@ -1,0 +1,9 @@
+LivePage est un outil de développement qui recharge les ressources de sites Web (CSS, HTML et JavaScript) lorsqu'elles changent sur le serveur, cela vous permet de toujours visualiser la version la plus récente d'une page Web, d'accélérer significativement le développement des sites Web et d'améliorer votre productivité.
+
+Caractéristiques :
+  * L'ensemble des domaines peut être réalisé en direct
+  * Le protocole file:// est désormais pris en charge
+
+Il est recommandé d'utiliser cette extension uniquement dans un environnement de développement local et non pas dans un environnement de production.
+
+Toutes les futures étapes et les incidents en cours peuvent être trouvés sur https://github.com/MikeRogers0/LivePage/issues

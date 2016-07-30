@@ -46,7 +46,7 @@
     "message": "LivePage will run on:"
   },
   "@options_url_list_empty": {
-    "message": "No URLs are currently live, clicking the icon next to the omnibar will make a page live :)"
+    "message": "No URLs are currently live, clicking the icon next to the address bar will make a page live :)"
   },
   "@options_clear_all": {
     "message": "Clear All"

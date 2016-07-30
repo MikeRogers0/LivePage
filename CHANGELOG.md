@@ -2,6 +2,12 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.2.3](https://github.com/MikeRogers0/LivePage/tree/2.2.3) (2016-07-30)
+
+  - Added Spanish, Russian and French translations
+  - Improved phrasing for describing Omnibar. It's now refered to as address bar. Closed #54
+  - Simplified "Changes on the server" phrasing to be "updated on the server". Closed #55
+
 ## [2.2.2](https://github.com/MikeRogers0/LivePage/tree/2.2.2) (2016-07-09)
 
   - Added German translations

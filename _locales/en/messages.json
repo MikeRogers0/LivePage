@@ -8,7 +8,7 @@
     "description": "Short Extension name"
   },
   "description": {
-    "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they change on the server.",
+    "message": "LivePage reloads website resources such as CSS, HTML and JavaScript as they update on the server.",
     "description": "Extension description"
   },
   "browser_action": {
@@ -98,8 +98,8 @@
     "description": "English: Polling Settings"
   },
   "@options_refresh_rate": {
-    "message": "Poll for changes every:",
-    "description": "English: Poll for changes every:"
+    "message": "Poll for updates every:",
+    "description": "English: Poll for updates every:"
   },
   "@options_refresh_rate_milliseconds": {
     "message": "ms",

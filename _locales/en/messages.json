@@ -59,8 +59,8 @@
     "description": "English: LivePage will run on"
   },
   "@options_url_list_empty": {
-    "message": "No URLs are currently live, clicking the icon next to the omnibar will make a page live :)",
-    "description": "Fallback message for when extension has  not been activated on any pages yet"
+    "message": "No URLs are currently live, clicking the icon next to the address bar will make a page live :)",
+    "description": "Fallback message for when extension has not been activated on any pages yet"
   },
   "@options_clear_all": {
     "message": "Clear All",

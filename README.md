@@ -16,6 +16,10 @@ It's recommended you use this extension only in a local development environment 
 4. A button with the label "Load unpacked extension" should have appeared, click it. 
 5. A modal will popup with your local file system, navigate to where you cloned the repo to and click "Select".
 
+## "Price not available" in Chrome Web Store
+
+If you are seeing "Price not available" as the only download option in Chrome Web Store, this is caused by Google not being able to determine your local currency. As a workaround, append `&gl=us` to the URL, for example : https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh?hl=en&gl=us
+
 ### Handy scripts for local development
 
 #### Build the CSS

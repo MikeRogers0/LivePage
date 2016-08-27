@@ -85,3 +85,11 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
     });
   }
 });
+
+// Allow detection of extension on mikerogers.io
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+  if (sender.url == blacklistedWebsite)
+    return;  // don't allow this web page access
+
+  sendResponse(true);
+});

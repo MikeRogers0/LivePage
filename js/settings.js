@@ -15,6 +15,7 @@ function Settings() {
     tidy_html: true,
     tidy_inline_html: true,
     refresh_rate: 200,
+    refresh_delay: 1,
     persist_scroll_points: true,
   };
 

@@ -91,7 +91,6 @@
     "message": "Monitor adhoc files using:",
     "description": "English: Monitor adhoc files using:"
   },
-
   
   "@options_h2_refresh_rate": {
     "message": "Polling Settings:",
@@ -109,7 +108,31 @@
     "message": "Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.",
     "description": "English: Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher."
   },
+  "@options_refresh_delay": {
+    "message": "Delay between detecting changes and updating webpage:",
+    "description": "English:Delay between detecting changes and updating webpage:"
+  },
 
+  "@options_h2_reload_settings": {
+    "message": "Reload Settings:",
+    "description": "English: Reload Settings"
+  },
+  "@options_persist_scroll_points": {
+    "message": "Attempt to persist scroll X/Y positions",
+    "description": "English: Attempt to persist scroll X/Y positions"
+  },
+  "@options_refresh_delay": {
+    "message": "Minimum delay before reloading:",
+    "description": "English: "
+  },
+  "@options_refresh_delay_milliseconds": {
+    "message": "ms",
+    "description": "ms"
+  },
+  "@options_refresh_delay_note": {
+    "message": "Set a delay if you want LivePage to wait before reloading the page. This is useful when you have a build process that needs to finish before a reload is triggered.",
+    "description": "English: Set a delay if you want LivePage to wait before reloading the page. This is useful when you have a build process that needs to finish before a reload is triggered."
+  },
   
   "@options_h2_advanced_settings": {
     "message": "Advanced Settings:",
@@ -134,10 +157,6 @@
   "@options_tidy_inline_html": {
     "message": "Ignore inline JavaScript & hidden fields in HTML",
     "description": "English: Ignore inline JavaScript & hidden fields in HTML"
-  },
-  "@options_persist_scroll_points": {
-    "message": "Attempt to persist scroll X/Y positions",
-    "description": "English: Attempt to persist scroll X/Y positions"
   },
 
 

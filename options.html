@@ -56,11 +56,25 @@
         <li>
           <label>
             <span data-i18n-key="@options_refresh_rate"></span>
-            <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" />
+            <input id="refresh_rate" type="number" name="refresh_rate" min="50" step="25" value="200" required />
             <span data-i18n-key="@options_refresh_rate_milliseconds"></span>
           </label>
+          <p><em data-i18n-key="@options_refresh_rate_note"></em></p>
         </li>
-        <p><em data-i18n-key="@options_refresh_rate_note"></em></p>
+      </ul>
+    </section>
+
+    <section>
+      <h2 data-i18n-key="@options_h2_reload_settings"></h2>
+      <ul>
+        <li>
+          <label>
+            <span data-i18n-key="@options_refresh_delay"></span>
+            <input id="refresh_delay" type="number" name="refresh_delay" min="1" step="5" value="250" required />
+            <span data-i18n-key="@options_refresh_delay_milliseconds"></span>
+          </label>
+          <p><em data-i18n-key="@options_refresh_delay_note"></em></p>
+        </li>
       </ul>
     </section>
 

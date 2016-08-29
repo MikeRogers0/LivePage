@@ -109,6 +109,9 @@ livePages.prototype.start = function(tab) {
     file: 'js/injected/live_css_resource.js'
   });
   chrome.tabs.executeScript(tab.id, {
+    file: 'js/injected/live_img_resource.js'
+  });
+  chrome.tabs.executeScript(tab.id, {
     file: 'js/injected/livepage.js'
   });
 }

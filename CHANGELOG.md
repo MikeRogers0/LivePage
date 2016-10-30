@@ -7,6 +7,7 @@ All future milestones & current issues can be found on https://github.com/MikeRo
  - Adding in refresh delay setting into options to help users who have a multistep build process. Thanks @arechsteiner
  - Only saving settings on options page if they're valid, otherwise it's revert to the default option.
  - Adding experimental image support.
+ - Added extra note in the options page asking for a review.
 
 ## [2.2.3](https://github.com/MikeRogers0/LivePage/tree/2.2.3) (2016-07-30)
 

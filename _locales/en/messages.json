@@ -83,6 +83,10 @@
     "message": "HTML",
     "description": "English: HTML"
   },
+  "@monitor_img": {
+    "message": "Images (Experimental)",
+    "description": "English: Images (Experimental)"
+  },
   "@options_livepage_links": {
     "message": "LivePage Links",
     "description": "English: LivePage Links"

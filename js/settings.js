@@ -7,6 +7,7 @@ function Settings() {
     monitor_css: true,
     monitor_js: true,
     monitor_html: true,
+    monitor_img: false,
     monitor_custom: true,
     hosts_session: false,
     skip_external: true,

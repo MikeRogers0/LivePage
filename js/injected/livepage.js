@@ -24,6 +24,10 @@ livePage.prototype.scanPage = function() {
     this.scanJS();
   }
 
+  if (this.options.monitor_img == true) {
+    this.scanImg();
+  }
+
   if (this.options.monitor_custom == true) {
     this.scanCustom();
   }
@@ -44,6 +48,14 @@ livePage.prototype.scanJS = function(){
   elements = document.querySelectorAll('script[src*=".js"]');
   for (var key = 0; key < elements.length; key++) {
     this.addResource(new LiveResource(elements[key].src));
+  }
+};
+
+livePage.prototype.scanImg = function(){
+  elements = document.querySelectorAll('img[src*="."]');
+  for (var key = 0; key < elements.length; key++) {
+
+    this.addResource(new LiveImgResource(elements[key].src, elements[key]));
   }
 };
 

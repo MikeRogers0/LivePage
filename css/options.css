@@ -16,7 +16,7 @@ a {
   overflow: hidden; }
 
 section {
-  padding: 15px 20px;
+  padding: 12px 20px;
   background: #fff;
   border: none;
   display: block; }
@@ -34,18 +34,23 @@ h3 {
 ul {
   list-style: none;
   padding: 0;
-  margin: 0 0 5px 0; }
+  margin: 0; }
   ul li {
     list-style: none;
-    padding: 0 0 5px 0;
+    padding: 3px 0 12px 0;
     margin: 0;
-    line-height: 20px; }
+    line-height: 100%; }
+    ul li:last-child {
+      padding-bottom: 0; }
 
 form label {
   display: block;
   padding: 0; }
 form input[type="checkbox"] {
   margin-right: 15px; }
+form input[type="number"] {
+  width: 48px;
+  margin-left: 6px; }
 
 input[type="range"] {
   width: 50%;

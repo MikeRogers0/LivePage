@@ -14,6 +14,13 @@ livepages.i18n.populateElementsCopy();
 // Build the listner for when options are updated.
 function updateValue(e) {
   var elm = e.srcElement; // the elements which was clicked.
+
+  // If something invalid has been added, clear the value of the element
+  if(elm.validity.valid != true) {
+    settings.remove(elm.id, elm.checked);
+    return;
+  }
+
   if (elm.getAttribute('type') == 'checkbox') {
     settings.set(elm.id, elm.checked);
   } else {

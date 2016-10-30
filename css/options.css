@@ -20,6 +20,8 @@ section {
   background: #fff;
   border: none;
   display: block; }
+  section.review-upsell {
+    text-align: center; }
 
 h2 {
   margin: 0 0 10px 0;
@@ -35,6 +37,8 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0; }
+  ul#host_list {
+    margin-bottom: 16px; }
   ul li {
     list-style: none;
     padding: 3px 0 12px 0;

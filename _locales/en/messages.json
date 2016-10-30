@@ -173,6 +173,15 @@
     "description": "Inform user to enable 'Allow access to file URLs' on the extensions page"
   },
 
+  "@options_review_upsell": {
+    "message": "If you like LivePage, please consider leaving a review in the Google Chrome Webstore.",
+    "description": ""
+  },
+  "@options_review_link": {
+    "message": "Leave a review",
+    "description": ""
+  },
+
   "@options_contribute_and_support": {
     "message": "Contribute & report bugs via GitHub",
     "description": "English: Contribute & report bugs via GitHub"

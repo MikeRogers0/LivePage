@@ -120,7 +120,7 @@ livePages.prototype.start = function(tab) {
 livePages.prototype.stop = function(tab) {
   // Stop live page running if it's there.
   chrome.tabs.executeScript(tab.id, {
-    code: 'if(typeof $livePage != "undefined"){$livePage.options.enabled = false;}'
+    code: 'if(typeof $livePage != "undefined"){ $livePage.options.enabled = false; }'
   });
 
   this.setEnableOnText(tab);

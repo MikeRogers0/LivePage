@@ -234,6 +234,7 @@ livePage.prototype.check = function() {
   }
 
   this.resources[this.lastChecked].check(function(){
+    // Uncaught TypeError: $livePage.checkBatch is not a function - this is thrown sometimes, I have no idea why!
     setTimeout(function() { $livePage.checkBatch(); }, $livePage.options.refresh_rate);
   });
 }

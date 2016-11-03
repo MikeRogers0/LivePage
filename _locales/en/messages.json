@@ -22,7 +22,7 @@
     "description": "When the protocol used is not support on a URL."
   },
   "@file_protocol_needs_enabling": {
-    "message": "Sorry, the file:// protocol needs enabling. Please check the \"Allow access to file URLs\" for LivePage on the extensions page (chrome://chrome/extensions/).",
+    "message": "Sorry, the file:// protocol needs enabling. Please check the \"Allow access to file URLs\" for LivePage on the extensions page (chrome://extensions/).",
     "description": "When the protocol file:// needs enabling"
   },
 
@@ -169,7 +169,7 @@
     "description": "English: Notes"
   },
   "@options_allow_access_to_files": {
-    "message": "To use use the file:// protocol, make sure on the extension page (chrome://chrome/extensions/), you have ticked \"Allow access to file URLs\" for the LivePage extension.",
+    "message": "To use use the file:// protocol, make sure on the extension page (chrome://extensions/), you have ticked \"Allow access to file URLs\" for the LivePage extension.",
     "description": "Inform user to enable 'Allow access to file URLs' on the extensions page"
   },
 

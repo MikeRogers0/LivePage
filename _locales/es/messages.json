@@ -15,7 +15,7 @@
     "message": "Lo sentimos, el protocolo usado en esta página no es compatible."
   },
   "@file_protocol_needs_enabling": {
-    "message": "Lo sentimos, se debe habilitar el protocolo file://. Por favor revisa \"Permitir acceso a los URL de archivo\" para LivePage en la página de extensiones (chrome://chrome/extensions/)."
+    "message": "Lo sentimos, se debe habilitar el protocolo file://. Por favor revisa \"Permitir acceso a los URL de archivo\" para LivePage en la página de extensiones (chrome://extensions/)."
   },
   "@live": {
     "message": "En vivo"
@@ -99,7 +99,7 @@
     "message": "Notas:"
   },
   "@options_allow_access_to_files": {
-    "message": "Para usar el protocolo file://, asegúrate que en la página de extensiones (chrome://chrome/extensions/), hayas marcado \"Permitir acceso a los URL de archivo\" para la extensión LivePage."
+    "message": "Para usar el protocolo file://, asegúrate que en la página de extensiones (chrome://extensions/), hayas marcado \"Permitir acceso a los URL de archivo\" para la extensión LivePage."
   },
   "@options_contribute_and_support": {
     "message": "Contribuciones e informes de errores en GitHub"

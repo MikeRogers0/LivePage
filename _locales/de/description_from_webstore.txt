@@ -1,9 +1,9 @@
-LivePage ist ein Entwickler-Tool, die Website-Ressourcen (wie CSS, HTML und JavaScript) neu lädt, falls sie auf dem Server geändert wurden, so dass Sie immer die aktuellste Version einer Webseite betrachten. Damit kann die Entwicklung von Webseiten beschleunigt werden, indem produktiver gearbeitet wird.
+LivePage ist ein Entwickler-Tool, das Website-Ressourcen (wie CSS, HTML und JavaScript) neu lädt, falls sie auf dem Server geändert wurden, so dass Sie immer die aktuellste Version einer Webseite betrachten. Damit kann die Entwicklung von Webseiten beschleunigt werden, indem produktiver gearbeitet wird.
 
 Die wichtigsten Funktionen sind:
-  * Komplette Domains können live erstellt werden
-  * File://-Protokoll wird jetzt unterstützt
+  * Komplette Domains können live betrachetet werden
+  * file://-Protokoll wird jetzt unterstützt
 
 Es wird empfohlen, dass Sie diese Erweiterung nur in einer lokalen Entwicklungsumgebung und nicht in einer Produktionsumgebung verwenden.
 
-Alle zukünftigen Meilensteine & aktuelle Themen sind auf https://github.com/MikeRogers0/LivePage/issues zu finden
+Alle zukünftigen Meilensteine & aktuelle Themen sind auf https://github.com/MikeRogers0/LivePage/issues zu finden.

@@ -15,7 +15,7 @@
     "message": "Désolé, le protocole utilisé sur cette page n'est pas pris en charge."
   },
   "@file_protocol_needs_enabling": {
-    "message": "Désolé, le protocole file:// doit être habilité. Veuillez cocher la case « Autoriser l'accès aux URL du fichier » pour LivePage sur la page de gestion des extensions (chrome://chrome/extensions/)."
+    "message": "Désolé, le protocole file:// doit être habilité. Veuillez cocher la case « Autoriser l'accès aux URL du fichier » pour LivePage sur la page de gestion des extensions (chrome://extensions/)."
   },
   "@live": {
     "message": "Affichage en direct"
@@ -99,7 +99,7 @@
     "message": "Remarques :"
   },
   "@options_allow_access_to_files": {
-    "message": "Pour utiliser utiliser le protocole file://, assurez-vous d'avoir coché « Autoriser l'accès aux URL de fichier » pour l'extension LivePage sur la page de gestion des extensions (chrome://chrome/extensions/)."
+    "message": "Pour utiliser utiliser le protocole file://, assurez-vous d'avoir coché « Autoriser l'accès aux URL de fichier » pour l'extension LivePage sur la page de gestion des extensions (chrome://extensions/)."
   },
   "@options_contribute_and_support": {
     "message": "Aidez-nous en rapportant les bugs sur GitHub"

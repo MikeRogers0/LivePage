@@ -2,7 +2,7 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
-## [2.3.0](https://github.com/MikeRogers0/LivePage/tree/2.3.0) (2016-10-29)
+## [2.3.0](https://github.com/MikeRogers0/LivePage/tree/2.3.0) (2016-11-03)
 
  - Adding in refresh delay setting into options to help users who have a multistep build process. Thanks @arechsteiner
  - Only saving settings on options page if they're valid, otherwise it's revert to the default option.

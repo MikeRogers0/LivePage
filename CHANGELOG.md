@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.3.1](https://github.com/MikeRogers0/LivePage/tree/2.3.1) (2016-11-04)
+
+ - Improvements to translations and removing a hardcoded string. Thank you @Hativ3 !
+
 ## [2.3.0](https://github.com/MikeRogers0/LivePage/tree/2.3.0) (2016-11-03)
 
  - Adding in refresh delay setting into options to help users who have a multistep build process. Thanks @arechsteiner

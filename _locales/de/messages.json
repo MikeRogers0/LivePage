@@ -9,13 +9,13 @@
     "message": "LivePage lädt Website-Ressourcen (wie CSS, HTML und JavaScript) erneut, falls sie auf dem Server geändert wurden."
   },
   "browser_action": {
-    "message": "Aktivieren Sie LivePage für dieser Seite"
+    "message": "Aktivieren Sie LivePage für diese Seite"
   },
   "@protocol_not_supported": {
     "message": "Sorry, das für diese Seite verwendete Protokoll wird nicht unterstützt."
   },
   "@file_protocol_needs_enabling": {
-    "message": "Sorry, das Protokoll file:// muss aktiviert sein. Bitte überprüfen Sie unter \"Zugriff auf Datei-URLs erlauben\" für LivePage auf der Erweiterungs-Seite (chrome://chrome/extensions/)."
+    "message": "Sorry, das file://-Protokoll muss aktiviert sein. Bitte überprüfen Sie, ob auf der Erweiterungsseite (chrome://chrome/extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert ist."
   },
   "@live": {
     "message": "Live"
@@ -24,13 +24,13 @@
     "message": "Für diese Seite LivePage deaktivieren"
   },
   "@disable_on_this_host": {
-    "message": "Für diesen Host LivesPage deaktivieren"
+    "message": "Für diese Domain LivePage deaktivieren"
   },
   "@enable_on_this_page": {
     "message": "Für diese Seite LivePage aktivieren"
   },
   "@enable_on_this_host": {
-    "message": "Für diesen Host LivesPage aktivieren"
+    "message": "Für diese Domain LivePage aktivieren"
   },
   "@options_title": {
     "message": "LivePage ─ Optionen"
@@ -39,13 +39,13 @@
     "message": "LivePage läuft unter:"
   },
   "@options_url_list_empty": {
-    "message": "Keine URLs sind derzeit live, Anklicken des Symbols neben dem OmniBar ändert den Status der Seite auf Live :)"
+    "message": "Derzeit sind keine URLs live, anklicken des Symbols neben der Omnibar ändert den Status der Seite auf live :)"
   },
   "@options_clear_all": {
     "message": "Alles löschen"
   },
   "@options_h2_should_monitor": {
-    "message": "LivePage sollte überwachen:"
+    "message": "LivePage soll überwachen:"
   },
   "@language_css": {
     "message": "CSS"
@@ -72,13 +72,13 @@
     "message": "ms"
   },
   "@options_refresh_rate_note": {
-    "message": "Es ist sicher, die lokale Entwicklung auf weniger als 175 ms einzustellen, Entwicklungen auf einem Live-Produktions-Server sollte bei 250 ms oder mehr liegen."
+    "message": "Bei lokaler Entwicklung können Sie 175 ms oder weniger einstellen, bei einem Live-Produktions-Server sollte die Zeit bei 250 ms oder mehr liegen."
   },
   "@options_h2_advanced_settings": {
     "message": "Erweiterte Einstellungen:"
   },
   "@options_entire_hosts": {
-    "message": "Laufen Sie LivePage auf ganze Domains"
+    "message": "Gesamte Domain überwachen"
   },
   "@options_skip_external": {
     "message": "Externe Ressourcen wie googleapis.com oder CDNs überspringen"
@@ -90,7 +90,7 @@
     "message": "Kommentare in HTML ignorieren"
   },
   "@options_tidy_inline_html": {
-    "message": "Inline JavaScript und versteckte Felder in HTML ignorieren"
+    "message": "Inline-JavaScript und versteckte Felder in HTML ignorieren"
   },
   "@options_persist_scroll_points": {
     "message": "Versuchen, Scroll-X/Y-Positionen beizubehalten"
@@ -99,10 +99,10 @@
     "message": "Hinweise:"
   },
   "@options_allow_access_to_files": {
-    "message": "Zur Anwendung des file:// Protokolls stellen Sie sicher, dass Sie auf der Erweiterungsseite (chrome://chrome/ extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert haben."
+    "message": "Zur Nutzung des file://-Protokolls muss auf der Erweiterungsseite (chrome://chrome/extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert sein."
   },
   "@options_contribute_and_support": {
-    "message": "Beiträge und Berichte an Bugs via GitHub"
+    "message": "Beiträge und Berichte zu Bugs via GitHub"
   },
   "@options_developed_by": {
     "message": "Entwickelt von:"

@@ -27,7 +27,7 @@ LiveCSSResource.prototype.refresh = function(){
     _this.element = cssElement;
 
     // Restore the scroll point
-    $livePage.restoreScrollPosition();
+    window.$livePage.restoreScrollPosition();
   });
 
   cssElement.setAttribute("type", "text/css");

@@ -228,18 +228,22 @@ livePage.prototype.check = function() {
   if (this.resources[this.lastChecked] == undefined) {
     this.lastChecked = 0;
     if (this.resources[this.lastChecked] == undefined) { // Nothing left to check
-      $livePage.options.enabled = false;
+      window.$livePage.options.enabled = false;
       return;
     }
   }
 
   this.resources[this.lastChecked].check(function(){
-    setTimeout(function() { $livePage.checkBatch(); }, $livePage.options.refresh_rate);
+    setTimeout(function() { 
+      if( typeof(window.$livePage.checkBatch) == "function" ){
+        window.$livePage.checkBatch();
+      }
+    }, window.$livePage.options.refresh_rate);
   });
 }
 
-if (typeof $livePageConfig == "object") {
-  var $livePage = new livePage($livePageConfig);
-  $livePage.restoreScrollPosition();
-  $livePage.scanPage();
+if (typeof window.$livePageConfig == "object") {
+  window.$livePage = new livePage(window.$livePageConfig);
+  window.$livePage.restoreScrollPosition();
+  window.$livePage.scanPage();
 }

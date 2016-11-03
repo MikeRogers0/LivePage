@@ -15,7 +15,7 @@
     "message": "Sorry, das für diese Seite verwendete Protokoll wird nicht unterstützt."
   },
   "@file_protocol_needs_enabling": {
-    "message": "Sorry, das file://-Protokoll muss aktiviert sein. Bitte überprüfen Sie, ob auf der Erweiterungsseite (chrome://chrome/extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert ist."
+    "message": "Sorry, das file://-Protokoll muss aktiviert sein. Bitte überprüfen Sie, ob auf der Erweiterungsseite (chrome://extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert ist."
   },
   "@live": {
     "message": "Live"
@@ -56,6 +56,9 @@
   "@language_html": {
     "message": "HTML"
   },
+  "@monitor_img": {
+    "message": "Bilder (experimentell)"
+  },
   "@options_livepage_links": {
     "message": "LivePage-Verknüpfungen"
   },
@@ -73,6 +76,15 @@
   },
   "@options_refresh_rate_note": {
     "message": "Bei lokaler Entwicklung können Sie 175 ms oder weniger einstellen, bei einem Live-Produktions-Server sollte die Zeit bei 250 ms oder mehr liegen."
+  },
+  "@options_h2_reload_settings": {
+    "message": "Aktualisierung-Einstellungen"
+  },
+  "@options_refresh_delay": {
+    "message": "Verzögerung zwischen Erkennen der Änderung und Aktualisierung der Seite:"
+  },
+    "@options_refresh_delay_note": {
+    "message": "Setzen Sie eine Verzögerung, wenn Sie möchten, dass LivePage wartet bis eine Seite aktualisiert wird. Das ist nützlich, wenn ein Build-Prozess zu Ende laufen muss, bevor die Seite aktualisiert wird."
   },
   "@options_h2_advanced_settings": {
     "message": "Erweiterte Einstellungen:"
@@ -99,10 +111,16 @@
     "message": "Hinweise:"
   },
   "@options_allow_access_to_files": {
-    "message": "Zur Nutzung des file://-Protokolls muss auf der Erweiterungsseite (chrome://chrome/extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert sein."
+    "message": "Zur Nutzung des file://-Protokolls muss auf der Erweiterungsseite (chrome://extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert sein."
+  },
+  "@options_review_upsell": {
+    "message": "Bitte schreiben Sie eine Bewertung im Google Chrome Webstore, wenn Sie LivePage mögen."
+  },
+  "@options_review_link": {
+    "message": "Bewertung schreiben"
   },
   "@options_contribute_and_support": {
-    "message": "Beiträge und Berichte zu Bugs via GitHub"
+    "message": "Mache mit und melde Bugs via GitHub"
   },
   "@options_developed_by": {
     "message": "Entwickelt von:"

@@ -8,6 +8,7 @@ All future milestones & current issues can be found on https://github.com/MikeRo
  - Only saving settings on options page if they're valid, otherwise it's revert to the default option.
  - Adding experimental image support.
  - Added extra note in the options page asking for a review.
+ - Rescoping `$livePage` to be `window.$livePage` with a check that `checkBatch()` is a function before we try and run it.
 
 ## [2.2.3](https://github.com/MikeRogers0/LivePage/tree/2.2.3) (2016-07-30)
 

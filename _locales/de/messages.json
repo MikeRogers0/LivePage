@@ -102,7 +102,7 @@
     "message": "Zur Nutzung des file://-Protokolls muss auf der Erweiterungsseite (chrome://chrome/extensions/)  \"Zugriff auf Datei-URLs erlauben\" für die LivePage-Erweiterung aktiviert sein."
   },
   "@options_contribute_and_support": {
-    "message": "Beiträge und Berichte an Bugs via GitHub"
+    "message": "Beiträge und Berichte zu Bugs via GitHub"
   },
   "@options_developed_by": {
     "message": "Entwickelt von:"

@@ -100,7 +100,7 @@ livePages.prototype.start = function(tab) {
 
   // Make the page Live
   chrome.tabs.executeScript(tab.id, {
-    code: 'var $livePageConfig = ' + JSON.stringify(settings.options) + '; var $livePage = false;'
+    code: 'window.$livePageConfig = ' + JSON.stringify(settings.options) + '; window.$livePage = false;'
   });
   chrome.tabs.executeScript(tab.id, {
     file: 'js/injected/live_resource.js'
@@ -120,7 +120,7 @@ livePages.prototype.start = function(tab) {
 livePages.prototype.stop = function(tab) {
   // Stop live page running if it's there.
   chrome.tabs.executeScript(tab.id, {
-    code: 'if(typeof $livePage != "undefined"){ $livePage.options.enabled = false; }'
+    code: 'if(typeof window.$livePage != "undefined"){ window.$livePage.options.enabled = false; }'
   });
 
   this.setEnableOnText(tab);

@@ -34,14 +34,14 @@ LiveResource.prototype.check = function(callback) {
 
   // Timeout or error, remove the resource
   this.xhr.ontimeout = this.xhr.onerror = function(){
-    $livePage.removeResource(_this.url);
+    window.$livePage.removeResource(_this.url);
   }
 
   this.xhr.onreadystatechange = function() {
 
     // If it 404s, remove the resource
     if (this.status == 404) {
-      $livePage.removeResource(_this.url);
+      window.$livePage.removeResource(_this.url);
     }
 
     if (this.readyState == 4){
@@ -61,9 +61,9 @@ LiveResource.prototype.check = function(callback) {
       // Compare the headers && responseText
       if (_this.checkResponse()) {
         setTimeout(function(){
-          $livePage.saveScrollPosition();
+          window.$livePage.saveScrollPosition();
           _this.refresh();
-        }, $livePage.options.refresh_delay);
+        }, window.$livePage.options.refresh_delay);
       }
     }
   }
@@ -94,7 +94,7 @@ LiveResource.prototype.refresh = function() {
     }, function() {});
   } catch (e) {
     // An error occoured refreshing the page with the chrome socket. Do it differently.
-    document.location.reload($livePage.url);
+    document.location.reload(window.$livePage.url);
   }
 }
 
@@ -102,7 +102,7 @@ LiveResource.prototype.refresh = function() {
  * Tidies up HTML (Removes comments and whitespace), if the users wants.
  */
 LiveResource.prototype.tidyCode = function(html) {
-  if ($livePage.options.tidy_html == true) {
+  if (window.$livePage.options.tidy_html == true) {
     // Remove comments and whitespace.
     html = html.replace(/<!--([\s\S]*?)-->/gim, '');
     html = html.replace(/  /gim, ' ');
@@ -118,7 +118,7 @@ LiveResource.prototype.tidyCode = function(html) {
     html = html.replace(/"https:\/\/ad.doubleclick.net(.*?)"/gim, '');
   }
 
-  if ($livePage.options.tidy_inline_html == true) {
+  if (window.$livePage.options.tidy_inline_html == true) {
     // Remove script tags and hidden inputs
     html = html.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, '');
     html = html.replace(/<input(.*?)hidden(.*?)>/gim, '');

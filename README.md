@@ -32,13 +32,15 @@ If you are seeing "Price not available" as the only download option in Chrome We
 
 ## Roadmap
 
-### 2.3.1
+### 2.4.0
 
-2.3.1 will complete support for images in LivePage.
+2.4.0 will complete support for images in LivePage.
 
 #### TODO
 
  * Enable image support by default, add in internationalisation around it.
+ * Cleanup `en_GB`/`en_US` English to remove duplication.
+ * Issue #59 - Add blacklist/whitelist for urls.
 
 ### 3.0.0
 
@@ -46,8 +48,9 @@ Version 3.0.0 will be primarily be aimed at making LivePage a better experience 
 
 #### TODO
 
- * Simplify the english on the options pages.
+ * Simplify the English on the options pages.
  * Add permissions explanations into the description
+ * 
 
 ## Footnotes
 

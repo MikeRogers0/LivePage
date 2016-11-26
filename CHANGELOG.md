@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.3.2](https://github.com/MikeRogers0/LivePage/tree/2.3.2) (2016-11-26)
+
+ - A correct fix for "Cannot read property 'refresh_rate' of undefined" bug #71 - Thank you @codeandcats
+
 ## [2.3.1](https://github.com/MikeRogers0/LivePage/tree/2.3.1) (2016-11-04)
 
  - Improvements to translations and removing a hardcoded string. Thank you @Hativ3 !

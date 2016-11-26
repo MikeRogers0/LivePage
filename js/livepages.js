@@ -98,22 +98,23 @@ livePages.prototype.start = function(tab) {
     tabId: tab.id
   });
 
+  function executeScriptsInSerial(scripts) {
+    var script = scripts.splice(0, 1)[0];
+    chrome.tabs.executeScript(tab.id, script, function() {
+      if (scripts.length) {
+        executeScriptsInSerial(scripts);
+      }
+    });
+  }
+
   // Make the page Live
-  chrome.tabs.executeScript(tab.id, {
-    code: 'window.$livePageConfig = ' + JSON.stringify(settings.options) + '; window.$livePage = false;'
-  });
-  chrome.tabs.executeScript(tab.id, {
-    file: 'js/injected/live_resource.js'
-  });
-  chrome.tabs.executeScript(tab.id, {
-    file: 'js/injected/live_css_resource.js'
-  });
-  chrome.tabs.executeScript(tab.id, {
-    file: 'js/injected/live_img_resource.js'
-  });
-  chrome.tabs.executeScript(tab.id, {
-    file: 'js/injected/livepage.js'
-  });
+  executeScriptsInSerial([
+    { code: 'window.$livePageConfig = ' + JSON.stringify(settings.options) + '; window.$livePage = false;' },
+    { file: 'js/injected/live_resource.js' },
+    { file: 'js/injected/live_css_resource.js' },
+    { file: 'js/injected/live_img_resource.js' },
+    { file: 'js/injected/livepage.js' }
+  ]);
 }
 
 // Turns off live page on the tab.

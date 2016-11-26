@@ -41,6 +41,7 @@ If you are seeing "Price not available" as the only download option in Chrome We
  * Enable image support by default, add in internationalisation around it.
  * Cleanup `en_GB`/`en_US` English to remove duplication.
  * Issue #59 - Add blacklist/whitelist for urls.
+ * Issue #69 - Support the `view-source:` chrome protocol
 
 ### 3.0.0
 
@@ -50,7 +51,6 @@ Version 3.0.0 will be primarily be aimed at making LivePage a better experience 
 
  * Simplify the English on the options pages.
  * Add permissions explanations into the description
- * 
 
 ## Footnotes
 

@@ -158,11 +158,14 @@
     "message": "Ignore comments in HTML",
     "description": "English: Ignore comments in HTML"
   },
-  "@options_tidy_inline_html": {
-    "message": "Ignore inline JavaScript & hidden fields in HTML",
-    "description": "English: Ignore inline JavaScript & hidden fields in HTML"
+  "@options_ignore_hidden_fields": {
+    "message": "Ignore hidden fields in HTML",
+    "description": "English: Ignore hidden fields in HTML"
   },
-
+  "@options_ignore_inline_js": {
+    "message": "Ignore inline JavaScript",
+    "description": "English: Ignore inline JavaScript"
+  },
 
   "@options_h2_notes": {
     "message": "Notes:",

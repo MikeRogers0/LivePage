@@ -92,8 +92,8 @@
     "description": "English: LivePage Links"
   },
   "@options_livepage_links_note": {
-    "message": "Monitor adhoc files using:",
-    "description": "English: Monitor adhoc files using:"
+    "message": "Monitor files specified using:",
+    "description": "English: Monitor files specified using:"
   },
   
   "@options_h2_refresh_rate": {

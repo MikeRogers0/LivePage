@@ -89,8 +89,11 @@
   "@options_tidy_html": {
     "message": "Ignorar comentarios en HTML"
   },
-  "@options_tidy_inline_html": {
-    "message": "Ignorar JavaScript en línea y campos ocultos en el HTML"
+  "@options_ignore_hidden_fields": {
+    "message": "Ignorar campos ocultos en HTML"
+  },
+  "@options_ignore_inline_js": {
+    "message": "Ignorar JavaScript en línea"
   },
   "@options_persist_scroll_points": {
     "message": "Intentar persistencia en desplazamiento de posiciones X/Y"

@@ -101,8 +101,11 @@
   "@options_tidy_html": {
     "message": "Kommentare in HTML ignorieren"
   },
-  "@options_tidy_inline_html": {
-    "message": "Inline-JavaScript und versteckte Felder in HTML ignorieren"
+  "@options_ignore_hidden_fields": {
+    "message": "Ignorieren Sie versteckte Felder in HTML"
+  },
+  "@options_ignore_inline_js": {
+    "message": "Ignorieren Sie Inline-JavaScript"
   },
   "@options_persist_scroll_points": {
     "message": "Versuchen, Scroll-X/Y-Positionen beizubehalten"

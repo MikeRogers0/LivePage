@@ -118,10 +118,14 @@ LiveResource.prototype.tidyCode = function(html) {
     html = html.replace(/"https:\/\/ad.doubleclick.net(.*?)"/gim, '');
   }
 
-  if (window.$livePage.options.tidy_inline_html == true) {
+  if (window.$livePage.options.ignore_hidden_fields === true) {
     // Remove script tags and hidden inputs
-    html = html.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, '');
-    html = html.replace(/<input(.*?)hidden(.*?)>/gim, '');
+    html = html.replace(/<input(.*?)hidden(.*?)>/gim, "");
+  }
+
+  if (window.$livePage.options.ignore_inline_js === true) {
+    // Remove script tags and hidden inputs
+    html = html.replace(/<script\b[^>]*>([\s\S]*?)<\/script>/gim, "");
   }
   return html;
 }

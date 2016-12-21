@@ -89,8 +89,11 @@
   "@options_tidy_html": {
     "message": "Ignorer les commentaires en HTML"
   },
-  "@options_tidy_inline_html": {
-    "message": "Ignorer les champs inline JavaScript et cachés en HTML"
+  "@options_ignore_hidden_fields": {
+    "message": "Ignorer les champs masqués en HTML"
+  },
+  "@options_ignore_inline_js": {
+    "message": "Ignorer le JavaScript en ligne"
   },
   "@options_persist_scroll_points": {
     "message": "Tentative de conservation du défilement des positions X/Y"

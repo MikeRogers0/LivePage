@@ -9,6 +9,9 @@
 *.vi
 *~
 *.sass-cache
+node_modules/*
+report/*
+tmp/*
 
 # OS or Editor folders
 .DS_Store

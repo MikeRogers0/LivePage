@@ -30,6 +30,21 @@ If you are seeing "Price not available" as the only download option in Chrome We
 
     php -S 127.0.0.1:8000 -t demo/
 
+### Testing
+
+#### Setup the enviroment
+
+Install npm, then run:
+
+    npm install -g grunt-cli &&
+    npm install
+
+#### Run the tests (Qunit)
+
+    grunt qunit:all
+
+Or drag and drop the files from `/test/index.html` into your browser.
+
 ## Roadmap
 
 The upcoming milestones can be found [on the GitHub milestones](https://github.com/MikeRogers0/LivePage/milestones) page.

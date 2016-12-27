@@ -85,3 +85,8 @@ chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
     });
   }
 });
+
+// Allow detection of extension on mikerogers.io
+chrome.runtime.onMessageExternal.addListener(function(request, sender, sendResponse) {
+  sendResponse(true);
+});

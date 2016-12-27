@@ -35,5 +35,8 @@
   "minimum_chrome_version": "18",
   "offline_enabled": true,
   "author": "Mike Rogers",
-  "homepage_url": "https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh"
+  "homepage_url": "https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh",
+  "externally_connectable": {
+    "matches": ["*://*.mikerogers.io/*"]
+  }
 }

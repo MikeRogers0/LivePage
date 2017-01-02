@@ -2,6 +2,12 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.4.0](https://github.com/MikeRogers0/LivePage/tree/2.4.0) (2017-01-02)
+
+ - Split Ignore inline JavaScript & hidden fields in HTML into two different options. #74
+ - "Monitor adhoc files using:"" would be better worded "Monitor files specified using:". #75
+ - Add test suite #77 - It's only simple, but long term I can start building more confidently. 
+
 ## [2.3.2](https://github.com/MikeRogers0/LivePage/tree/2.3.2) (2016-11-26)
 
  - A correct fix for "Cannot read property 'refresh_rate' of undefined" bug #71 - Thank you @codeandcats

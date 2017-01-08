@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.4.2](https://github.com/MikeRogers0/LivePage/tree/2.4.2) (2017-01-09)
+
+ - Fixes typo where settings page was unable to load. Fixes #82 
+
 ## [2.4.1](https://github.com/MikeRogers0/LivePage/tree/2.4.1) (2017-01-08)
 
  - Fixes issue where LivePage would be injected multiple times #81

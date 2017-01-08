@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.4.1](https://github.com/MikeRogers0/LivePage/tree/2.4.1) (2017-01-08)
+
+ - Fixes issue where LivePage would be injected multiple times #81
+
 ## [2.4.0](https://github.com/MikeRogers0/LivePage/tree/2.4.0) (2017-01-02)
 
  - Split Ignore inline JavaScript & hidden fields in HTML into two different options. #74

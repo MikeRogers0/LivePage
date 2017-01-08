@@ -98,17 +98,8 @@ livePages.prototype.start = function(tab) {
     tabId: tab.id
   });
 
-  function executeScriptsInSerial(scripts) {
-    var script = scripts.splice(0, 1)[0];
-    chrome.tabs.executeScript(tab.id, script, function() {
-      if (scripts.length) {
-        executeScriptsInSerial(scripts);
-      }
-    });
-  }
-
   // Make the page Live
-  executeScriptsInSerial([
+  executeScriptsInSerial(tab.id, [
     { code: 'window.$livePageConfig = ' + JSON.stringify(settings.options) + '; window.$livePage = false;' },
     { file: 'js/injected/live_resource.js' },
     { file: 'js/injected/live_css_resource.js' },

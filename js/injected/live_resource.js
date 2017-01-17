@@ -67,7 +67,7 @@ LiveResource.prototype.check = function(callback) {
       }
     }
   }
-
+  this.xhr.onerror = function(){};
   this.xhr.send();
 }
 

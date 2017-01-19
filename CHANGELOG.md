@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.4.3](https://github.com/MikeRogers0/LivePage/tree/2.4.3) (2017-01-20)
+
+ - Fix to stop LivePage crashing when resource throws a 503 error #88. Thank you @timsayshey !
+
 ## [2.4.2](https://github.com/MikeRogers0/LivePage/tree/2.4.2) (2017-01-09)
 
  - Fixes typo where settings page was unable to load. Fixes #82 

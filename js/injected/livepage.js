@@ -164,7 +164,7 @@ livePage.prototype.normalizeURL = function(url) {
  * reloads and redraws.
  */
 livePage.prototype.saveScrollPosition = function() {
-  if( !this.options.persist_scroll_points ){
+  if( !this.options.persist_scroll_points || !this.supportsSessionStorage() ){
     return;
   }
 
@@ -175,7 +175,7 @@ livePage.prototype.saveScrollPosition = function() {
 }
 
 livePage.prototype.restoreScrollPosition = function() {
-  if( !this.options.persist_scroll_points ){
+  if( !this.options.persist_scroll_points || !this.supportsSessionStorage() ){
     return;
   }
   
@@ -189,6 +189,15 @@ livePage.prototype.restoreScrollPosition = function() {
   window.scroll(scrollPoints.scrollX, scrollPoints.scrollY);
 
   sessionStorage.removeItem("livepage-scrollpoints");
+}
+
+livePage.prototype.supportsSessionStorage = function() {
+  try {
+    window.sessionStorage
+  } catch( e ) {
+    return false;
+  }
+  return true;
 }
 
 /*

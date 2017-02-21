@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.4.4](https://github.com/MikeRogers0/LivePage/tree/2.4.4) (2017-02-20)
+
+ - Fix to not throw error when using sessionStorage on file:// protocols. #93 - Thanks you @gromimol for reporting.
+
 ## [2.4.3](https://github.com/MikeRogers0/LivePage/tree/2.4.3) (2017-01-20)
 
  - Fix to stop LivePage crashing when resource throws a 503 error #88. Thank you @timsayshey !

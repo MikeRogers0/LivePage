@@ -112,10 +112,6 @@
     "message": "Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher.",
     "description": "English: Local development can safely be set to less than 175ms, developing on a live production server should be 250ms or higher."
   },
-  "@options_refresh_delay": {
-    "message": "Delay between detecting changes and updating webpage:",
-    "description": "English:Delay between detecting changes and updating webpage:"
-  },
 
   "@options_h2_reload_settings": {
     "message": "Reload Settings:",

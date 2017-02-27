@@ -1,0 +1,137 @@
+{
+  "name": {
+    "message": "ライブページ"
+  },
+  "short_name": {
+    "message": "ライブページ"
+  },
+  "description": {
+    "message": "ライブページは、CSS、HTMLやJavaScriptなどのウェブサイトのリソースをサーバーでアップデートされると再ロードします。"
+  },
+  "browser_action": {
+    "message": "このページのライブページを有効にします"
+  },
+  "@protocol_not_supported": {
+    "message": "申し訳ありませんが、このページ上で使用されるプロトコルがサポートされていません。"
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "申し訳ありませんが、ファイル：//プロトコルを有効にする必要があります。拡張ページのライブページ（：//拡張/クローム）には、「ファイルのURLへのアクセスを許可する」をチェックしてください。"
+  },
+  "@live": {
+    "message": "ライブ"
+  },
+  "@disable_on_this_page": {
+    "message": "このページのライブページを無効にします"
+  },
+  "@disable_on_this_host": {
+    "message": "このホストのライブページを無効にします"
+  },
+  "@enable_on_this_page": {
+    "message": "このページのライブページを有効にします"
+  },
+  "@enable_on_this_host": {
+    "message": "このホストのライブページを有効にします"
+  },
+  "@options_title": {
+    "message": "ライブページ -  オプション"
+  },
+  "@options_h2_url_list": {
+    "message": "ライブページは、次で実行されます："
+  },
+  "@options_url_list_empty": {
+    "message": "URLが現在一つもライブではありません。アドレスバーの横にあるアイコンをクリックすると、ライブページを作成します:)"
+  },
+  "@options_clear_all": {
+    "message": "すべてクリア"
+  },
+  "@options_h2_should_monitor": {
+    "message": "ライブページは、次を監視します："
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@monitor_img": {
+    "message": "イメージ（実験）"
+  },
+  "@options_livepage_links": {
+    "message": "ライブページのリンク"
+  },
+  "@options_livepage_links_note": {
+    "message": "指定されたファイルを次を使って監視します。"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "投票設定："
+  },
+  "@options_refresh_rate": {
+    "message": "毎回の更新のための投票："
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_rate_note": {
+    "message": "ローカルの開発は、安全に175ms未満に設定でき、ライブプロダクションサーバー上での開発は250ms秒以上である必要があります。"
+  },
+  "@options_h2_reload_settings": {
+    "message": "設定をリロードします。"
+  },
+  "@options_persist_scroll_points": {
+    "message": "スクロールX / Y位置を保持しようとしています"
+  },
+  "@options_refresh_delay": {
+    "message": "リロードする前の最小遅延："
+  },
+  "@options_refresh_delay_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_delay_note": {
+    "message": "ページをリロードする前に待機する場合は遅延時間を設定します。リロードがトリガーされる前に、ビルドプロセスを完了する必要がある場合に便利です。"
+  },
+  "@options_h2_advanced_settings": {
+    "message": "高度な設定："
+  },
+  "@options_entire_hosts": {
+    "message": "ドメイン全体でライブページを実行します。"
+  },
+  "@options_skip_external": {
+    "message": "googleapis.comやCDNなどの外部リソースをスキップ"
+  },
+  "@options_ignore_anchors": {
+    "message": "URLアンカーを無視"
+  },
+  "@options_tidy_html": {
+    "message": "HTMLのコメントを無視します"
+  },
+  "@options_ignore_hidden_fields": {
+    "message": "HTMLの隠しフィールドを無視します"
+  },
+  "@options_ignore_inline_js": {
+    "message": "インラインJavaScriptを無視します"
+  },
+  "@options_h2_notes": {
+    "message": "注："
+  },
+  "@options_allow_access_to_files": {
+    "message": "ファイル：//プロトコルを使用するには、拡張ページ（クローム：//拡張子/）でライブページの拡張子のために、「ファイルのURLへのアクセスを許可する」チェックが入っていていることを確認してください。"
+  },
+  "@options_review_upsell": {
+    "message": "ライブページが気に入りましたら、Google Chromeウェブストアでレビューを残してください。"
+  },
+  "@options_review_link": {
+    "message": "レビューを残します"
+  },
+  "@options_contribute_and_support": {
+    "message": "GitHubのを経由してバグを報告＆貢献する"
+  },
+  "@options_developed_by": {
+    "message": "開発者"
+  },
+  "@options_tweet_me": {
+    "message": "私をツイート："
+  }
+}

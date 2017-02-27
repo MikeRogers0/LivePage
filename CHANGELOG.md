@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.5.4](https://github.com/MikeRogers0/LivePage/tree/2.5.4) (2017-02-27)
+
+ - We now have Japanese translations.
+
 ## [2.4.4](https://github.com/MikeRogers0/LivePage/tree/2.4.4) (2017-02-20)
 
  - Fix to not throw error when using sessionStorage on file:// protocols. #93 - Thanks you @gromimol for reporting.

@@ -1,0 +1,137 @@
+{
+  "name": {
+    "message": "LivePage"
+  },
+  "short_name": {
+    "message": "LivePage"
+  },
+  "description": {
+    "message": "O LivePage recarrega recursos como CSS, HTML e JavaScript à medida que são atualizados no servidor."
+  },
+  "browser_action": {
+    "message": "Habilitar o LivePage nessa página"
+  },
+  "@protocol_not_supported": {
+    "message": "O protocolo utilizado nessa página não é compatível."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "O arquivo:// protocol precisa ser habilitado. Marque a opção \"Permitir acesso à URLs de arquivos\" no LivePage na página de extensões (chrome://extensions/)."
+  },
+  "@live": {
+    "message": "Ao vivo"
+  },
+  "@disable_on_this_page": {
+    "message": "Desabilitar o LivePage nessa página"
+  },
+  "@disable_on_this_host": {
+    "message": "Desabilitar o LivePage neste host"
+  },
+  "@enable_on_this_page": {
+    "message": "Habilitar o LivePage nessa página"
+  },
+  "@enable_on_this_host": {
+    "message": "Desabilitar o LivePage neste host"
+  },
+  "@options_title": {
+    "message": "LivePage - Opções"
+  },
+  "@options_h2_url_list": {
+    "message": "O LivePage funciona em:"
+  },
+  "@options_url_list_empty": {
+    "message": "Não há URLs a atualizar no momento. Clique no ícone próximo à barra de endereços para acessar essa página ao vivo:)"
+  },
+  "@options_clear_all": {
+    "message": "Limpar tudo"
+  },
+  "@options_h2_should_monitor": {
+    "message": "O LivePage monitora:"
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@monitor_img": {
+    "message": "Imagens (Experimental)"
+  },
+  "@options_livepage_links": {
+    "message": "Links do LivePage"
+  },
+  "@options_livepage_links_note": {
+    "message": "Monitorar arquivos especificados utilizando:"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "Configurações de enquetes"
+  },
+  "@options_refresh_rate": {
+    "message": "Enquete para atualizações a cada:"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_rate_note": {
+    "message": "O desenvolvimento local pode ser configurado para menos de 175 ms. O desenvolvimento em servidor de produção ao vivo, requer 250 ms ou superior."
+  },
+  "@options_h2_reload_settings": {
+    "message": "Recarregar configurações:"
+  },
+  "@options_persist_scroll_points": {
+    "message": "Tentativa de persistir nas posições de deslocamento X/Y"
+  },
+  "@options_refresh_delay": {
+    "message": "Retardo mínimo antes de recarregar:"
+  },
+  "@options_refresh_delay_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_delay_note": {
+    "message": "Defina o retardo que desejar. O LivePage aguarda antes de recarregar a página. Isto é útil quando você tem um processo de desenvolvimento que deve ser encerrado antes que uma recarga seja acionada."
+  },
+  "@options_h2_advanced_settings": {
+    "message": "Configurações avançadas:"
+  },
+  "@options_entire_hosts": {
+    "message": "Executar o LivePage em domínios inteiros"
+  },
+  "@options_skip_external": {
+    "message": "Ignorar os recursos externos, como Googleapis.com ou CDNs"
+  },
+  "@options_ignore_anchors": {
+    "message": "Ignorar âncoras de URL"
+  },
+  "@options_tidy_html": {
+    "message": "Ignorar comentários em HTML"
+  },
+  "@options_ignore_hidden_fields": {
+    "message": "Ignorar campos ocultos em HTML"
+  },
+  "@options_ignore_inline_js": {
+    "message": "Ignorar JavaScript em linha"
+  },
+  "@options_h2_notes": {
+    "message": "Observações:"
+  },
+  "@options_allow_access_to_files": {
+    "message": "Para utilizar o arquivo: // protocol, certifique-se de que, na página da extensão (chrome://extensions /), você tenha marcado \"Permitir acesso aos URLs do arquivo\" para a extensão LivePage."
+  },
+  "@options_review_upsell": {
+    "message": "Se você gostou do LivePage, deixe seus comentários no Google Chrome Webstore."
+  },
+  "@options_review_link": {
+    "message": "Deixar um comentário"
+  },
+  "@options_contribute_and_support": {
+    "message": "Contribuir e relatar problemas via GitHub"
+  },
+  "@options_developed_by": {
+    "message": "Desenvolvido por:"
+  },
+  "@options_tweet_me": {
+    "message": "Envie um Tweet:"
+  }
+}

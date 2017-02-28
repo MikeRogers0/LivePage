@@ -2,9 +2,9 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
-## [2.5.4](https://github.com/MikeRogers0/LivePage/tree/2.5.4) (2017-02-27)
+## [2.5.4](https://github.com/MikeRogers0/LivePage/tree/2.5.4) (2017-02-28)
 
- - We now have Japanese translations.
+ - We now have Japanese and Portuguese (Brazil) translations.
 
 ## [2.4.4](https://github.com/MikeRogers0/LivePage/tree/2.4.4) (2017-02-20)
 

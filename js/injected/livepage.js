@@ -204,12 +204,16 @@ livePage.prototype.supportsSessionStorage = function() {
  * Tells LivePage if the URL is ok.
  */
 livePage.prototype.trackableURL = function(url) {
-  // from: http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
   if (this.options.skip_external == false) {
     return true;
   }
 
+  // from: http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
   match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+
+  // Always return true for localhost
+  if (typeof match[2] === "string" && match[2].length > 0 && match[2] == "localhost") return true;
+
   if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return false;
   if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":(" + {
     "http:": 80,

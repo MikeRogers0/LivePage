@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.5.2](https://github.com/MikeRogers0/LivePage/tree/2.5.2) (2017-04-06)
+
+ - Fixing issue where localhost not considered an external host.
+
 ## [2.5.1](https://github.com/MikeRogers0/LivePage/tree/2.5.1) (2017-03-08)
 
  - Correcting Portuguese (Brazil) translations folder location.

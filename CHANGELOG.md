@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.0](https://github.com/MikeRogers0/LivePage/tree/2.6.0) (2017-07-08)
+
+ - Fixing bug where urls with ports were always considered an external resource.
+
 ## [2.5.2](https://github.com/MikeRogers0/LivePage/tree/2.5.2) (2017-04-06)
 
  - Fixing issue where localhost not considered an external host.

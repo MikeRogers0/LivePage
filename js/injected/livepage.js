@@ -208,18 +208,20 @@ livePage.prototype.trackableURL = function(url) {
     return true;
   }
 
-  // from: http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
-  match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+  var parsedUrl = document.createElement('a');
+  parsedUrl.href = url;
 
-  // Always return true for localhost
-  if (typeof match[2] === "string" && match[2].length > 0 && match[2] == "localhost") return true;
+  // Always return true for Localhosts
+  if( parsedUrl.host.indexOf("localhost") === 0 || parsedUrl.host.indexOf("127.0.0.1") === 0 ){
+    return true;
+  }
 
-  if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return false;
-  if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":(" + {
-    "http:": 80,
-    "https:": 443
-  }[location.protocol] + ")?$"), "") !== location.host) return false;
-  return true;
+  // The hosts match, we can track this.
+  if( this.url.indexOf( parsedUrl.host ) !== -1 ){
+    return true;
+  }
+
+  return false;
 }
 
 /*

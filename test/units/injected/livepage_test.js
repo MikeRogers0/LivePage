@@ -17,6 +17,10 @@ QUnit.test( "trackableURL - Returns boolean if a URL is external to the current 
   // Return true for localhosts
   assert.equal( new livePage({skip_external: true}).trackableURL("http://localhost/"), true );
   assert.equal( new livePage({skip_external: true}).trackableURL("https://127.0.0.1/"), true );
+  assert.equal( new livePage({skip_external: true}).trackableURL("file:///Users/SomeFile.html"), true );
+  assert.equal( new livePage({skip_external: true}).trackableURL("SomeFile.html"), true );
+  assert.equal( new livePage({skip_external: true}).trackableURL("user/SomeFile.html"), true );
+  assert.equal( new livePage({skip_external: true}).trackableURL("/User/SomeFile.html"), true );
   assert.equal( new livePage({skip_external: true}).trackableURL("http://localhost/somethingelse"), true );
   assert.equal( new livePage({skip_external: true}).trackableURL("http://localhost:3300/"), true );
   assert.equal( new livePage({skip_external: true}).trackableURL("http://localhost:3300/somethingelse"), true );
@@ -24,4 +28,5 @@ QUnit.test( "trackableURL - Returns boolean if a URL is external to the current 
 
   // Ignore external stuff
   assert.equal( new livePage({skip_external: true}).trackableURL("https://google.com/"), false);
+  assert.equal( new livePage({skip_external: true}).trackableURL("https://google.com/thefilename"), false);
 });

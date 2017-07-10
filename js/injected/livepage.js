@@ -208,16 +208,25 @@ livePage.prototype.trackableURL = function(url) {
     return true;
   }
 
+  // Always return true for Localhosts
+  if(
+    url.indexOf("localhost") !== -1 || 
+    url.indexOf("127.0.0.1") !== -1 ||
+    url.indexOf("file://") !== -1 
+  ){
+    return true;
+  }
+
   var parsedUrl = document.createElement('a');
   parsedUrl.href = url;
 
-  // Always return true for Localhosts
-  if( parsedUrl.host.indexOf("localhost") !== -1 || parsedUrl.host.indexOf("127.0.0.1") !== -1 ){
+  // When no host exists, return we can track this.
+  if(parsedUrl.host === "" ){
     return true;
   }
 
   // The hosts match, we can track this.
-  if( location.href.indexOf( parsedUrl.host ) !== -1 ){
+  if(location.href.indexOf( parsedUrl.host ) !== -1 ){
     return true;
   }
 

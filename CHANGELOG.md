@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.2](https://github.com/MikeRogers0/LivePage/tree/2.6.2) (2017-07-09)
+
+ - Fix for trackable URL when no hosts exists.
+
 ## [2.6.1](https://github.com/MikeRogers0/LivePage/tree/2.6.1) (2017-07-09)
 
  - Reports of LivePage just stopping working we're reported, changing where I got the URL from when testing trackable URLs.

@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.1](https://github.com/MikeRogers0/LivePage/tree/2.6.1) (2017-07-09)
+
+ - Reports of LivePage just stopping working we're reported, changing where I got the URL from when testing trackable URLs.
+
 ## [2.6.0](https://github.com/MikeRogers0/LivePage/tree/2.6.0) (2017-07-08)
 
  - Fixing bug where urls with ports were always considered an external resource.

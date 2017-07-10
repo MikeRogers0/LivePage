@@ -212,12 +212,12 @@ livePage.prototype.trackableURL = function(url) {
   parsedUrl.href = url;
 
   // Always return true for Localhosts
-  if( parsedUrl.host.indexOf("localhost") === 0 || parsedUrl.host.indexOf("127.0.0.1") === 0 ){
+  if( parsedUrl.host.indexOf("localhost") !== -1 || parsedUrl.host.indexOf("127.0.0.1") !== -1 ){
     return true;
   }
 
   // The hosts match, we can track this.
-  if( this.url.indexOf( parsedUrl.host ) !== -1 ){
+  if( location.href.indexOf( parsedUrl.host ) !== -1 ){
     return true;
   }
 

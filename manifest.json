@@ -30,7 +30,6 @@
     "page": "options.html",
     "chrome_style": true
   },
-  "homepage_url": "https://chrome.google.com/webstore/detail/pilnojpmdoofaelbinaeodfpjheijkbh",
   "default_locale": "en",
   "content_security_policy": "script-src 'self'; object-src 'self';",
   "permissions": [
@@ -45,7 +44,7 @@
     "48": "imgs/icon.png",
     "128": "imgs/icon.png"
   },
-  "minimum_chrome_version": "18",
+  "minimum_chrome_version": "55",
   "offline_enabled": true,
   "author": "Mike Rogers",
   "homepage_url": "https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh"

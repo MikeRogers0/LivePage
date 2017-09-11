@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.3](https://github.com/MikeRogers0/LivePage/tree/2.6.3) (2017-09-11)
+
+ - Fix for duplicate cache breaker in URL - Thanks @Opensourcecommunitydevelopment
+
 ## [2.6.2](https://github.com/MikeRogers0/LivePage/tree/2.6.2) (2017-07-09)
 
  - Fix for trackable URL when no hosts exists.

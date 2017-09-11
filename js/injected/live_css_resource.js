@@ -32,7 +32,7 @@ LiveCSSResource.prototype.refresh = function(){
 
   cssElement.setAttribute("type", "text/css");
   cssElement.setAttribute("rel", "stylesheet");
-  cssElement.setAttribute("href", this.nonCacheURL() + "?LivePage=" + new Date() * 1);
+  cssElement.setAttribute("href", this.nonCacheURL());
   cssElement.setAttribute("media", this.media);
 
   // Replace the new one in the palace of the old one.

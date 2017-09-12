@@ -15,9 +15,9 @@ LiveResource.prototype.xhr = null;
  */
 LiveResource.prototype.nonCacheURL = function() {
   if (this.url.indexOf('?') > 0) {
-    return this.url + '&livePage=' + (new Date() * 1);
+    return this.url// + '&livePage=' + (new Date() * 1);
   }
-  return this.url + '?livePage=' + (new Date() * 1);
+  return this.url// + '?livePage=' + (new Date() * 1);
 }
 
 
@@ -31,6 +31,7 @@ LiveResource.prototype.check = function(callback) {
   this.xhr = new XMLHttpRequest();
 
   this.xhr.open("GET", this.nonCacheURL());
+  this.xhr.setRequestHeader('Cache-Control', 'no-cache');
 
   // Timeout or error, remove the resource
   this.xhr.ontimeout = this.xhr.onerror = function(){
@@ -112,7 +113,7 @@ LiveResource.prototype.tidyCode = function(html) {
     html = html.replace(/href\=\"\/cdn-cgi\/l\/email-protection#(.*?)"/gim, '');
 
     // Remove references to LivePages cache breaker
-    html = html.replace(/livePage=([0-9]+)/gim, '');
+    //html = html.replace(/livePage=([0-9]+)/gim, '');
 
     // Ignore doubleclick links
     html = html.replace(/"https:\/\/ad.doubleclick.net(.*?)"/gim, '');

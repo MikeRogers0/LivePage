@@ -35,6 +35,7 @@ LiveResource.prototype.check = function(callback) {
   this.xhr = new XMLHttpRequest();
 
   this.xhr.open("GET", this.nonCacheURL());
+  this.xhr.setRequestHeader('Cache-Control', 'no-cache');
 
   // Timeout or error, remove the resource
   this.xhr.ontimeout = this.xhr.onerror = function(){

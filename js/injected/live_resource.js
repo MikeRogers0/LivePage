@@ -14,6 +14,10 @@ LiveResource.prototype.xhr = null;
  * Generated a URL with a cache breaker in it.
  */
 LiveResource.prototype.nonCacheURL = function() {
+  if (window.$livePage.options.use_hard_cache_breaker === false) {
+    return this.url;
+  }
+
   if (this.url.indexOf('?') > 0) {
     return this.url + '&livePage=' + (new Date() * 1);
   }

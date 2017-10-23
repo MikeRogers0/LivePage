@@ -4,7 +4,9 @@
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "timekeeper": "^2.0.0"
+  },
   "devDependencies": {
     "grunt": "~1.0.0",
     "grunt-contrib-qunit": "~1.0.0",

@@ -121,6 +121,10 @@
     "message": "Attempt to persist scroll X/Y positions",
     "description": "English: Attempt to persist scroll X/Y positions"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "Append the 'livePage' attribute to URLs when polling for changes",
+    "description": "English: "
+  },
   "@options_refresh_delay": {
     "message": "Minimum delay before reloading:",
     "description": "English: "

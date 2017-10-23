@@ -7,7 +7,7 @@ QUnit.module( "nonCacheURL", {
   }
 } );
 
-QUnit.test( "nonCacheURL - Append the cache breaker when hard caching is enabled", function( assert ) {
+QUnit.test( "Append the cache breaker when hard caching is enabled", function( assert ) {
   window.$livePage = {}
   window.$livePage.options = {}
 

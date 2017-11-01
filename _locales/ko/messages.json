@@ -1,0 +1,140 @@
+{
+  "name": {
+    "message": "라이브 페이지"
+  },
+  "short_name": {
+    "message": "라이브 페이지"
+  },
+  "description": {
+    "message": "LivePage는 서버에서 업데이트 할 때 CSS, HTML 및 JavaScript와 같은 웹 사이트 리소스를 다시로드합니다."
+  },
+  "browser_action": {
+    "message": "이 페이지에서 LivePage 사용"
+  },
+  "@protocol_not_supported": {
+    "message": "죄송합니다.이 페이지에서 사용 된 프로토콜은 지원되지 않습니다."
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "죄송합니다. file : // 프로토콜을 사용하도록 설정해야합니다. 확장 페이지에서 \"파일 URL에 대한 액세스 허용\"을 확인하십시오 (chrome : // extensions /)."
+  },
+  "@live": {
+    "message": "살고 있다"
+  },
+  "@disable_on_this_page": {
+    "message": "이 페이지에서 LivePage를 비활성화하십시오."
+  },
+  "@disable_on_this_host": {
+    "message": "이 호스트에 대해 LivePage를 비활성화하십시오."
+  },
+  "@enable_on_this_page": {
+    "message": "이 페이지에서 LivePage 사용"
+  },
+  "@enable_on_this_host": {
+    "message": "이 호스트에서 LivePage 사용"
+  },
+  "@options_title": {
+    "message": "LivePage - 옵션"
+  },
+  "@options_h2_url_list": {
+    "message": "LivePage는 다음에서 실행됩니다."
+  },
+  "@options_url_list_empty": {
+    "message": "현재 라이브 URL이 없습니다. 검색 주소창 옆에있는 아이콘을 클릭하면 페이지가 라이브로 표시됩니다."
+  },
+  "@options_clear_all": {
+    "message": "모두 지우기"
+  },
+  "@options_h2_should_monitor": {
+    "message": "LivePage는 다음을 모니터링해야합니다."
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "자바 스크립트"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@monitor_img": {
+    "message": "이미지"
+  },
+  "@options_livepage_links": {
+    "message": "라이브 페이지 링크"
+  },
+  "@options_livepage_links_note": {
+    "message": "다음을 사용하여 지정된 파일 모니터 :"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "폴링 설정 :"
+  },
+  "@options_refresh_rate": {
+    "message": "매주 업데이트 설문 조사 :"
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_rate_note": {
+    "message": "로컬 개발은 175ms 미만으로 안전하게 설정 될 수 있으며 실제 프로덕션 서버에서 개발하는 것은 250ms 이상이어야합니다."
+  },
+  "@options_h2_reload_settings": {
+    "message": "새로 고침 설정 :"
+  },
+  "@options_persist_scroll_points": {
+    "message": "스크롤 X / Y 위치 유지 시도"
+  },
+  "@options_use_hard_cache_breaker": {
+    "message": "변경 사항을 폴링 할 때 URL에 'livePage'속성을 추가하십시오."
+  },
+  "@options_refresh_delay": {
+    "message": "다시로드하기 전의 최소 지연 시간 :"
+  },
+  "@options_refresh_delay_milliseconds": {
+    "message": "ms"
+  },
+  "@options_refresh_delay_note": {
+    "message": "LiveUpdate가 페이지를 다시로드하기 전에 대기하게하려면 지연을 설정하십시오. 재로드가 트리거되기 전에 완료해야하는 빌드 프로세스가있는 경우에 유용합니다."
+  },
+  "@options_h2_advanced_settings": {
+    "message": "고급 설정 :"
+  },
+  "@options_entire_hosts": {
+    "message": "전체 도메인에서 LivePage 실행"
+  },
+  "@options_skip_external": {
+    "message": "googleapis.com 또는 CDN과 같은 외부 리소스 건너 뛰기"
+  },
+  "@options_ignore_anchors": {
+    "message": "URL 앵커 무시"
+  },
+  "@options_tidy_html": {
+    "message": "HTML의 주석 무시"
+  },
+  "@options_ignore_hidden_fields": {
+    "message": "HTML에서 숨겨진 필드 무시"
+  },
+  "@options_ignore_inline_js": {
+    "message": "인라인 JavaScript 무시"
+  },
+  "@options_h2_notes": {
+    "message": "노트:"
+  },
+  "@options_allow_access_to_files": {
+    "message": "file : // 프로토콜을 사용하려면 확장 페이지 (chrome : // extensions /)에서 LivePage 확장에 대해 \"파일 URL에 대한 액세스 허용\"을 선택했는지 확인하십시오."
+  },
+  "@options_review_upsell": {
+    "message": "LivePage가 마음에 들면 Chrome 웹 스토어에 리뷰를 남기는 것이 좋습니다."
+  },
+  "@options_review_link": {
+    "message": "리뷰 남기기"
+  },
+  "@options_contribute_and_support": {
+    "message": "GitHub를 통해 버그 신고 및 기고"
+  },
+  "@options_developed_by": {
+    "message": "개발자 :"
+  },
+  "@options_tweet_me": {
+    "message": "짹 짹짹 :"
+  }
+}

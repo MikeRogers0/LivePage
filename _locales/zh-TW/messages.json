@@ -1,0 +1,140 @@
+{
+  "name": {
+    "message": "LivePage"
+  },
+  "short_name": {
+    "message": "LivePage"
+  },
+  "description": {
+    "message": "LivePage會在服務器上更新時重新載入CSS，HTML和JavaScript等網站資源。"
+  },
+  "browser_action": {
+    "message": "在此頁面上啟用LivePage"
+  },
+  "@protocol_not_supported": {
+    "message": "對不起，此頁面上使用的協議不受支持。"
+  },
+  "@file_protocol_needs_enabling": {
+    "message": "對不起，文件：//協議需要啟用。請在擴展頁面（chrome：// extensions /）上查看LivePage的“允許訪問文件URL”。"
+  },
+  "@live": {
+    "message": "生活"
+  },
+  "@disable_on_this_page": {
+    "message": "在此頁面上禁用LivePage"
+  },
+  "@disable_on_this_host": {
+    "message": "禁用此主機的LivePage"
+  },
+  "@enable_on_this_page": {
+    "message": "在此頁面上啟用LivePage"
+  },
+  "@enable_on_this_host": {
+    "message": "為此主機啟用LivePage"
+  },
+  "@options_title": {
+    "message": "LivePage  - 選項"
+  },
+  "@options_h2_url_list": {
+    "message": "LivePage將運行："
+  },
+  "@options_url_list_empty": {
+    "message": "目前沒有網址直播，點擊地址欄旁邊的圖標可以讓頁面生效:)"
+  },
+  "@options_clear_all": {
+    "message": "全部清除"
+  },
+  "@options_h2_should_monitor": {
+    "message": "LivePage應該監視："
+  },
+  "@language_css": {
+    "message": "CSS"
+  },
+  "@language_javascript": {
+    "message": "JavaScript的"
+  },
+  "@language_html": {
+    "message": "HTML"
+  },
+  "@monitor_img": {
+    "message": "圖片"
+  },
+  "@options_livepage_links": {
+    "message": "LivePage鏈接"
+  },
+  "@options_livepage_links_note": {
+    "message": "使用以下命令監視文件"
+  },
+  "@options_h2_refresh_rate": {
+    "message": "輪詢設置："
+  },
+  "@options_refresh_rate": {
+    "message": "投票更新每個："
+  },
+  "@options_refresh_rate_milliseconds": {
+    "message": "女士"
+  },
+  "@options_refresh_rate_note": {
+    "message": "本地開發可以安全地設置為小於175ms，在實時生產服務器上開發應該是250ms或更高。"
+  },
+  "@options_h2_reload_settings": {
+    "message": "重新加載設置："
+  },
+  "@options_persist_scroll_points": {
+    "message": "嘗試持續滾動X / Y位置"
+  },
+  "@options_use_hard_cache_breaker": {
+    "message": "在輪詢更改時，將“livePage”屬性附加到URL"
+  },
+  "@options_refresh_delay": {
+    "message": "重新加載前的最小延遲："
+  },
+  "@options_refresh_delay_milliseconds": {
+    "message": "女士"
+  },
+  "@options_refresh_delay_note": {
+    "message": "如果您希望LivePage在重新加載頁面之前等待，請設置延遲。當您有一個構建過程需要在重新加載觸發之前完成時，這很有用。"
+  },
+  "@options_h2_advanced_settings": {
+    "message": "高級設置："
+  },
+  "@options_entire_hosts": {
+    "message": "在整個域上運行LivePage"
+  },
+  "@options_skip_external": {
+    "message": "跳過外部資源，如googleapis.com或CDN"
+  },
+  "@options_ignore_anchors": {
+    "message": "忽略網址錨點"
+  },
+  "@options_tidy_html": {
+    "message": "忽略HTML中的註釋"
+  },
+  "@options_ignore_hidden_fields": {
+    "message": "忽略HTML中的隱藏字段"
+  },
+  "@options_ignore_inline_js": {
+    "message": "忽略內聯JavaScript"
+  },
+  "@options_h2_notes": {
+    "message": "筆記："
+  },
+  "@options_allow_access_to_files": {
+    "message": "要使用file：//協議，請確保在擴展頁面（chrome：// extensions /）上，您已經勾選了LivePage擴展名為“允許訪問文件URL”。"
+  },
+  "@options_review_upsell": {
+    "message": "如果您喜歡LivePage，請考慮在Google Chrome Webstore中留下評論。"
+  },
+  "@options_review_link": {
+    "message": "留下評論"
+  },
+  "@options_contribute_and_support": {
+    "message": "通過GitHub貢獻和報告錯誤"
+  },
+  "@options_developed_by": {
+    "message": "由開發："
+  },
+  "@options_tweet_me": {
+    "message": "給我發消息"
+  }
+}

@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.4](https://github.com/MikeRogers0/LivePage/tree/2.6.4) (2017-11-01)
+
+ - Making cache breaker optional - Thanks @Opensourcecommunitydevelopment
+
 ## [2.6.3](https://github.com/MikeRogers0/LivePage/tree/2.6.3) (2017-09-11)
 
  - Fix for duplicate cache breaker in URL - Thanks @Opensourcecommunitydevelopment

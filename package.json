@@ -2,7 +2,8 @@
   "name": "LivePage",
   "private": true,
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "release": "bash release.sh"
   },
   "dependencies": {
     "timekeeper": "^2.0.0"

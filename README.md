@@ -45,6 +45,14 @@ Install npm, then run:
 
 Or drag and drop the files from `/test/index.html` into your browser.
 
+### Releasing
+
+Run
+
+    npm run release
+
+Then upload the generated zip file to the chrome store.
+
 ## Roadmap
 
 The upcoming milestones can be found [on the GitHub milestones](https://github.com/MikeRogers0/LivePage/milestones) page.

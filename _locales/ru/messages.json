@@ -98,6 +98,9 @@
   "@options_persist_scroll_points": {
     "message": "Пытаться прокручивать X/Y позиции"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "Добавляйте атрибут «livePage» к URL-адресам при опросе изменений"
+  },
   "@options_h2_notes": {
     "message": "Примечания:"
   },

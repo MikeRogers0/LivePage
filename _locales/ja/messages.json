@@ -83,6 +83,9 @@
   "@options_persist_scroll_points": {
     "message": "スクロールX / Y位置を保持しようとしています"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "変更をポーリングするときに 'livePage'属性をURLに追加する"
+  },
   "@options_refresh_delay": {
     "message": "リロードする前の最小遅延："
   },

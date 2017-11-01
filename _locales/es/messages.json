@@ -98,6 +98,9 @@
   "@options_persist_scroll_points": {
     "message": "Intentar persistencia en desplazamiento de posiciones X/Y"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "Añada el atributo 'livePage' a las URL cuando busque cambios"
+  },
   "@options_h2_notes": {
     "message": "Notas:"
   },

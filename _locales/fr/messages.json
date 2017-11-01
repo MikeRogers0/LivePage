@@ -98,6 +98,9 @@
   "@options_persist_scroll_points": {
     "message": "Tentative de conservation du défilement des positions X/Y"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "Ajoutez l'attribut 'livePage' aux URL lors de l'interrogation des modifications"
+  },
   "@options_h2_notes": {
     "message": "Remarques :"
   },

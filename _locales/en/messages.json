@@ -123,7 +123,7 @@
   },
   "@options_use_hard_cache_breaker": {
     "message": "Append the 'livePage' attribute to URLs when polling for changes",
-    "description": "English: "
+    "description": "English: Append the 'livePage' attribute to URLs when polling for changes"
   },
   "@options_refresh_delay": {
     "message": "Minimum delay before reloading:",

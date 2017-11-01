@@ -6,7 +6,8 @@
     "release": "bash release.sh"
   },
   "dependencies": {
-    "timekeeper": "^2.0.0"
+    "timekeeper": "^2.0.0",
+    "translate-json-object": "^2.3.0"
   },
   "devDependencies": {
     "grunt": "~1.0.0",

@@ -83,6 +83,9 @@
   "@options_persist_scroll_points": {
     "message": "Tentativa de persistir nas posições de deslocamento X/Y"
   },
+  "@options_use_hard_cache_breaker": {
+    "message": "Anexe o atributo 'livePage' aos URLs ao pesquisar as alterações"
+  },
   "@options_refresh_delay": {
     "message": "Retardo mínimo antes de recarregar:"
   },

@@ -69,35 +69,14 @@ livePage.prototype.scanCSS = function(){
       // If it has a href we can monitor
       if (sheet.href) {
         this.addResource(new LiveCSSResource(sheet.href, sheet.media.mediaText, sheet.ownerNode));
-        var sheet_folder = sheet.href.replace(sheet.href.split('/').pop(), '');
-      } else {
-        var sheet_folder = '';
       }
 
       // Now lets checks for @import stuff within this stylesheet.
       if (sheet.cssRules) {
         for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
           var rule = sheet.cssRules[ruleKey];
-
-          if (rule && rule.href) {
-            var rule_href = (function() {
-              if (rule.href.indexOf("//") == 0) {
-                return window.location.protocol + rule.href;
-              }
-
-              if (rule.href.indexOf("http://") == 0 || rule.href.indexOf("https://") == 0  || rule.href.indexOf("/") == 0) {
-                return rule.href;
-              }
-
-              // Convert http://127.0.0.1:4000/spec/css/index.html to http://127.0.0.1:4000/spec/css/
-              // then add the current href on.
-              var url_parts = document.URL.split("/");
-              url_parts.pop();
-              var recombined_url = url_parts.join("/") + "/";
-              return recombined_url  + rule.href;
-            });
-
-            this.addResource(new LiveResource(rule_href()));
+          if (rule && rule.href && rule.styleSheet.href) {
+            this.addResource(new LiveResource(rule.styleSheet.href));
           }
         }
       }

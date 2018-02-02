@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.7](https://github.com/MikeRogers0/LivePage/tree/2.6.7) (2018-02-02)
+
+ - Adding Try/Catch around stylesheet error - Couldn't recreate it, but users reported it.
+
 ## [2.6.5](https://github.com/MikeRogers0/LivePage/tree/2.6.5) (2017-11-01)
 
  - Added automated translation script. 

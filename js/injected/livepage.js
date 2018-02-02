@@ -72,13 +72,18 @@ livePage.prototype.scanCSS = function(){
       }
 
       // Now lets checks for @import stuff within this stylesheet.
-      if (sheet.cssRules) {
-        for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
-          var rule = sheet.cssRules[ruleKey];
-          if (rule && rule.href && rule.styleSheet.href) {
-            this.addResource(new LiveResource(rule.styleSheet.href));
+      try {
+        if (sheet.cssRules != null && sheet.cssRules.length > 0) {
+          for (var ruleKey = 0; ruleKey < sheet.cssRules.length; ruleKey++) {
+            var rule = sheet.cssRules[ruleKey];
+            if (rule && rule.href && rule.styleSheet.href) {
+              this.addResource(new LiveResource(rule.styleSheet.href));
+            }
           }
         }
+      } catch(error) {
+        console.log('[LivePage] Not tracking: ', sheet, 'as: ', error);
+        console.log('[LivePage] Please tell the developer Mike ( me+livepage@mikerogers.io ) about this');
       }
     }
   }

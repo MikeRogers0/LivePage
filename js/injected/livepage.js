@@ -82,8 +82,9 @@ livePage.prototype.scanCSS = function(){
           }
         }
       } catch(error) {
-        console.log('[LivePage] Not tracking: ', sheet, 'as: ', error);
-        console.log('[LivePage] Please tell the developer Mike ( me+livepage@mikerogers.io ) about this');
+        // TODO
+        // External stylesheets don't let me read their rules anymore. I'll have
+        // parse their contents by reading them with AJAX (boo!).
       }
     }
   }

@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.6.8](https://github.com/MikeRogers0/LivePage/tree/2.6.8) (2018-02-05)
+
+ - Suppressing the "email me" message until I can work on a proper fix.
+
 ## [2.6.7](https://github.com/MikeRogers0/LivePage/tree/2.6.7) (2018-02-02)
 
  - Adding Try/Catch around stylesheet error - Couldn't recreate it, but users reported it.

@@ -22,7 +22,16 @@ function Settings() {
     use_hard_cache_breaker: false,
     blocked_url_list: [
       "https://sample-blocked-host.com/",
-      "a-sample-blocked-file.js"
+      "fonts.googleapis.com",
+      ".bootstrapcdn.com",
+      "maxcdn.bootstrapcdn.com",
+      "://code.jquery.com/",
+      "://pagecdn.io/",
+      "://cdnjs.cloudflare.com",
+      "://cdn.jsdelivr.net",
+      "://ajax.googleapis.com",
+      "://ajax.aspnetcdn.com",
+      "://unpkg.com"
     ]
   };
 

@@ -116,6 +116,12 @@
   "@options_ignore_inline_js": {
     "message": "Ignorar JavaScript em linha"
   },
+  "@options_h2_blocked_url_list": {
+    "message": "Blocked URLs:"
+  },
+  "@options_blocked_url_list_note": {
+    "message": "Add URLs separated by a line break. Any resource URL that contains the block URL will not be tracked."
+  },
   "@options_h2_notes": {
     "message": "Observações:"
   },

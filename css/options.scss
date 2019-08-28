@@ -77,6 +77,13 @@ form {
     width: 48px;
     margin-left: 6px;
   }
+
+  textarea {
+    width: 50%;
+    min-width: 20%;
+    max-width: 90%;
+    min-height: 60px;
+  }
 }
 
 input[type="range"] {

@@ -55,6 +55,11 @@ form input[type="checkbox"] {
 form input[type="number"] {
   width: 48px;
   margin-left: 6px; }
+form textarea {
+  width: 50%;
+  min-width: 20%;
+  max-width: 90%;
+  min-height: 60px; }
 
 input[type="range"] {
   width: 50%;

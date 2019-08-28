@@ -193,6 +193,13 @@ livePage.prototype.trackableURL = function(url) {
     return true;
   }
 
+  // Return false when the URL matches anything in the blocked URL list.
+  for(var i in this.options.blocked_url_list) {
+    if( url.indexOf(this.options.blocked_url_list[i]) !== -1 ) {
+      return false;
+    }
+  }
+
   // Always return true for Localhosts
   if(
     url.indexOf("localhost") !== -1 || 

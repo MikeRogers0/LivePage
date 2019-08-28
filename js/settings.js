@@ -19,7 +19,20 @@ function Settings() {
     refresh_rate: 200,
     refresh_delay: 1,
     persist_scroll_points: true,
-    use_hard_cache_breaker: false
+    use_hard_cache_breaker: false,
+    blocked_url_list: [
+      "https://sample-blocked-host.com/",
+      "fonts.googleapis.com",
+      ".bootstrapcdn.com",
+      "maxcdn.bootstrapcdn.com",
+      "://code.jquery.com/",
+      "://pagecdn.io/",
+      "://cdnjs.cloudflare.com",
+      "://cdn.jsdelivr.net",
+      "://ajax.googleapis.com",
+      "://ajax.aspnetcdn.com",
+      "://unpkg.com"
+    ]
   };
 
   // Check for old settings and do the upgrade

@@ -194,7 +194,7 @@ livePage.prototype.trackableURL = function(url) {
   }
 
   // Return false when the URL matches anything in the blocked URL list.
-  for(i in this.options.blocked_url_list) {
+  for(var i in this.options.blocked_url_list) {
     if( url.indexOf(this.options.blocked_url_list[i]) !== -1 ) {
       return false;
     }

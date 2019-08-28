@@ -31,3 +31,10 @@ QUnit.test( "Returns boolean if a URL is external to the current site", function
   assert.equal( new livePage({skip_external: true}).trackableURL("https://google.com/"), false);
   assert.equal( new livePage({skip_external: true}).trackableURL("https://google.com/thefilename"), false);
 });
+
+QUnit.test( "Returns false when host contains blacklisted url", function( assert ) {
+  // Always return true when false as it means we want to track all resources.
+  assert.equal( new livePage({blocked_url_list: ['https://site.com']}).trackableURL("https://www.site.com/"), false );
+  assert.equal( new livePage({blocked_url_list: ['https://ok-subdomain.site.com']}).trackableURL("https://www.site.com/"), true );
+});
+

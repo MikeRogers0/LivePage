@@ -8,7 +8,7 @@ QUnit.test( "Return everything before the # in a url when ignore_anchors is enab
 
 QUnit.module( "trackableURL" );
 
-QUnit.test( "When dosen't want to skip external, return true for all.", function( assert ) {
+QUnit.test( "When user doesn't want to skip external, return true for all.", function( assert ) {
   // Always return true when false as it means we want to track all resources.
   assert.equal( new livePage({skip_external: false}).trackableURL("http://www.site.com/"), true );
   assert.equal( new livePage({skip_external: false}).trackableURL("http://localhost/somethingelse"), true );
@@ -34,7 +34,7 @@ QUnit.test( "Returns boolean if a URL is external to the current site", function
 
 QUnit.test( "Returns false when host contains blacklisted url", function( assert ) {
   // Always return true when false as it means we want to track all resources.
-  assert.equal( new livePage({blocked_url_list: ['https://site.com']}).trackableURL("https://www.site.com/"), false );
-  assert.equal( new livePage({blocked_url_list: ['https://ok-subdomain.site.com']}).trackableURL("https://www.site.com/"), true );
+  assert.equal( new livePage({skip_external: true, blocked_url_list: ['blocked-file.js']}).trackableURL("file:///Users/blocked-file.js"), false );
+  assert.equal( new livePage({skip_external: true, blocked_url_list: ['blocked-file.css']}).trackableURL("file:///Users/blocked-file.js"), true );
 });
 

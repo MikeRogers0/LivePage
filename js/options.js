@@ -11,7 +11,12 @@ changeEvent.initEvent('change', true, false);
 livepages.i18n.populateElementsCopy();
 
 function textListToArray(body) {
-  return body.replace(/\r\n/g,"\n").replace(/\n\n/g,"\n").split("\n");
+  var array = body.replace(/\r\n/g,"\n").replace(/\n\n/g,"\n").split("\n");
+
+  // Remove any empty objects
+  return array.filter(function (element) {
+    return element != "";
+  });
 }
 
 

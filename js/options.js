@@ -1,7 +1,7 @@
 // Set the global varibles.
 var host_list = document.querySelector('#host_list');
 var clear_all = document.querySelector('#clear_all');
-var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"], #options input[type="number"]');
+var settingFields = document.querySelectorAll('#options select, #options input[type="checkbox"], #options input[type="range"], #options input[type="number"], #options textarea');
 
 // Add the change event, so we can fire changes on load.
 var changeEvent = document.createEvent('Event');
@@ -21,7 +21,9 @@ function updateValue(e) {
     return;
   }
 
-  if (elm.getAttribute('type') == 'checkbox') {
+  if (elm.getAttribute('data-save-as-array') === "true") {
+    settings.set(elm.id, elm.value.split("\n"));
+  } else if (elm.getAttribute('type') == 'checkbox') {
     settings.set(elm.id, elm.checked);
   } else {
     settings.set(elm.id, elm.value);
@@ -52,7 +54,10 @@ clear_all.addEventListener('click', clearLivePages, false);
 
 // now update the checkboxes and select field with values from the database.
 for (var key = 0; key < settingFields.length; key++) {
-  if (settingFields[key].getAttribute('type') == 'checkbox') {
+  if (settingFields[key].getAttribute('data-save-as-array') === "true") {
+    debugger;
+    settingFields[key].value = '' + settings.get(settingFields[key].id).join("\n");
+  } else if (settingFields[key].getAttribute('type') == 'checkbox') {
     // If the checkbox value is the same as the one in the database check it
     settingFields[key].checked = false; // uncheck it by default
     if (settingFields[key].getAttribute('value') == '' + settings.get(settingFields[key].id)) {

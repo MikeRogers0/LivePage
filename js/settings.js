@@ -19,7 +19,11 @@ function Settings() {
     refresh_rate: 200,
     refresh_delay: 1,
     persist_scroll_points: true,
-    use_hard_cache_breaker: false
+    use_hard_cache_breaker: false,
+    blocked_url_list: [
+      "https://sample-blocked-host.com/",
+      "a-sample-blocked-file.js"
+    ]
   };
 
   // Check for old settings and do the upgrade

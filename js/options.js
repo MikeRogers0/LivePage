@@ -10,6 +10,10 @@ changeEvent.initEvent('change', true, false);
 // i18n up the page
 livepages.i18n.populateElementsCopy();
 
+function textListToArray(body) {
+  return body.replace(/\r\n/g,"\n").replace(/\n\n/g,"\n").split("\n");
+}
+
 
 // Build the listner for when options are updated.
 function updateValue(e) {
@@ -22,7 +26,7 @@ function updateValue(e) {
   }
 
   if (elm.getAttribute('data-save-as-array') === "true") {
-    settings.set(elm.id, elm.value.split("\n"));
+    settings.set(elm.id, textListToArray(elm.value));
   } else if (elm.getAttribute('type') == 'checkbox') {
     settings.set(elm.id, elm.checked);
   } else {

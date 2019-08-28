@@ -128,6 +128,13 @@
     "message": "Ignore inline JavaScript"
   },
 
+  "@options_h2_blocked_url_list": {
+    "message": "Blocked URLs:"
+  },
+  "@options_blocked_url_list_note": {
+    "message": "Add URLs separated by a line break. Any resource URL that contains the URL will not be tracked."
+  },
+
   "@options_h2_notes": {
     "message": "Notes:"
   },

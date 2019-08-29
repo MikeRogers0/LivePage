@@ -22,6 +22,9 @@ function Settings() {
     use_hard_cache_breaker: false,
     blocked_url_list: [
       "https://sample-blocked-host.com/",
+      "sample-blocked-file.js",
+      "/jquery.min.js",
+      "/bootstrap.min.css",
       "fonts.googleapis.com",
       ".bootstrapcdn.com",
       "maxcdn.bootstrapcdn.com",

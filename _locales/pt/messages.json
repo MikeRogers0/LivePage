@@ -117,10 +117,10 @@
     "message": "Ignorar JavaScript embutido"
   },
   "@options_h2_blocked_url_list": {
-    "message": "Blocked URLs:"
+    "message": "Blocked URLs & Files:"
   },
   "@options_blocked_url_list_note": {
-    "message": "Add URLs separated by a line break. Any resource URL that contains the block URL will not be tracked."
+    "message": "Add URLs & filenames separated by a line break. If any of your pages resources match a blocked file, it will not be tracked."
   },
   "@options_h2_notes": {
     "message": "Notas:"

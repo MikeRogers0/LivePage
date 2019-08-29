@@ -2,6 +2,10 @@
 
 All future milestones & current issues can be found on https://github.com/MikeRogers0/LivePage/issues
 
+## [2.7.0](https://github.com/MikeRogers0/LivePage/tree/2.7.0) (2019-08-29)
+
+ - Adding method to blacklist URLs from being tracked.
+
 ## [2.6.8](https://github.com/MikeRogers0/LivePage/tree/2.6.8) (2018-02-05)
 
  - Suppressing the "email me" message until I can work on a proper fix.

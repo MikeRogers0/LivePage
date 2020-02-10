@@ -1,3 +1,7 @@
+# No longer Maintained
+
+Unfortunately on the 10th February 2020, I decided it was time to stop supporting LivePage. Primary this is because my development process locally has changed, so I don't use it day to day. For alternatives, please consider [react-hot-loader](https://github.com/gaearon/react-hot-loader) & [Vue Loader](https://vue-loader.vuejs.org/guide/hot-reload.html).
+
 # LivePage
 
 LivePage is a developer tool which reloads website resources (such as CSS, HTML and JavaScript) as they change on the server, so you are always looking at the most up-to-date version of a web page. It can make developing websites a lot faster, by helping productivity. You can install LivePage via the [Chrome Web Store](https://chrome.google.com/webstore/detail/livepage/pilnojpmdoofaelbinaeodfpjheijkbh/details).
